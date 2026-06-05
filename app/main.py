@@ -7,8 +7,10 @@ def root():
   return {"message": "Soul Eater API is running"}
 
 @app.get("/characters")
-def get_characters(role: str |  None):
+def get_characters(role: str |  None = None, affiliation: str | None = None):
   filtered_role_characters = []
+  filtered_affiliation_characters = []
+  filtered_role_affiliation_characters = []
 
   characters = [
       {"id": 1, "name": "Maka Albarn", "role": "Meister", "affiliation": "DWMA"}, 
@@ -17,15 +19,29 @@ def get_characters(role: str |  None):
       {"id": 4, "name": "Tsubaki Nakatsukasa", "role": "Demon Weapon", "affiliation": "DWMA"},
       {"id": 5, "name": "Death the Kid", "role": "Meister", "affiliation": "DWMA"},
       ]
+
+  if role is not None and affiliation is not None: 
+    for character in characters: 
+      if character["role"] == role and character["affiliation"] == affiliation:
+        filtered_role_affiliation_characters.append(character)
+    
+    return filtered_role_affiliation_characters
   
-  if role is None: 
+  if role is None and affiliation is None: 
     return characters 
-  else: 
+
+  if role is not None: 
     for character in characters: 
       if character["role"] == role: 
         filtered_role_characters.append(character)
-    
-    return filtered_role_characters
+
+  if affiliation is not None: 
+    for character in characters: 
+      if character["affiliation"] == affiliation: 
+        filtered_affiliation_characters.append(character)
+
+  return filtered_role_characters + filtered_affiliation_characters
+
 
 @app.get("/characters/{character_id}")
 def get_character_by_id(character_id: int): 
