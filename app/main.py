@@ -52,3 +52,11 @@ def get_character_by_id(character_id: int):
 def get_weapons():
   result = weapons 
   return result 
+
+@app.get("/weapons/{weapon_id}") 
+def get_weapon_by_id(weapon_id: int): 
+  get_weapon = get_weapons() 
+  for weapon in get_weapon: 
+    if weapon['id'] == weapon_id: 
+      return weapon
+  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Weapon not found")
