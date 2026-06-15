@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
-from app.data import characters, weapons
+from app.data import characters, weapons, organizations
 
 app = FastAPI()
 
@@ -81,3 +81,15 @@ def get_weapon_by_id(weapon_id: int):
     if weapon['id'] == weapon_id: 
       return weapon
   raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Weapon not found")
+
+@app.get("/organizations")
+def get_organizations(): 
+  return organizations
+
+@app.get("/organizations/{organization_id}")
+def get_organization_by_id(organization_id: int): 
+  get_organization = get_organizations()
+  for organization in get_organization: 
+    if organization['id'] == organization_id:
+      return organization 
+  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Organization not found")

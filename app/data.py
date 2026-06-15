@@ -11,5 +11,10 @@ weapons = [
   {"id": 2, "name": "Tsubaki Nakatsukasa", "weapon_type": "Multiple ninja weapons", "partner": "Black Star", "affiliation": "DWMA", "description": "A calm demon weapon who can transform into several weapon forms and partners with Black Star." },
   {"id": 3, "name": "Liz Thompson", "weapon_type": "Demon pistol", "partner": "Death the Kid", "affiliation": "DWMA", "description": "The older Thompson sister and one of Death the Kid’s twin pistol partners." },
   {"id": 4, "name": "Patty Thompson", "weapon_type": "Demon pistol", "partner": "Death the Kid", "affiliation": "DWMA", "description": "The younger Thompson sister and one of Death the Kid’s twin pistol partners." },
+]
 
+organizations = [
+  {"id": 1, "name": "DWMA", "type": "Academy", "description": "The Death Weapon Meister Academy is an organization that trains meisters and demon weapons to fight evil souls and protect the world."},
+  {"id": 2, "name": "Witches", "type": "Magical group", "description": "A group of magic users who often come into conflict with the DWMA and use powerful spells, animal themes, and unique magical abilities."},
+  {"id": 3, "name": "Arachnophobia", "type": "Enemy Organization", "description": "An organization led by Arachne that opposes the DWMA and spreads madness through its members and influence."},
 ]
