@@ -1,4 +1,4 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI, HTTPException, status
 from app.data import characters
 
 app = FastAPI()
@@ -45,4 +45,4 @@ def get_character_by_id(character_id: int):
   for character in get_character: 
     if character["id"] == character_id: 
       return character
-  return {"message": "Character not found"}
+  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Character not found")
