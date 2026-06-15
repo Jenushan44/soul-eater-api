@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
-from app.data import characters
+from app.data import characters, weapons
 
 app = FastAPI()
 
@@ -46,3 +46,9 @@ def get_character_by_id(character_id: int):
     if character["id"] == character_id: 
       return character
   raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Character not found")
+
+
+@app.get("/weapons")
+def get_weapons():
+  result = weapons 
+  return result 
