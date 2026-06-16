@@ -25,3 +25,10 @@ abilities = [
     {"id": 3, "name": "Soul Perception", "ability_type": "Detection", "user": "Maka Albarn", "description": "An ability that allows the user to sense, track, and identify souls."},
     {"id": 4, "name": "Madness", "ability_type": "Corruption", "user": "Asura", "description": "A dangerous force that spreads fear, instability, and insanity throughout the world."}
 ]
+
+arcs = [
+    {"id": 1, "name": "Prologue Arc", "episodes": "1-3", "description": "Introduces the main meister and weapon pairs at DWMA."},
+    {"id": 2, "name": "Remedial Lessons Arc", "episodes": "4-6", "description": "Follows early missions and lessons that test the students' teamwork and growth."},
+    {"id": 3, "name": "Brew Arc", "episodes": "20-24", "description": "Centers around the race to find Brew, a powerful magical tool connected to Eibon."},
+    {"id": 4, "name": "Arachnophobia Arc", "episodes": "25-38", "description": "Focuses on the conflict between DWMA and Arachnophobia as madness spreads."}
+]
