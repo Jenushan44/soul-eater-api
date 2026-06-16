@@ -18,3 +18,10 @@ organizations = [
   {"id": 2, "name": "Witches", "type": "Magical group", "description": "A group of magic users who often come into conflict with the DWMA and use powerful spells, animal themes, and unique magical abilities."},
   {"id": 3, "name": "Arachnophobia", "type": "Enemy Organization", "description": "An organization led by Arachne that opposes the DWMA and spreads madness through its members and influence."},
 ]
+
+abilities = [
+    {"id": 1, "name": "Soul Resonance", "ability_type": "Team Technique", "user": "Maka Albarn and Soul Evans", "description": "A technique where meister and weapon synchronize their souls to increase combat power."},
+    {"id": 2, "name": "Witch Hunter", "ability_type": "Scythe Technique", "user": "Maka Albarn and Soul Evans", "description": "A powerful scythe attack created through Soul Resonance."},
+    {"id": 3, "name": "Soul Perception", "ability_type": "Detection", "user": "Maka Albarn", "description": "An ability that allows the user to sense, track, and identify souls."},
+    {"id": 4, "name": "Madness", "ability_type": "Corruption", "user": "Asura", "description": "A dangerous force that spreads fear, instability, and insanity throughout the world."}
+]
