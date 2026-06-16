@@ -141,3 +141,7 @@ def get_arc_by_id(arc_id: int):
     if arc['id'] == arc_id: 
       return arc 
   raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Arc not found")
+
+@app.get("/api")
+def get_api_information(): 
+  return {"api_name": "Soul Eater API", "version": "1.0.0", "description": "A REST API providing information about Soul Eater characters, weapons, organizations, abilities and story arcs.", "available_endpoints": ["/characters", "/characters/{character_id}", "/weapons", "/weapons/{weapon_id}", "/organizations", "/organizations/{organization_id}", "/abilities", "/abilities/{ability_id}", "/arcs", "/arcs/{arc_id}"]}
