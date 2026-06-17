@@ -1,10 +1,12 @@
 from fastapi import APIRouter
 from app.utils.helpers import find_item_by_id
 from app.data import weapons
+from app.schemas import Weapon
+
 
 router = APIRouter()
 
-@router.get("/weapons")
+@router.get("/weapons", response_model=list[Weapon])
 def get_weapons(weapon_type: str | None = None, partner: str | None = None, name: str | None = None):
   result = weapons 
   
@@ -31,7 +33,7 @@ def get_weapons(weapon_type: str | None = None, partner: str | None = None, name
 
   return result 
 
-@router.get("/weapons/{weapon_id}") 
+@router.get("/weapons/{weapon_id}", response_model = Weapon) 
 def get_weapon_by_id(weapon_id: int):  
   get_weapon = get_weapons() 
   return find_item_by_id(get_weapon, weapon_id, "Weapon not found")

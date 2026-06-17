@@ -1,10 +1,12 @@
 from fastapi import APIRouter, HTTPException, status
 from app.data import abilities
 from app.utils.helpers import find_item_by_id
+from app.schemas import Ability
+
 
 router = APIRouter()
 
-@router.get("/abilities") 
+@router.get("/abilities", response_model=list[Ability]) 
 def get_abilities(name: str | None = None, user: str | None = None): 
   result = abilities 
 
@@ -24,7 +26,7 @@ def get_abilities(name: str | None = None, user: str | None = None):
 
   return result  
 
-@router.get("/abilities/{ability_id}") 
+@router.get("/abilities/{ability_id}", response_model=Ability) 
 def get_ability_by_id(ability_id: int):
   get_ability = get_abilities()
   return find_item_by_id(get_ability, ability_id, "Ability not found")

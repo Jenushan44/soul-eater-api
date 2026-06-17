@@ -1,15 +1,16 @@
 from fastapi import APIRouter
 from app.data import organizations
 from app.utils.helpers import find_item_by_id
+from app.schemas import Organization
 
 router = APIRouter()
 
 
-@router.get("/organizations")
+@router.get("/organizations", response_model=list[Organization])
 def get_organizations(): 
   return organizations
 
-@router.get("/organizations/{organization_id}")
+@router.get("/organizations/{organization_id}", response_model=Organization)
 def get_organization_by_id(organization_id: int): 
   get_organization = get_organizations()
   return find_item_by_id(get_organization, organization_id, "Organization not found")

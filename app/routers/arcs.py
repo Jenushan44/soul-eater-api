@@ -1,10 +1,12 @@
 from fastapi import APIRouter, HTTPException, status
 from app.data import arcs
 from app.utils.helpers import find_item_by_id
+from app.schemas import Arc
+
 
 router = APIRouter()
 
-@router.get("/arcs") 
+@router.get("/arcs", response_model=list[Arc]) 
 def get_arcs(name: str | None = None): 
   result = arcs 
   if name is not None: 
@@ -16,7 +18,7 @@ def get_arcs(name: str | None = None):
     result = filter_arcs    
   return result 
 
-@router.get("/arcs/{arc_id}")
+@router.get("/arcs/{arc_id}", response_model=Arc)
 def get_arc_by_id(arc_id: int): 
   get_arc = get_arcs()
   return find_item_by_id(get_arc, arc_id, "Arc not found")

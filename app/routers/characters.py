@@ -1,10 +1,11 @@
 from fastapi import APIRouter, HTTPException, status
 from app.data import characters
 from app.utils.helpers import find_item_by_id
+from app.schemas import Character
 
 router = APIRouter()
 
-@router.get("/characters")
+@router.get("/characters", response_model=list[Character])
 def get_characters(role: str |  None = None, affiliation: str | None = None, name: str | None = None,):
   result = characters
 
@@ -35,7 +36,7 @@ def get_characters(role: str |  None = None, affiliation: str | None = None, nam
   return result
 
 
-@router.get("/characters/{character_id}")
+@router.get("/characters/{character_id}", response_model = Character)
 def get_character_by_id(character_id: int): 
   get_character = get_characters()
   return find_item_by_id(get_character, character_id, "Character not found")
