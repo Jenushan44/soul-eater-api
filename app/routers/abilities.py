@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from app.data import abilities
+from app.utils.helpers import find_item_by_id
 
 router = APIRouter()
 
@@ -26,7 +27,4 @@ def get_abilities(name: str | None = None, user: str | None = None):
 @router.get("/abilities/{ability_id}") 
 def get_ability_by_id(ability_id: int):
   get_ability = get_abilities()
-  for ability in get_ability: 
-    if ability['id'] == ability_id: 
-      return ability
-  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ability not found")
+  return find_item_by_id(get_ability, ability_id, "Ability not found")

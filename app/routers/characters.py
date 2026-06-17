@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from app.data import characters
+from app.utils.helpers import find_item_by_id
 
 router = APIRouter()
 
@@ -37,7 +38,4 @@ def get_characters(role: str |  None = None, affiliation: str | None = None, nam
 @router.get("/characters/{character_id}")
 def get_character_by_id(character_id: int): 
   get_character = get_characters()
-  for character in get_character: 
-    if character["id"] == character_id: 
-      return character
-  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Character not found")
+  return find_item_by_id(get_character, character_id, "Character not found")

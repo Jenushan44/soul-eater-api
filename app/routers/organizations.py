@@ -1,5 +1,6 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter
 from app.data import organizations
+from app.utils.helpers import find_item_by_id
 
 router = APIRouter()
 
@@ -11,7 +12,4 @@ def get_organizations():
 @router.get("/organizations/{organization_id}")
 def get_organization_by_id(organization_id: int): 
   get_organization = get_organizations()
-  for organization in get_organization: 
-    if organization['id'] == organization_id:
-      return organization 
-  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Organization not found")
+  return find_item_by_id(get_organization, organization_id, "Organization not found")

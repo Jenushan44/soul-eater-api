@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter
+from app.utils.helpers import find_item_by_id
 from app.data import weapons
 
 router = APIRouter()
@@ -33,7 +34,4 @@ def get_weapons(weapon_type: str | None = None, partner: str | None = None, name
 @router.get("/weapons/{weapon_id}") 
 def get_weapon_by_id(weapon_id: int):  
   get_weapon = get_weapons() 
-  for weapon in get_weapon: 
-    if weapon['id'] == weapon_id: 
-      return weapon
-  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Weapon not found")
+  return find_item_by_id(get_weapon, weapon_id, "Weapon not found")

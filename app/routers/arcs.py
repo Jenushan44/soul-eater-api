@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from app.data import arcs
+from app.utils.helpers import find_item_by_id
 
 router = APIRouter()
 
@@ -18,7 +19,4 @@ def get_arcs(name: str | None = None):
 @router.get("/arcs/{arc_id}")
 def get_arc_by_id(arc_id: int): 
   get_arc = get_arcs()
-  for arc in get_arc: 
-    if arc['id'] == arc_id: 
-      return arc 
-  raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Arc not found")
+  return find_item_by_id(get_arc, arc_id, "Arc not found")
