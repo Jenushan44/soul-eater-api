@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.app.data import characters, weapons, abilities, arcs, organizations 
+from app.data import characters, weapons, abilities, arcs, organizations 
 
 router = APIRouter()
 

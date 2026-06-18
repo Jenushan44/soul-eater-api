@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
-from backend.app.data import characters
-from backend.app.utils.helpers import find_item_by_id
-from backend.app.schemas import Character
+from app.data import characters
+from app.utils.helpers import find_item_by_id
+from app.schemas import Character
 
 router = APIRouter()
 

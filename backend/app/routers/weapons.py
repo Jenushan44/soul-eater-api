@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from backend.app.utils.helpers import find_item_by_id
-from backend.app.data import weapons
-from backend.app.schemas import Weapon
+from app.utils.helpers import find_item_by_id
+from app.data import weapons
+from app.schemas import Weapon
 
 
 router = APIRouter()
