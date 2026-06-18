@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from app.data import organizations
-from app.utils.helpers import find_item_by_id
-from app.schemas import Organization
+from backend.app.data import organizations
+from backend.app.utils.helpers import find_item_by_id
+from backend.app.schemas import Organization
 
 router = APIRouter()
 

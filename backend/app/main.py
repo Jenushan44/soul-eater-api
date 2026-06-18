@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from app.routers.characters import router as character_router
-from app.routers.abilities import router as ability_router
-from app.routers.arcs import router as arc_router
-from app.routers.organizations import router as organization_router
-from app.routers.weapons import router as weapon_router
-from app.routers.search import router as search_router
+from backend.app.routers.characters import router as character_router
+from backend.app.routers.abilities import router as ability_router
+from backend.app.routers.arcs import router as arc_router
+from backend.app.routers.organizations import router as organization_router
+from backend.app.routers.weapons import router as weapon_router
+from backend.app.routers.search import router as search_router
 
 app = FastAPI()
 app.include_router(character_router)
