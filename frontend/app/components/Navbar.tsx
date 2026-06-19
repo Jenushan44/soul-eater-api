@@ -3,21 +3,20 @@ import { Search } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <div className='grid grid-cols-3 items-center bg-black'>
-      <div className='ml-3 mt-[-15] flex justify-start'>
+    <div className='flex items-center justify-between bg-black'>
+      <div className='ml-3 mt-[-15] flex-shrink-0'>
         <Image src="/Soul-Eater-Logo.png" alt="Logo" width={220} height={220}></Image>
       </div>
       <div className='flex justify-center gap-15'>
-        <button className='text-white tracking-wide cursor-pointer'>CHARACTERS</button>
-        <button className='text-white tracking-wide cursor-pointer'>WEAPONS</button>
-        <button className='text-white tracking-wide cursor-pointer'>ABILITIES</button>
-        <button className='text-white tracking-wide cursor-pointer'>ORGANIZATIONS</button>
-        <button className='text-white tracking-wide cursor-pointer'>ARCS</button>
+        <a href='#character-section' className='text-white tracking-wide cursor-pointer font-semibold hover:text-yellow-500'>CHARACTERS</a>
+        <a href='#weapon-section' className='text-white tracking-wide cursor-pointer font-semibold hover:text-yellow-500'>WEAPONS</a>
+        <a href='#ability-section' className='text-white tracking-wide cursor-pointer font-semibold hover:text-yellow-500'>ABILITIES</a>
+        <a href='#organization-section' className='text-white tracking-wide cursor-pointer font-semibold hover:text-yellow-500'>ORGANIZATIONS</a>
+        <a href='#arc-section' className='text-white tracking-wide cursor-pointer font-semibold hover:text-yellow-500'>ARCS</a>
       </div>
 
-      <div className='flex justify-end gap-2 items-center'>
-        <input className='border border-gray-200 p-1' placeholder='Search characters, weapons, arcs ....'></input>
-        <Search className='mr-2 cursor-pointer' />
+      <div className='flex justify-end gap-2 items-center flex-shrink-0'>
+        <Search className='mr-3 cursor-pointer' />
       </div>
 
     </div>
