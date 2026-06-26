@@ -6,6 +6,10 @@ export default function Home() {
 
     <div>
       <Navbar />
+      <div className="w-full">
+        <Image src="/Soul-Eater-Banner.png" alt="Banner" width={1200} height={400} className="w-full h-auto" priority></Image>
+      </div>
+
       <div className="h-[1000px]" id="character-section">
         <h1 className="text-black">Characters</h1>
       </div>
