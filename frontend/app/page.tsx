@@ -6,8 +6,9 @@ export default function Home() {
 
     <div>
       <Navbar />
-      <div className="w-full">
-        <Image src="/Soul-Eater-Banner.png" alt="Banner" width={1200} height={400} className="w-full h-auto" priority></Image>
+      <div className="w-full relative">
+        <Image src="/Soul-Eater-Banner.png" alt="Banner" width={1200} height={400} className="w-full h-auto relative" priority></Image>
+        <p className="absolute top-[15%] left-[10%]">Welcome to the Soul Eater API</p>
       </div>
 
       <div className="h-[1000px]" id="character-section">
