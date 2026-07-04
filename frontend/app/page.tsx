@@ -8,12 +8,17 @@ export default function Home() {
       <Navbar />
       <div className="w-full relative">
         <Image src="/Soul-Eater-Medusa-Banner.png" alt="Banner" width={1200} height={400} className="w-full h-auto relative" priority></Image>
-        <p className="absolute top-[16%] left-[2%] font-semibold text-[#b9b761]">WELCOME TO THE</p>
-        <p className="absolute top-[16%] left-[1.5%] font-bold text-[100px]">SOUL EATER</p>
-        <p className="absolute top-[26%] left-[1.5%] font-bold text-[100px]">DATABASE</p>
-        <p className="absolute top-[40%] left-[2%] font-semibold">Explore the world of Soul Eater. Characters, Weapons, Abilities, Organizations and Arcs.</p>
-        <button className="absolute top-[44%] left-[2%] font-semibold cursor-pointer">Explore Database</button>
-        <button className="absolute top-[44%] left-[14%] font-semibold cursor-pointer">LEARN MORE</button>
+        <div className="absolute top-[50%] left-[2%]">
+          <p className="font-semibold text-[#f89c0a]">WELCOME TO THE</p>
+          <p className="font-banner text-[100px] leading-[0.8] mt-3">SOUL EATER</p>
+          <p className="font-banner text-[100px] leading-[0.8] text-[#f89c0a] mt-2 mb-2">DATABASE</p>
+          <p className="font-semibold mb-5">Explore the world of Soul Eater. Characters, Weapons, Abilities, Organizations and Arcs.</p>
+          <div className="flex gap-8">
+            <button className="font-semibold cursor-pointer text-black p-3 border-2 border-black rounded-sm bg-[#f89c0a]">EXPLORE DATABASE</button>
+            <button className="font-semibold cursor-pointer text-[#f89c0a] p-3 border border-[#f89c0a] rounded-sm">LEARN MORE</button>
+          </div>
+        </div>
+
       </div>
 
       <div className="h-[1000px]" id="character-section">
