@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Navbar from "./components/Navbar"
-import { Skull, Swords, Flame, MoonStar, BrickWallShield } from 'lucide-react';
+import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight } from 'lucide-react';
 
 export default function Home() {
   return (
 
-    <div>
+    <div className="bg-black">
       <Navbar />
       <div className="w-full relative">
         <Image src="/Soul-Eater-Medusa-Banner.png" alt="Banner" width={1200} height={400} className="w-full h-auto relative" priority></Image>
@@ -24,7 +24,8 @@ export default function Home() {
 
       <div className="h-40 xl:h-50 border rounded-lg border-zinc-800 border-3 flex bg-black gap-2 md:gap-8 lg:gap-15 mx-5">
         <div className="flex m-auto">
-          <Skull className="w-15 h-15 lg:w-20 lg:h-20 xl:w-25 xl:h-25" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
+          <Image className="w-30 h-auto lg:w-40 xl:w-50" src="/characters-stats-logo.png" alt="Weapon Logo" width={220} height={220}></Image>
+
           <div>
             <p className="text-[#f89c0a] text-[30px] xl:text-[40px] font-bold">100+</p>
             <p className="font-semibold text-[14px] lg:text-[18px]">CHARACTERS</p>
@@ -34,7 +35,8 @@ export default function Home() {
         <div className="w-[2px] h-[60%] bg-zinc-800 my-auto" />
 
         <div className="flex m-auto">
-          <Swords className="w-15 h-15 lg:w-20 lg:h-20 xl:w-25 xl:h-25" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
+          <Image className="w-30 h-auto lg:w-40 xl:w-50" src="/weapons-statistics-logo.png" alt="Weapon Logo" width={220} height={220}></Image>
+
           <div>
             <p className="text-[#f89c0a] text-[30px] xl:text-[40px] font-bold">70+</p>
             <p className="font-semibold text-[14px] lg:text-[18px]">WEAPONS</p>
@@ -73,9 +75,46 @@ export default function Home() {
 
       </div>
 
-      <div className="h-[1000px]" id="character-section">
-        <h1 className="text-black">Characters</h1>
+      <div className="flex items-center gap-3 h-12 ml-6 mt-10">
+        <div className="w-[3px] h-[80%] bg-[#f89c0a]" />
+        <div>
+          <p className="text-white font-semibold text-[24px]">BROWSE THE DATABASE</p>
+        </div>
       </div>
+
+      <div className="mx-6 mt-10" id="character-section">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-[3px] h-8 bg-[#f89c0a]" />
+          <p className="text-white font-semibold text-[24px]">CHARACTERS</p>
+        </div>
+
+        <div className="flex flex-wrap gap-6">
+          <div className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+            <div className="relative w-full h-64 bg-zinc-950">
+              <Image src="/characters-maka-albarn.png" alt="Maka Albarn" fill className="object-cover object-top" />
+            </div>
+
+            <div className="p-4 border-t border-zinc-800">
+              <h2 className="font-banner text-white text-2xl">Maka Albarn</h2>
+              <p className="text-zinc-400 text-xs font-semibold">MEISTER</p>
+              <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
+            </div>
+          </div>
+
+          <div className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+            <div className="relative w-full h-64 bg-zinc-950">
+              <Image src="/characters-soul-eater-evans.png" alt="Soul Evans" fill className="object-cover object-top" />
+            </div>
+
+            <div className="p-4 border-t border-zinc-800">
+              <h2 className="font-banner text-white text-2xl">SOUL EVANS</h2>
+              <p className="text-zinc-400 text-xs font-semibold">DEMON WEAPON</p>
+              <button className="flex mt-3 text-[#f89c0a] text-xs cursor-pointer font-bold gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="h-[1000px]" id="weapon-section">
         <h1 className="text-black">Weapons</h1>
       </div >
