@@ -6,6 +6,7 @@ class Character(BaseModel):
   role: str 
   affiliation: str 
   description: str
+  image_url: str | None = None
 
 class Weapon(BaseModel): 
   id: int 

@@ -10,7 +10,7 @@ type Character = {
   role: string;
   affiliation: string;
   description: string;
-  image_url?: string;
+  image_url: string;
 };
 
 export default function Home() {
@@ -20,7 +20,10 @@ export default function Home() {
   useEffect(() => {
     fetch("http://127.0.0.1:8000/characters")
       .then((result) => result.json())
-      .then((data) => setCharacters(data));
+      .then((data) => {
+        const randomizedCharacters = [...data].sort(() => Math.random() - 0.5);
+        setCharacters(randomizedCharacters);
+      });
   }, []);
 
   return (
@@ -104,37 +107,28 @@ export default function Home() {
 
       <div className="mx-6 mt-10" id="character-section">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-[3px] h-8 bg-[#f89c0a]" />
-          <p className="text-white font-semibold text-[24px]">CHARACTERS</p>
+          <div className='mx-auto'>
+            <p className="text-white font-semibold text-[24px]">CHARACTERS</p>
+            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-6">
-          <div className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-            <div className="relative w-full h-64 bg-zinc-950">
-              <Image src="/characters-maka-albarn.png" alt="Maka Albarn" fill className="object-cover object-top" />
+        <div className="flex flex-wrap gap-6 justify-center">
+          {characters.slice(0, 5).map((character) => (
+            <div key={character.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+              <div className="relative w-full h-64 bg-zinc-950">
+                <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+              </div>
+
+              <div className="p-4 border-t border-zinc-800">
+                <h2 className="font-banner text-white text-2xl">{character.name}</h2>
+                <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
+                <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
+              </div>
             </div>
 
-            <div className="p-4 border-t border-zinc-800">
-              <h2 className="font-banner text-white text-2xl">Maka Albarn</h2>
-              <p className="text-zinc-400 text-xs font-semibold">MEISTER</p>
-              <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
-            </div>
-          </div>
 
-          <div className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-            <div className="relative w-full h-64 bg-zinc-950">
-              <Image src="/characters-soul-eater-evans.png" alt="Soul Evans" fill className="object-cover object-top" />
-            </div>
 
-            <div className="p-4 border-t border-zinc-800">
-              <h2 className="font-banner text-white text-2xl">SOUL EVANS</h2>
-              <p className="text-zinc-400 text-xs font-semibold">DEMON WEAPON</p>
-              <button className="flex mt-3 text-[#f89c0a] text-xs cursor-pointer font-bold gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
-            </div>
-          </div>
-
-          {characters.map((character) => (
-            <p key={character.id}>{character.name}</p>
           ))}
 
 
