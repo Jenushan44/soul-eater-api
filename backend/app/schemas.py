@@ -22,10 +22,10 @@ class Organization(BaseModel):
   description: str 
 
 class Ability(BaseModel): 
-  id: int 
+  id: int
   name: str 
   ability_type: str 
-  user: str 
+  users: list[str] 
   description: str 
 
 class Arc(BaseModel): 
