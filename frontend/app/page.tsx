@@ -1,8 +1,28 @@
+"use client"
+import { useEffect, useState } from 'react';
 import Image from "next/image";
 import Navbar from "./components/Navbar"
 import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight } from 'lucide-react';
 
+type Character = {
+  id: number;
+  name: string;
+  role: string;
+  affiliation: string;
+  description: string;
+  image_url?: string;
+};
+
 export default function Home() {
+
+  const [characters, setCharacters] = useState<Character[]>([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/characters")
+      .then((result) => result.json())
+      .then((data) => setCharacters(data));
+  }, []);
+
   return (
 
     <div className="bg-black">
@@ -112,6 +132,12 @@ export default function Home() {
               <button className="flex mt-3 text-[#f89c0a] text-xs cursor-pointer font-bold gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
             </div>
           </div>
+
+          {characters.map((character) => (
+            <p key={character.id}>{character.name}</p>
+          ))}
+
+
         </div>
       </div>
 

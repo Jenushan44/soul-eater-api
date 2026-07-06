@@ -5,6 +5,7 @@ from app.routers.arcs import router as arc_router
 from app.routers.organizations import router as organization_router
 from app.routers.weapons import router as weapon_router
 from app.routers.search import router as search_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 app.include_router(character_router)
@@ -13,6 +14,20 @@ app.include_router(arc_router)
 app.include_router(organization_router)
 app.include_router(weapon_router)
 app.include_router(search_router)
+
+
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def root(): 
