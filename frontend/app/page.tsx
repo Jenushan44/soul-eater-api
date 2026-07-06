@@ -105,47 +105,72 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mx-6 mt-10" id="character-section">
-        <div className="flex items-center gap-3 mb-6">
-          <div className='mx-auto'>
-            <p className="text-white font-semibold text-[24px]">CHARACTERS</p>
-            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+      <div className='flex flex-col lg:flex-row gap-8 mx-6 mt-10'>
+        <div className='flex flex-col gap-2 min-w-[240px] h-fit lg:sticky lg:top-4 bg-zinc-950 p-4 border border-zinc-800 rounded-lg'>
+          <div className='border border-white p-5 min-w-[200px]'>
+            <a href='#character-section' className='font-semibold'>Character</a>
+          </div>
+
+          <div className='border border-white p-5 min-w-[200px]'>
+            <a href='#weapon-section' className='font-semibold'>Weapons</a>
+          </div>
+
+          <div className='border border-white p-5 min-w-[200px]'>
+            <a href='#ability-section' className='font-semibold'>Abilities</a>
+          </div>
+
+          <div className='border border-white p-5 min-w-[200px]'>
+            <a href='#organization-section' className='font-semibold'>Organizations</a>
+          </div>
+
+
+
+
+          <div className='border border-white p-5 min-w-[200px]'>
+            <a href='#arc-section' className='font-semibold'>Arcs</a>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-6 justify-center">
-          {characters.slice(0, 5).map((character) => (
-            <div key={character.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-              <div className="relative w-full h-64 bg-zinc-950">
-                <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
-              </div>
-
-              <div className="p-4 border-t border-zinc-800">
-                <h2 className="font-banner text-white text-2xl">{character.name}</h2>
-                <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
+        <div className="flex-1 flex flex-col gap-16">
+          <div className="mx-6 mt-10" id="character-section">
+            <div className="flex items-center gap-3 mb-6">
+              <div className='mx-auto'>
+                <p className="text-white font-semibold text-[24px]">CHARACTERS</p>
+                <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
               </div>
             </div>
 
+            <div className="flex flex-wrap gap-6 justify-center">
+              {characters.slice(0, 5).map((character) => (
+                <div key={character.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                  <div className="relative w-full h-64 bg-zinc-950">
+                    <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                  </div>
+
+                  <div className="p-4 border-t border-zinc-800">
+                    <h2 className="font-banner text-white text-2xl">{character.name}</h2>
+                    <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
+                    <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
+                  </div>
+                </div>
+              ))}
 
 
-          ))}
-
-
+            </div>
+          </div>
+          <div className="h-[1000px]" id="weapon-section">
+            <h1 className="text-black">Weapons</h1>
+          </div >
+          <div className="h-[1000px]" id="ability-section">
+            <h1 className="text-black">Abilities</h1>
+          </div>
+          <div className="h-[1000px]" id="organization-section">
+            <h1 className="text-black">Oraganizations</h1>
+          </div>
+          <div className="h-[1000px]" id="arc-section">
+            <h1 className="text-white text-3xl font-banner">Arcs</h1>
+          </div>
         </div>
-      </div>
-
-      <div className="h-[1000px]" id="weapon-section">
-        <h1 className="text-black">Weapons</h1>
-      </div >
-      <div className="h-[1000px]" id="ability-section">
-        <h1 className="text-black">Abilities</h1>
-      </div>
-      <div className="h-[1000px]" id="organization-section">
-        <h1 className="text-black">Oraganizations</h1>
-      </div>
-      <div className="h-[1000px]" id="arc-section">
-        <h1 className="text-black">Arcs</h1>
       </div>
     </div >
   );
