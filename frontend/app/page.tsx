@@ -106,36 +106,52 @@ export default function Home() {
       </div>
 
       <div className='flex flex-col lg:flex-row gap-8 mx-6 mt-10'>
-        <div className='flex flex-col gap-2 min-w-[240px] h-fit lg:sticky lg:top-4 bg-zinc-950 p-4 border border-zinc-800 rounded-lg'>
-          <div className='border border-white p-5 min-w-[200px]'>
-            <a href='#character-section' className='font-semibold'>Character</a>
-          </div>
+        <div className="flex flex-col min-w-[260px] h-fit lg:sticky lg:top-6 bg-zinc-950/40 backdrop-blur-md p-3 border border-zinc-900 rounded-md tracking-wide">
 
-          <div className='border border-white p-5 min-w-[200px]'>
-            <a href='#weapon-section' className='font-semibold'>Weapons</a>
-          </div>
+          <p className="text-[#f89c0a] text-[10px] font-bold tracking-widest px-3 mb-3 uppercase font-sans">DATABASE SECTIONS</p>
 
-          <div className='border border-white p-5 min-w-[200px]'>
-            <a href='#ability-section' className='font-semibold'>Abilities</a>
-          </div>
+          <a href="#character-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+            <div className="flex items-center gap-3">
+              <Skull className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span>Characters</span>
+            </div>
+          </a>
 
-          <div className='border border-white p-5 min-w-[200px]'>
-            <a href='#organization-section' className='font-semibold'>Organizations</a>
-          </div>
+          <a href="#weapon-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+            <div className="flex items-center gap-3">
+              <Swords className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span>Weapons</span>
+            </div>
+          </a>
 
+          <a href="#ability-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+            <div className="flex items-center gap-3">
+              <Flame className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span>Abilities</span>
+            </div>
+          </a>
 
+          <a href="#organization-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+            <div className="flex items-center gap-3">
+              <BrickWallShield className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span>Organizations</span>
+            </div>
+          </a>
 
+          <a href="#arc-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+            <div className="flex items-center gap-3">
+              <MoonStar className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span>Arcs</span>
+            </div>
+          </a>
 
-          <div className='border border-white p-5 min-w-[200px]'>
-            <a href='#arc-section' className='font-semibold'>Arcs</a>
-          </div>
         </div>
 
         <div className="flex-1 flex flex-col gap-16">
           <div className="mx-6 mt-10" id="character-section">
             <div className="flex items-center gap-3 mb-6">
               <div className='mx-auto'>
-                <p className="text-white font-semibold text-[24px]">CHARACTERS</p>
+                <p className="text-white text-5xl font-banner">CHARACTERS</p>
                 <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
               </div>
             </div>
@@ -150,7 +166,7 @@ export default function Home() {
                   <div className="p-4 border-t border-zinc-800">
                     <h2 className="font-banner text-white text-2xl">{character.name}</h2>
                     <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                    <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW PROFILE <MoveRight className="-translate-y-1" /></button>
+                    <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" /></button>
                   </div>
                 </div>
               ))}
@@ -159,16 +175,21 @@ export default function Home() {
             </div>
           </div>
           <div className="h-[1000px]" id="weapon-section">
-            <h1 className="text-black">Weapons</h1>
+            <p className="text-white text-5xl font-banner">Weapons</p>
+            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
           </div >
           <div className="h-[1000px]" id="ability-section">
-            <h1 className="text-black">Abilities</h1>
+            <p className="text-white text-5xl font-banner">Abilities</p>
+            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
           </div>
           <div className="h-[1000px]" id="organization-section">
-            <h1 className="text-black">Oraganizations</h1>
+            <p className="text-white text-5xl font-banner">Organizations</p>
+            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
           </div>
           <div className="h-[1000px]" id="arc-section">
-            <h1 className="text-white text-3xl font-banner">Arcs</h1>
+            <p className="text-white text-5xl font-banner">Arcs</p>
+            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+
           </div>
         </div>
       </div>
