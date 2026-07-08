@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from "next/image";
 import Navbar from "./components/Navbar"
-import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight } from 'lucide-react';
+import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, ChevronRight } from 'lucide-react';
 
 type Character = {
   id: number;
@@ -106,42 +106,42 @@ export default function Home() {
       </div>
 
       <div className='flex flex-col lg:flex-row gap-8 mx-6 mt-10'>
-        <div className="flex flex-col min-w-[260px] h-fit lg:sticky lg:top-6 bg-zinc-950/40 backdrop-blur-md p-3 border border-zinc-900 rounded-md tracking-wide">
+        <div className="flex flex-col min-w-[400px] h-fit lg:sticky lg:top-6 bg-zinc-950/40 backdrop-blur-md p-3 border border-zinc-900 rounded-md tracking-wide">
 
-          <p className="text-[#f89c0a] text-[10px] font-bold tracking-widest px-3 mb-3 uppercase font-sans">DATABASE SECTIONS</p>
+          <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 uppercase font-sans">DATABASE SECTIONS</p>
 
           <a href="#character-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
             <div className="flex items-center gap-3">
-              <Skull className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span>Characters</span>
+              <Skull className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span className='text-[17px]'>Characters</span>
             </div>
           </a>
 
           <a href="#weapon-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
             <div className="flex items-center gap-3">
-              <Swords className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span>Weapons</span>
+              <Swords className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span className='text-[17px]'>Weapons</span>
             </div>
           </a>
 
           <a href="#ability-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
             <div className="flex items-center gap-3">
-              <Flame className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span>Abilities</span>
+              <Flame className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span className='text-[17px]'>Abilities</span>
             </div>
           </a>
 
           <a href="#organization-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
             <div className="flex items-center gap-3">
-              <BrickWallShield className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span>Organizations</span>
+              <BrickWallShield className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span className='text-[17px]'>Organizations</span>
             </div>
           </a>
 
           <a href="#arc-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
             <div className="flex items-center gap-3">
-              <MoonStar className="w-4 h-4 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span>Arcs</span>
+              <MoonStar className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+              <span className='text-[17px]'>Arcs</span>
             </div>
           </a>
 
@@ -157,7 +157,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-wrap gap-6 justify-center">
-              {characters.slice(0, 5).map((character) => (
+              {characters.slice(0, 6).map((character) => (
                 <div key={character.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
                   <div className="relative w-full h-64 bg-zinc-950">
                     <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
@@ -171,8 +171,36 @@ export default function Home() {
                 </div>
               ))}
 
-
             </div>
+
+            <div className='border-2 border-[#101010] rounded-md bg-[#0b0c0b] mt-5 w-[90%] mx-auto'>
+              <div>
+                <div className='flex w-full h-full justify-between items-center'>
+                  <div className='flex flex-col gap-2'>
+                    <div className='flex gap-2 items-center mt-5 ml-6'>
+                      <p className='text-[#3fc778] flex justify-center font-semibold border border-[green] py-0.5 bg-[#043610] w-[50px]'>GET</p>
+                      <p className='font-semibold flex items-center justify-center'>/characters</p>
+                    </div>
+
+                    <div className='flex'>
+                      <p className='ml-6'>Returns a list of all characters</p>
+                    </div>
+
+                  </div>
+
+                  <div className='border-2 border-[#222224] rounded-md flex justify-end items-center mr-6 w-[150px] h-[40px]'>
+                    <p className='text-gray-300 mr-auto ml-2'>No Parameters</p>
+                  </div>
+
+
+
+                </div>
+              </div>
+              <div className='flex flex-col mx-6 bg-[#1a1a1a] mb-5 mt-5 py-2 rounded-sm'>
+                <p className='flex'><ChevronRight /> Example response</p>
+              </div>
+            </div>
+
           </div>
           <div className="h-[1000px]" id="weapon-section">
             <p className="text-white text-5xl font-banner">Weapons</p>
@@ -191,7 +219,13 @@ export default function Home() {
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
 
           </div>
+
+
         </div>
+
+
+
+
       </div>
     </div >
   );
