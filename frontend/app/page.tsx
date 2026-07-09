@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import Image from "next/image";
+import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
 import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, ChevronRight } from 'lucide-react';
 
@@ -202,41 +203,16 @@ export default function Home() {
 
             </div>
 
-            <div className='border-2 border-[#101010] rounded-md bg-[#0b0c0b] mt-5 w-[90%] mx-auto'>
-              <div>
-                <div className='flex w-full h-full justify-between items-center'>
-                  <div className='flex flex-col gap-2'>
-                    <div className='flex gap-2 items-center mt-5 ml-6'>
-                      <p className='text-[#3fc778] flex justify-center font-semibold border border-[green] py-0.5 bg-[#043610] w-[50px]'>GET</p>
-                      <p className='font-semibold flex items-center justify-center'>/characters</p>
-                    </div>
 
-                    <div className='flex'>
-                      <p className='ml-6'>Returns a list of all characters</p>
-                    </div>
-
-                  </div>
-
-                  <div className='border-2 border-[#222224] rounded-md flex justify-end items-center mr-6 w-[150px] h-[40px]'>
-                    <p className='text-gray-300 mr-auto ml-2'>No Parameters</p>
-                  </div>
+            <EndpointCard
+              method='GET'
+              path='/characters'
+              description='Returns all characters.'
+              parameters='No parameters'
+              example={characterExamples}
+            />
 
 
-
-                </div>
-              </div>
-              <div className='flex flex-col mx-6 bg-[#1a1a1a] mb-5 mt-5 py-2 rounded-sm'>
-                <button className='flex cursor-pointer gap-1 ml-2' onClick={() => setOpen(!isOpen)}><ChevronRight className={`transition-transform ${isOpen ? 'rotate-90' : ''}`} /> Example response</button>
-
-                {isOpen &&
-                  <div className='mx-5 my-2'>
-                    <pre className="overflow-x-auto whitespace-pre-wrap rounded-md bg-black p-4 text-sm text-gray-300">
-                      {JSON.stringify(characterExamples, null, 2)}
-                    </pre>
-                  </div>
-                }
-              </div>
-            </div>
 
           </div>
           <div className="h-[1000px]" id="weapon-section">
