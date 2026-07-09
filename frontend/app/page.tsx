@@ -16,6 +16,7 @@ type Character = {
 export default function Home() {
 
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/characters")
@@ -26,8 +27,36 @@ export default function Home() {
       });
   }, []);
 
-  return (
 
+  const characterExamples = [
+    {
+      id: 1,
+      name: "Maka Albarn",
+      role: "Meister",
+      affiliation: "DWMA",
+      description: "A dedicated, top-model student at the DWMA who ...",
+      image_url: "/characters/characters-maka-albarn.png",
+    },
+
+    {
+      id: 2,
+      name: "Soul Eater Evans",
+      role: "Demon Weapon",
+      affiliation: "DWMA",
+      description: "Maka Albarn's weapon partner, who transforms into ...",
+      image_url: "/characters/characters-soul-eater-evans.png",
+    },
+    {
+      id: 3,
+      name: "Death the Kid",
+      role: "Meister",
+      affiliation: "DWMA",
+      description: "The son of Death himself and a powerful Meister who ...",
+      image_url: "/characters/characters-death-the-kid.png",
+    },
+  ];
+
+  return (
     <div className="bg-black">
       <Navbar />
       <div className="w-full relative">
@@ -197,7 +226,15 @@ export default function Home() {
                 </div>
               </div>
               <div className='flex flex-col mx-6 bg-[#1a1a1a] mb-5 mt-5 py-2 rounded-sm'>
-                <p className='flex'><ChevronRight /> Example response</p>
+                <button className='flex cursor-pointer gap-1 ml-2' onClick={() => setOpen(!isOpen)}><ChevronRight className={`transition-transform ${isOpen ? 'rotate-90' : ''}`} /> Example response</button>
+
+                {isOpen &&
+                  <div className='mx-5 my-2'>
+                    <pre className="overflow-x-auto whitespace-pre-wrap rounded-md bg-black p-4 text-sm text-gray-300">
+                      {JSON.stringify(characterExamples, null, 2)}
+                    </pre>
+                  </div>
+                }
               </div>
             </div>
 
