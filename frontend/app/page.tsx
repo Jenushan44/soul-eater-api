@@ -4,6 +4,7 @@ import Image from "next/image";
 import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
 import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 type Character = {
   id: number;
@@ -209,7 +210,8 @@ export default function Home() {
                   <div className="p-4 border-t border-zinc-800">
                     <h2 className="font-banner text-white text-2xl">{character.name}</h2>
                     <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                    <button className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" /></button>
+                    <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
+                    </a>
                   </div>
                 </div>
               ))}
