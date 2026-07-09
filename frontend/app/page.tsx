@@ -34,6 +34,7 @@ export default function Home() {
       id: 1,
       name: "Maka Albarn",
       role: "Meister",
+      species: "Human",
       affiliation: "DWMA",
       description: "A dedicated, top-model student at the DWMA who ...",
       image_url: "/characters/characters-maka-albarn.png",
@@ -43,6 +44,7 @@ export default function Home() {
       id: 2,
       name: "Soul Eater Evans",
       role: "Demon Weapon",
+      species: "Demon Weapon",
       affiliation: "DWMA",
       description: "Maka Albarn's weapon partner, who transforms into ...",
       image_url: "/characters/characters-soul-eater-evans.png",
@@ -51,10 +53,21 @@ export default function Home() {
       id: 3,
       name: "Death the Kid",
       role: "Meister",
+      species: "Grim Reaper (Shinigami)",
       affiliation: "DWMA",
       description: "The son of Death himself and a powerful Meister who ...",
       image_url: "/characters/characters-death-the-kid.png",
     },
+
+    {
+      id: 10,
+      name: "Crona",
+      role: "Meister",
+      species: "Human",
+      affiliation: "None (formerly Medusa's Faction, temporarily DWMA)",
+      description: "The child of the witch Medusa, who raised them through ...",
+      image_url: "/characters/characters-crona.png"
+    }
   ];
 
   return (
@@ -212,7 +225,45 @@ export default function Home() {
               example={characterExamples}
             />
 
+            <EndpointCard
+              method='GET'
+              path='/characters/{character_id}'
+              description='Returns character by id.'
+              parameters='No parameters'
+              example={characterExamples[0]}
+            />
 
+            <EndpointCard
+              method='GET'
+              path='/characters?name=Soul'
+              description='Filters characters by name.'
+              parameters='No parameters'
+              example={characterExamples[1]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/characters?role=Meister'
+              description='Filters characters by role.'
+              parameters='No parameters'
+              example={[characterExamples[0], characterExamples[2], characterExamples[3]]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/characters?name=DWMA'
+              description='Filters characters by affiliation.'
+              parameters='No parameters'
+              example={[characterExamples[0], characterExamples[1], characterExamples[2]]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/characters?species=Human'
+              description='Filters characters by species.'
+              parameters='No parameters'
+              example={[characterExamples[0], characterExamples[3]]}
+            />
 
           </div>
           <div className="h-[1000px]" id="weapon-section">
