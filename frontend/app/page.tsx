@@ -5,7 +5,7 @@ import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
 import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { characterExamples } from "./data/apiExamples";
+import { characterExamples, weaponExamples, abilityExamples, organizationExamples, arcExamples, } from "./data/apiExamples";
 
 type Character = {
   id: number;
