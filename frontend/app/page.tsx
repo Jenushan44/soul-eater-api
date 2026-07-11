@@ -234,6 +234,15 @@ export default function Home() {
           <div className="h-[1000px]" id="ability-section">
             <p className="text-white text-5xl font-banner">Abilities</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+
+
+            <EndpointCard
+              method='GET'
+              path='/abilities'
+              description='Returns all abilities.'
+              parameters='No parameters'
+              example={abilityExamples}
+            />
           </div>
           <div className="h-[1000px]" id="organization-section">
             <p className="text-white text-5xl font-banner">Organizations</p>
