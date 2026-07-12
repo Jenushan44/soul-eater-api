@@ -243,6 +243,17 @@ export default function Home() {
               parameters='No parameters'
               example={abilityExamples}
             />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities'
+              description='Returns ability by id.'
+              parameters='No parameters'
+              example={abilityExamples}
+            />
+
+
+
           </div>
           <div className="h-[1000px]" id="organization-section">
             <p className="text-white text-5xl font-banner">Organizations</p>
