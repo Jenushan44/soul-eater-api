@@ -230,31 +230,56 @@ export default function Home() {
           <div className="h-[1000px]" id="weapon-section">
             <p className="text-white text-5xl font-banner">Weapons</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
-          </div >
-          <div className="h-[1000px]" id="ability-section">
+          </div>
+
+          <div className="mx-6 mt-10" id="ability-section">
             <p className="text-white text-5xl font-banner">Abilities</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
 
-
             <EndpointCard
               method='GET'
               path='/abilities'
-              description='Returns all abilities.'
+              description='Returns a list of all abilities'
               parameters='No parameters'
               example={abilityExamples}
             />
 
             <EndpointCard
               method='GET'
-              path='/abilities'
-              description='Returns ability by id.'
+              path='/abilities/{id}'
+              description='Returns a specific ability by ID'
               parameters='No parameters'
-              example={abilityExamples}
+              example={abilityExamples[0]}
             />
 
+            <EndpointCard
+              method='GET'
+              path='/abilities?name=Black Blood Manipulation'
+              description='Returns abilities matching the provided name'
+              parameters='No parameters'
+              example={abilityExamples[3]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities?ability_type=Offensive'
+              description='Returns abilities filtered by ability type'
+              parameters='No parameters'
+              example={[abilityExamples[2], abilityExamples[3]]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities?user=Franken'
+              description='Returns abilities used by a specific character'
+              parameters='No parameters'
+              example={[abilityExamples[0], abilityExamples[2]]}
+            />
+          </div >
 
 
-          </div>
+
+
           <div className="h-[1000px]" id="organization-section">
             <p className="text-white text-5xl font-banner">Organizations</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
@@ -265,13 +290,12 @@ export default function Home() {
 
           </div>
 
-
         </div>
-
-
-
-
       </div>
-    </div >
+
+
+
+
+    </div>
   );
 }

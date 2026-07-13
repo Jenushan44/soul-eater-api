@@ -7,7 +7,7 @@ from app.schemas import Ability
 router = APIRouter()
 
 @router.get("/abilities", response_model=list[Ability]) 
-def get_abilities(name: str | None = None, user: str | None = None): 
+def get_abilities(name: str | None = None, user: str | None = None, ability_type: str | None = None): 
   result = abilities 
 
   if name is not None: 
@@ -18,11 +18,24 @@ def get_abilities(name: str | None = None, user: str | None = None):
     result = filter_ability_name
 
   if user is not None: 
-    filter_ability_user = []
+      filter_ability_user = []
+      for ability in result: 
+        user_list = ability.get("users")
+        if isinstance(user_list, list):
+          for each_user in user_list: 
+            if user.lower() in each_user.lower():
+              filter_ability_user.append(ability)
+              break
+      result = filter_ability_user
+
+
+
+  if ability_type is not None: 
+    filter_ability_type = []
     for ability in result: 
-      if user.lower() in ability['user'].lower(): 
-        filter_ability_user.append(ability)
-    result = filter_ability_user
+      if ability_type.lower() in ability['ability_type'].lower():
+        filter_ability_type.append(ability)
+    result = filter_ability_type
 
   return result  
 
