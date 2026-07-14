@@ -29,10 +29,20 @@ type Weapon = {
   image_url?: string;
 }
 
+type Arc = {
+  id: number;
+  name: string;
+  episodes: string;
+  main_characters: string[];
+  description: string;
+  image_url?: string;
+}
+
 export default function Home() {
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [weapons, setWeapons] = useState<Weapon[]>([]);
+  const [arcs, setArcs] = useState<Arc[]>([]);
 
   const [isOpen, setOpen] = useState(false);
 
@@ -51,6 +61,15 @@ export default function Home() {
       .then((data) => {
         const randomizedWeapons = [...data].sort(() => Math.random() - 0.5);
         setWeapons(randomizedWeapons);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/arcs")
+      .then((result) => result.json())
+      .then((data) => {
+        const randomizedArcs = [...data].sort(() => Math.random() - 0.5);
+        setArcs(randomizedArcs);
       });
   }, []);
 
@@ -432,6 +451,23 @@ export default function Home() {
             <p className="text-white text-5xl font-banner">Arcs</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
 
+            <div className="flex flex-wrap gap-6 justify-center mt-6">
+              {arcs.slice(0, 6).map((arc) => (
+                <div key={arc.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                  <div className="relative w-full h-64 bg-zinc-950">
+                    <Image src={arc.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                  </div>
+
+                  <div className="p-4 border-t border-zinc-800">
+                    <h2 className="font-banner text-white text-2xl">{arc.name}</h2>
+                    <p className="text-zinc-400 text-xs font-semibold">{`Episodes ${arc.episodes}`}</p>
+                    <a target="_blank" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+
+            </div>
 
             <EndpointCard
               method='GET'
