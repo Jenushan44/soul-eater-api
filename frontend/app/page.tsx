@@ -16,9 +16,24 @@ type Character = {
   image_url: string;
 };
 
+type Weapon = {
+  id: number;
+  name: string;
+  weapon_type: string;
+  weapon_category: string;
+  meister: string;
+  affiliation: string;
+  abilities: string[];
+  description: string;
+  status: string;
+  image_url?: string;
+}
+
 export default function Home() {
 
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [weapons, setWeapons] = useState<Weapon[]>([]);
+
   const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
@@ -29,6 +44,17 @@ export default function Home() {
         setCharacters(randomizedCharacters);
       });
   }, []);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/weapons")
+      .then((result) => result.json())
+      .then((data) => {
+        const randomizedWeapons = [...data].sort(() => Math.random() - 0.5);
+        setWeapons(randomizedWeapons);
+      });
+  }, []);
+
+
 
   return (
     <div className="bg-black">
@@ -224,30 +250,46 @@ export default function Home() {
             <p className="text-white text-5xl font-banner">Weapons</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
 
+            <div className="flex flex-wrap gap-6 justify-center mt-6">
+              {weapons.slice(0, 6).map((weapon) => (
+                <div key={weapon.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                  <div className="relative w-full h-64 bg-zinc-950">
+                    <Image src={weapon.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                  </div>
 
+                  <div className="p-4 border-t border-zinc-800">
+                    <h2 className="font-banner text-white text-2xl">{weapon.name}</h2>
+                    <p className="text-zinc-400 text-xs font-semibold">{weapon.weapon_type}</p>
+                    <a target="_blank" href={`http://127.0.0.1:8000/weapons/${weapon.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
+                    </a>
+                  </div>
+                </div>
+              ))}
 
+            </div>
+            {/*Fix weapon endpoint cards*/}
             <EndpointCard
               method='GET'
               path='/weapons'
               description='Returns a list of all weapons'
               parameters='No parameters'
-              example={abilityExamples}
+              example={weaponExamples}
             />
 
             <EndpointCard
               method='GET'
-              path='/abilities/{id}'
+              path='/weapons/{id}'
               description='Returns a specific weapon by ID'
               parameters='No parameters'
-              example={abilityExamples[0]}
+              example={weaponExamples[0]}
             />
 
             <EndpointCard
               method='GET'
-              path='/abilities?name=Black Blood Manipulation'
+              path='/weapons?name=Nakatsukasa'
               description='Returns weapons matching the provided name'
               parameters='No parameters'
-              example={abilityExamples[3]}
+              example={weaponExamples[1]}
             />
 
             <EndpointCard
@@ -260,7 +302,7 @@ export default function Home() {
 
             <EndpointCard
               method='GET'
-              path='/abilities?user=Franken'
+              path='/weapons?category=Franken'
               description='Returns weapons filtered by weapon category'
               parameters='No parameters'
               example={[abilityExamples[0], abilityExamples[2]]}
