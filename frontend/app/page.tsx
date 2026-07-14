@@ -227,9 +227,67 @@ export default function Home() {
             />
 
           </div>
-          <div className="h-[1000px]" id="weapon-section">
+          <div className="mx-6 mt-10" id="weapon-section">
             <p className="text-white text-5xl font-banner">Weapons</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+
+
+
+            <EndpointCard
+              method='GET'
+              path='/weapons'
+              description='Returns a list of all weapons'
+              parameters='No parameters'
+              example={abilityExamples}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities/{id}'
+              description='Returns a specific weapon by ID'
+              parameters='No parameters'
+              example={abilityExamples[0]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities?name=Black Blood Manipulation'
+              description='Returns weapons matching the provided name'
+              parameters='No parameters'
+              example={abilityExamples[3]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities?ability_type=Offensive'
+              description='Returns weapons filtered by weapon type'
+              parameters='No parameters'
+              example={[abilityExamples[2], abilityExamples[3]]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities?user=Franken'
+              description='Returns weapons filtered by weapon category'
+              parameters='No parameters'
+              example={[abilityExamples[0], abilityExamples[2]]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities?ability_type=Offensive'
+              description='Returns weapons used by a specific meister'
+              parameters='No parameters'
+              example={[abilityExamples[2], abilityExamples[3]]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/abilities?user=Franken'
+              description='Returns weapons filtered by affiliation'
+              parameters='No parameters'
+              example={[abilityExamples[0], abilityExamples[2]]}
+            />
           </div>
 
           <div className="mx-6 mt-10" id="ability-section">

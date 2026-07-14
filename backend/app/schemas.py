@@ -8,13 +8,17 @@ class Character(BaseModel):
   description: str
   image_url: str | None = None
 
-class Weapon(BaseModel): 
-  id: int 
-  name: str 
-  weapon_type: str 
-  partner: str 
-  affiliation: str 
-  description: str 
+class Weapon(BaseModel):
+  id: int
+  name: str
+  weapon_type: str
+  weapon_category: str
+  meister: str
+  affiliation: str
+  abilities: list[str]
+  description: str
+  status: str
+  image_url: str | None = None
 
 class Organization(BaseModel): 
   id: int 
