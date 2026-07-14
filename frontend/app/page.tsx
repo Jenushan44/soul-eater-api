@@ -386,10 +386,50 @@ export default function Home() {
           </div >
 
 
-          <div className="h-[1000px]" id="arc-section">
+          <div className="mx-6 mt-10" id="arc-section">
             <p className="text-white text-5xl font-banner">Arcs</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
 
+
+            <EndpointCard
+              method='GET'
+              path='/arcs'
+              description='Returns a list of all story arcs'
+              parameters='No parameters'
+              example={arcExamples}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/arcs/{id}'
+              description='Returns a specific story arc by ID'
+              parameters='No parameters'
+              example={arcExamples[0]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/arcs?name=Lesson'
+              description='Returns arcs matching the provided name'
+              parameters='No parameters'
+              example={arcExamples[1]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/arcs?characters=Mifune'
+              description='Returns arcs containing a specific character'
+              parameters='No parameters'
+              example={organizationExamples[2]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/organizations?leader=Gorgon'
+              description='Returns arcs filtered by completion status'
+              parameters='No parameters'
+              example={[organizationExamples[2], organizationExamples[3]]}
+            />
           </div>
 
         </div>

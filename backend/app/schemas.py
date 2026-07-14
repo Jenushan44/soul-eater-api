@@ -41,4 +41,5 @@ class Arc(BaseModel):
   id: int 
   name: str 
   episodes: str 
+  main_characters: list[str]
   description: str 
