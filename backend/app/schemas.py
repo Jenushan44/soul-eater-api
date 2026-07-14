@@ -21,10 +21,14 @@ class Weapon(BaseModel):
   image_url: str | None = None
 
 class Organization(BaseModel): 
-  id: int 
-  name: str 
-  type: str 
-  description: str 
+    id: int
+    name: str
+    organization_type: str
+    leader: str
+    location: str
+    members: list[str]
+    description: str
+    status: str
 
 class Ability(BaseModel): 
   id: int

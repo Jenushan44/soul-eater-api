@@ -101,13 +101,6 @@ export default function Home() {
 
       </div>
 
-      <div className="flex items-center gap-3 h-12 ml-6 mt-10">
-        <div className="w-[3px] h-[80%] bg-[#f89c0a]" />
-        <div>
-          <p className="text-white font-semibold text-[24px]">BROWSE THE DATABASE</p>
-        </div>
-      </div>
-
       <div className='flex flex-col lg:flex-row gap-8 mx-6 mt-10'>
         <div className="flex flex-col min-w-[400px] h-fit lg:sticky lg:top-6 bg-zinc-950/40 backdrop-blur-md p-3 border border-zinc-900 rounded-md tracking-wide">
 
@@ -338,10 +331,61 @@ export default function Home() {
 
 
 
-          <div className="h-[1000px]" id="organization-section">
+          <div className="mx-6 mt-10" id="organization-section">
             <p className="text-white text-5xl font-banner">Organizations</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
-          </div>
+
+            <EndpointCard
+              method='GET'
+              path='/organizations'
+              description='Returns a list of all organizations'
+              parameters='No parameters'
+              example={organizationExamples}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/organizations/{id}'
+              description='Returns a specific organization by ID'
+              parameters='No parameters'
+              example={organizationExamples[0]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/organizations?name=Faction'
+              description='Returns organizations matching the provided name'
+              parameters='No parameters'
+              example={organizationExamples[3]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/organizations?organization_type=task'
+              description='Returns organizations filtered by organization type'
+              parameters='No parameters'
+              example={organizationExamples[1]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='/organizations?leader=Gorgon'
+              description='Returns organizations led by a specific leader'
+              parameters='No parameters'
+              example={[organizationExamples[2], organizationExamples[3]]}
+            />
+
+            <EndpointCard
+              method='GET'
+              path='organizations?status=Active'
+              description='Returns organizations filtered by status'
+              parameters='No parameters'
+              example={[organizationExamples[0], organizationExamples[1]]}
+            />
+
+          </div >
+
+
           <div className="h-[1000px]" id="arc-section">
             <p className="text-white text-5xl font-banner">Arcs</p>
             <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
