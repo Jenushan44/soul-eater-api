@@ -161,11 +161,11 @@ export default function Home() {
                 <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-56" />
                 <div className="absolute top-60 left-5 flex flex-col gap-2">
                   <p className='text-zinc-400'>Browse all characters, meisters, weapons, witches and more.</p>
-                  <div className='flex gap-1 items-center'>
-                    <p><User className='text-[#f89c0a]' /></p>
-                    <p className='font-bold'>100+</p>
-                    <p>Records</p>
-                  </div>
+                </div>
+                <div className='flex gap-1 items-center absolute top-75 left-5'>
+                  <p><User className='text-[#f89c0a]' /></p>
+                  <p className='font-bold'>100+</p>
+                  <p>Records</p>
                 </div>
               </div>
               <a href="#character-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
@@ -174,15 +174,24 @@ export default function Home() {
             </div>
 
             <div className='border border-[#f89c0a66] relative'>
-              <Image className='brightness-[0.3] w-full h-48 lg:h-80 object-cover' src={"/browse-section/weapons-card.png"} alt='Weapon Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute top-0 left-0 w-full h-48 lg:h-80 bg-gradient-to-b from-transparent to-zinc-950" />
+              <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/weapons-card.png"} alt='Weapon Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-50 lg:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
 
               <div className="absolute inset-0 gap-3">
-                <Swords className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-                <span className='text-[17px]'>Weapons</span>
+                <Swords className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-25 left-2" />
+                <p className='text-[40px] absolute top-43 left-5 font-semibold font-banner'>Weapons</p>
+                <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-56" />
+                <div className="absolute top-60 left-5">
+                  <p className='text-zinc-400'>Explore every weapon, death scythe and demon weapon.</p>
+                </div>
+                <div className='flex gap-1 items-center absolute top-75 left-5'>
+                  <p><Swords className='text-[#f89c0a]' /></p>
+                  <p className='font-bold'>70+</p>
+                  <p>Records</p>
+                </div>
               </div>
-              <a href="#weapon-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Weapons <MoveRight className="-translate-y-1" />
+              <a href="#weapon-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                View Weapons <MoveRight className="-translate-y-0" />
               </a>
             </div>
 
