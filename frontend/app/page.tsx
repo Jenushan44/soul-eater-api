@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from "next/image";
 import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
-import { Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, ChevronRight } from 'lucide-react';
+import { User, Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { characterExamples, weaponExamples, abilityExamples, organizationExamples, arcExamples, } from "./data/apiExamples";
 
@@ -146,48 +146,89 @@ export default function Home() {
 
       </div>
 
-      <div className='flex flex-col lg:flex-row gap-8 mx-6 mt-10'>
-        <div className="flex flex-col min-w-[400px] h-fit lg:sticky lg:top-6 bg-zinc-950/40 backdrop-blur-md p-3 border border-zinc-900 rounded-md tracking-wide">
+      <div className='gap-8 mx-6 mt-10'>
+        <div className="min-w-[400px] h-fit lg:sticky lg:top-6 bg-zinc-950/40 backdrop-blur-md p-3 border border-zinc-900 rounded-md tracking-wide">
 
-          <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 uppercase font-sans">DATABASE SECTIONS</p>
+          <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 uppercase font-sans">BROWSE THE SECTIONS</p>
+          <div className='grid grid-cols-5 gap-5 w-full'>
 
-          <a href="#character-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-            <div className="flex items-center gap-3">
-              <Skull className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span className='text-[17px]'>Characters</span>
+            <div className='border border-[#f89c0a66] relative'>
+              <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/characters-card.png"} alt='Character Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-50 lg:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
+              <div className="absolute inset-0 gap-3">
+                <Skull className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-25 left-2" />
+                <p className='text-[40px] absolute top-43 left-5 font-semibold font-banner'>CHARACTERS</p>
+                <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-56" />
+                <div className="absolute top-60 left-5 flex flex-col gap-2">
+                  <p className='text-zinc-400'>Browse all characters, meisters, weapons, witches and more.</p>
+                  <div className='flex gap-1 items-center'>
+                    <p><User className='text-[#f89c0a]' /></p>
+                    <p className='font-bold'>100+</p>
+                    <p>Records</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#character-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                View Characters <MoveRight className="-translate-y-0" />
+              </a>
             </div>
-          </a>
 
-          <a href="#weapon-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-            <div className="flex items-center gap-3">
-              <Swords className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span className='text-[17px]'>Weapons</span>
+            <div className='border border-[#f89c0a66] relative'>
+              <Image className='brightness-[0.3] w-full h-48 lg:h-80 object-cover' src={"/browse-section/weapons-card.png"} alt='Weapon Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-48 lg:h-80 bg-gradient-to-b from-transparent to-zinc-950" />
+
+              <div className="absolute inset-0 gap-3">
+                <Swords className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+                <span className='text-[17px]'>Weapons</span>
+              </div>
+              <a href="#weapon-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                View Weapons <MoveRight className="-translate-y-1" />
+              </a>
             </div>
-          </a>
 
-          <a href="#ability-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-            <div className="flex items-center gap-3">
-              <Flame className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span className='text-[17px]'>Abilities</span>
+            <div className='border border-[#f89c0a66] relative'>
+              <Image className='brightness-[0.3] w-full h-48 lg:h-80 object-cover' src={"/browse-section/abilities-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-48 lg:h-80 bg-gradient-to-b from-transparent to-zinc-950" />
+
+              <div className="absolute inset-0 gap-3">
+                <Flame className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+                <span className='text-[17px]'>Abilities</span>
+              </div>
+              <a href="#ability-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                View Abilities <MoveRight className="-translate-y-1" />
+              </a>
             </div>
-          </a>
 
-          <a href="#organization-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-            <div className="flex items-center gap-3">
-              <BrickWallShield className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span className='text-[17px]'>Organizations</span>
+            <div className='border border-[#f89c0a66] relative'>
+              <Image className='brightness-[0.3] w-full h-48 lg:h-80 object-cover' src={"/browse-section/organization-card.png"} alt='Organization Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-48 lg:h-80 bg-gradient-to-b from-transparent to-zinc-950" />
+
+              <div className="absolute inset-0 gap-3">
+                <BrickWallShield className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+                <span className='text-[17px]'>Organizations</span>
+              </div>
+              <a href="#organization-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                View Organizations <MoveRight className="-translate-y-1" />
+
+              </a>
             </div>
-          </a>
 
-          <a href="#arc-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-            <div className="flex items-center gap-3">
-              <MoonStar className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
-              <span className='text-[17px]'>Arcs</span>
+            <div className='border border-[#f89c0a66] relative'>
+              <Image className='brightness-[0.3] w-full h-48 lg:h-80 object-cover' src={"/browse-section/arcs-card.png"} alt='Arc Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-48 lg:h-80 bg-gradient-to-b from-transparent to-zinc-950" />
+
+              <div className="absolute inset-0 gap-3">
+                <MoonStar className="w-8 h-8 text-zinc-500 group-hover:text-[#f89c0a] transition-colors" />
+                <span className='text-[17px]'>Arcs</span>
+              </div>
+
+              <a href="#arc-section" className="flex items-center justify-between text-zinc-400 hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                View Arcs <MoveRight className="-translate-y-1" />
+              </a>
             </div>
-          </a>
 
+          </div>
         </div>
-
         <div className="flex-1 flex flex-col gap-16">
           <div className="mx-6 mt-10" id="character-section">
             <div className="flex items-center gap-3 mb-6">
@@ -516,6 +557,6 @@ export default function Home() {
 
 
 
-    </div>
+    </div >
   );
 }

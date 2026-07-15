@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <div className='flex items-center justify-between bg-black'>
+    <div className='flex items-center justify-between bg-black sm:h-[70px] md:h-[100px] lg:h-[130px] xl:h-[150px]'>
       <div className='ml-3 mt-[-15] flex-shrink-0'>
         <Image src="/Soul-Eater-Logo.png" alt="Logo" width={220} height={220}></Image>
       </div>
@@ -15,9 +15,7 @@ export default function Navbar() {
         <a href='#arc-section' className='text-white tracking-wide cursor-pointer font-semibold hover:text-yellow-500'>ARCS</a>
       </div>
 
-      <div className='flex justify-end gap-2 items-center flex-shrink-0'>
-        <Search className='mr-3 cursor-pointer' />
-      </div>
+      <div className='flex justify-end'></div>
 
     </div>
   )
