@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from "next/image";
 import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
-import { BookOpen, School, User, Shield, Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft, BookOpen, School, User, Shield, Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, Search } from 'lucide-react';
 import Link from 'next/link';
 import { characterExamples, weaponExamples, abilityExamples, organizationExamples, arcExamples, } from "./data/apiExamples";
 
@@ -45,6 +45,52 @@ export default function Home() {
   const [arcs, setArcs] = useState<Arc[]>([]);
 
   const [isOpen, setOpen] = useState(false);
+  const [startIndex, setStartIndex] = useState(0);
+  const [cardsToShow, setCardsToShow] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setCardsToShow(1);
+      } else if (width < 1024) {
+        setCardsToShow(2);
+      } else if (width < 1280) {
+        setCardsToShow(3);
+      } else if (width < 1536) {
+        setCardsToShow(4);
+      } else if (width < 1920) {
+        setCardsToShow(5);
+      } else {
+        setCardsToShow(6);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const showNext = () => {
+    if (startIndex + cardsToShow < characters.length) {
+      setStartIndex(startIndex + cardsToShow);
+    } else {
+      setStartIndex(0);
+    }
+  };
+
+  const showPrevious = () => {
+    if (startIndex - cardsToShow >= 0) {
+      setStartIndex(startIndex - cardsToShow);
+    } else {
+      setStartIndex(Math.max(0, characters.length - cardsToShow));
+    }
+    setStartIndex(0);
+  };
+
+  const visibleCharacters = characters.slice(startIndex, startIndex + cardsToShow);
+
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/characters")
@@ -146,11 +192,11 @@ export default function Home() {
 
       </div>
 
-      <div className='gap-8 mx-6 mt-10'>
-        <div className="min-w-[400px] h-fit lg:sticky lg:top-6 bg-zinc-950/40 backdrop-blur-md p-3 border border-zinc-900 rounded-md tracking-wide">
+      <div className='flex flex-col gap-16 mx-6 mt-10'>
+        <div className="sticky top-0 z-50 bg-black p-3 border border-zinc-900 rounded-md tracking-wide">
 
           <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 uppercase font-sans">BROWSE THE SECTIONS</p>
-          <div className='grid grid-cols-5 gap-5 w-full'>
+          <div className='flex flex-col grid grid-cols-5 gap-5 w-full'>
 
             <div className='border border-[#f89c0a66] relative'>
               <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/characters-card.png"} alt='Character Browse Section Image' width={220} height={220}></Image>
@@ -233,7 +279,7 @@ export default function Home() {
                 </div>
               </div>
               <a href="#organization-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Organization <MoveRight className="-translate-y-0" />
+                View Organizations <MoveRight className="-translate-y-0" />
               </a>
             </div>
 
@@ -253,40 +299,75 @@ export default function Home() {
                   <p>Records</p>
                 </div>
               </div>
-              <a href="#organization-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Organization <MoveRight className="-translate-y-0" />
+              <a href="#arc-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                View Arcs <MoveRight className="-translate-y-0" />
               </a>
             </div>
 
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-16">
-          <div className="mx-6 mt-10" id="character-section">
-            <div className="flex items-center gap-3 mb-6">
-              <div className='mx-auto'>
+          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
+            <div className='flex'>
+              <div>
+                <p><Skull className='w-13 h-13 text-[#f89c0a]' /></p>
+                <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+              </div>
+              <div className='ml-3 mb-5'>
                 <p className="text-white text-5xl font-banner">CHARACTERS</p>
-                <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+                <p className='text-zinc-400'>Browse and explore all characters from the world of Soul Eater.</p>
               </div>
             </div>
+            <div className='flex gap-4'>
+              <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[10%] rounded-md'>
+                <Search className='text-zinc-300 mr-2 mt-1' size={18} />
+                <input className='' type='text' placeholder='Search characters...' />
+              </div>
+              <div>
+                <select className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
+                  <option>Meister</option>
+                  <option>option2</option>
+                </select>
+              </div>
+              <div>
+                <select className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
+                  <option>Meister</option>
+                  <option>option2</option>
+                </select>
+              </div>
+              <div>
+                <select className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
+                  <option>Meister</option>
+                  <option>option2</option>
+                </select>
+              </div>
 
-            <div className="flex flex-wrap gap-6 justify-center">
-              {characters.slice(0, 6).map((character) => (
-                <div key={character.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                  <div className="relative w-full h-64 bg-zinc-950">
-                    <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
-                  </div>
-
-                  <div className="p-4 border-t border-zinc-800">
-                    <h2 className="font-banner text-white text-2xl">{character.name}</h2>
-                    <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                    <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
-                    </a>
-                  </div>
-                </div>
-              ))}
 
             </div>
 
+            <div className='space-y-4'>
+              <div className="flex gap-4 justify-center">
+                <button onClick={showPrevious} className='px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-700'>Previous</button>
+                <button onClick={showNext} className='px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-700'>Next</button>
+              </div>
+
+              <div className='flex gap-6 justify-center'>
+                {visibleCharacters.map((character) => (
+                  <div key={character.id} className="w-75 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                    <div className="relative w-full h-60 bg-zinc-950">
+                      <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                    </div>
+
+                    <div className="p-4 border-t border-zinc-800">
+                      <h2 className="font-banner text-white text-2xl">{character.name}</h2>
+                      <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
+                      <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             <EndpointCard
               method='GET'
