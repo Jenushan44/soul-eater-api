@@ -56,13 +56,13 @@ export default function Home() {
       } else if (width < 1024) {
         setCardsToShow(2);
       } else if (width < 1280) {
-        setCardsToShow(3);
+        setCardsToShow(2);
       } else if (width < 1536) {
-        setCardsToShow(4);
+        setCardsToShow(3);
       } else if (width < 1920) {
-        setCardsToShow(5);
+        setCardsToShow(3);
       } else {
-        setCardsToShow(6);
+        setCardsToShow(5);
       }
     };
 
@@ -86,10 +86,7 @@ export default function Home() {
     } else {
       setStartIndex(Math.max(0, characters.length - cardsToShow));
     }
-    setStartIndex(0);
   };
-
-  const visibleCharacters = characters.slice(startIndex, startIndex + cardsToShow);
 
 
   useEffect(() => {
@@ -345,28 +342,32 @@ export default function Home() {
 
             </div>
 
-            <div className='space-y-4'>
-              <div className="flex gap-4 justify-center">
-                <button onClick={showPrevious} className='px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-700'>Previous</button>
-                <button onClick={showNext} className='px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-700'>Next</button>
-              </div>
+            <div className='flex items-center justify-center gap-6'>
+              <button onClick={showPrevious} className='px-4 py-2 text-white hover:text-[#f89c0a]'><ChevronLeft className='cursor-pointer' size={100} /></button>
 
-              <div className='flex gap-6 justify-center'>
-                {visibleCharacters.map((character) => (
-                  <div key={character.id} className="w-75 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                    <div className="relative w-full h-60 bg-zinc-950">
-                      <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
-                    </div>
+              <div className='overflow-hidden w-full py-4 -my-4 px-2 -mx-2'>
+                <div className='flex gap-6 transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${startIndex * 324}px)` }}>
 
-                    <div className="p-4 border-t border-zinc-800">
-                      <h2 className="font-banner text-white text-2xl">{character.name}</h2>
-                      <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                      <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
-                      </a>
+
+                  {characters.map((character) => (
+                    <div key={character.id} className="w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                      <div className="relative w-full h-60 bg-zinc-950">
+                        <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                      </div>
+
+                      <div className="p-4 border-t border-zinc-800">
+                        <h2 className="font-banner text-white text-2xl">{character.name}</h2>
+                        <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
+                        <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+
               </div>
+              <button onClick={showNext} className='px-4 py-2 text-white hover:text-[#f89c0a]'><ChevronRight className='cursor-pointer' size={100} /></button>
             </div>
 
             <EndpointCard
