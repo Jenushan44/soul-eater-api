@@ -15,6 +15,7 @@ type Character = {
   description: string;
   image_url: string;
   species: string;
+  status: string;
 };
 
 type Weapon = {
@@ -52,6 +53,7 @@ export default function Home() {
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedAffiliation, setSelectedAffiliation] = useState("");
   const [selectedSpecies, setSelectedSpecies] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("")
 
   useEffect(() => {
     const handleResize = () => {
@@ -103,8 +105,9 @@ export default function Home() {
     const matchesRole = selectedRole === "" || character.role.toLowerCase().includes(selectedRole.toLowerCase());
     const matchesAffiliation = selectedAffiliation === "" || character.affiliation.toLowerCase().includes(selectedAffiliation.toLowerCase());
     const matchesSpecies = selectedSpecies === "" || character.species.toLowerCase().includes(selectedSpecies.toLowerCase());
+    const matchesStatus = selectedStatus === "" || character.status.toLowerCase().includes(selectedStatus.toLowerCase());
 
-    if (matchesSearch && matchesRole && matchesAffiliation && matchesSpecies) {
+    if (matchesSearch && matchesRole && matchesAffiliation && matchesSpecies && matchesStatus) {
       return true;
     } else {
       return false;
@@ -384,7 +387,7 @@ export default function Home() {
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
                     <p className="text-md font-semibold select-none whitespace-nowrap">Species:</p>
                     <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All species</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Demon Weapon">Demon Weapon</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
@@ -395,6 +398,19 @@ export default function Home() {
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Werewolf">Werewolf</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead / Spirit</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Construct">Construct</option>
+                    </select>
+                  </div>
+                  <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
+                    <p className="text-md font-semibold select-none whitespace-nowrap">Status:</p>
+                    <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Deceased">Deceased</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unknown">Unknown</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Sealed">Sealed</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Destroyed">Destroyed</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unconfirmed">Unconfirmed</option>
                     </select>
                   </div>
                 </div>
