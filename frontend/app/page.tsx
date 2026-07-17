@@ -48,6 +48,7 @@ export default function Home() {
   const [startIndex, setStartIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
   const [searchCharacter, setSearchCharacter] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -95,7 +96,10 @@ export default function Home() {
     let lowerCharacter = character.name.toLowerCase();
     let lowerQuery = searchCharacter.toLowerCase();
 
-    if (lowerCharacter.includes(lowerQuery)) {
+    const matchesSearch = lowerCharacter.includes(lowerQuery);
+    const matchesRole = selectedRole === "" || character.role.toLowerCase().includes(selectedRole.toLowerCase());
+
+    if (matchesSearch && matchesRole) {
       return true;
     } else {
       return false;
@@ -341,10 +345,20 @@ export default function Home() {
                     <Search className='text-zinc-300 mr-2 mt-1' size={18} />
                     <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full' type='text' placeholder='Search characters...' />
                   </div>
-                  <div>
-                    <select defaultValue="" className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
-                      <option>Meister</option>
-                      <option>option2</option>
+                  <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
+                    <p className="text-md font-semibold select-none whitespace-nowrap">Role:</p>
+                    <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer hover:bg-[#f89c0ac]' value="Demon Weapon">Demon Weapon</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death Scythe">Death Scythe</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Teacher">Teacher</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Staff">Staff</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Student">Student</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Kishin">Kishin</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Other">Other</option>
                     </select>
                   </div>
                   <div>
@@ -365,9 +379,12 @@ export default function Home() {
 
 
                   {filteredCharacters.map((character) => (
-                    <div key={character.id} className="w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                    <div key={character.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
                       <div className="relative w-full h-60 bg-zinc-950">
                         <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                      </div>
+                      <div className='absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10'>
+                        <p className='font-banner'>{character.role}</p>
                       </div>
 
                       <div className="p-4 border-t border-zinc-800">
