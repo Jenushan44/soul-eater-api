@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from "next/image";
 import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
-import { ChevronRight, ChevronLeft, BookOpen, School, User, Shield, Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, Search } from 'lucide-react';
+import { FunnelX, ChevronRight, ChevronLeft, BookOpen, School, User, Shield, Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, Search } from 'lucide-react';
 import Link from 'next/link';
 import { characterExamples, weaponExamples, abilityExamples, organizationExamples, arcExamples, } from "./data/apiExamples";
 
@@ -113,6 +113,13 @@ export default function Home() {
       return false;
     }
   })
+
+  const clearFilter = () => {
+    setSelectedRole("");
+    setSelectedAffiliation("");
+    setSelectedSpecies("");
+    setSelectedStatus("");
+  }
 
 
 
@@ -412,6 +419,9 @@ export default function Home() {
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Destroyed">Destroyed</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unconfirmed">Unconfirmed</option>
                     </select>
+                  </div>
+                  <div className='hover:text-white ml-auto'>
+                    <button onClick={clearFilter} className='group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out'><FunnelX className='group-hover:text-white text-[#f89c0a]' size={20} /> Clear Filters</button>
                   </div>
                 </div>
 
