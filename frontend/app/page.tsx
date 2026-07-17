@@ -47,6 +47,7 @@ export default function Home() {
   const [isOpen, setOpen] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
+  const [searchCharacter, setSearchCharacter] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -73,10 +74,12 @@ export default function Home() {
   }, []);
 
   const showNext = () => {
-    if (startIndex + cardsToShow < characters.length) {
+    const maxStartIndex = filteredCharacters.length - cardsToShow;
+
+    if (startIndex + cardsToShow < maxStartIndex) {
       setStartIndex(startIndex + cardsToShow);
     } else {
-      setStartIndex(0);
+      setStartIndex(Math.max(0, maxStartIndex));
     }
   };
 
@@ -84,9 +87,21 @@ export default function Home() {
     if (startIndex - cardsToShow >= 0) {
       setStartIndex(startIndex - cardsToShow);
     } else {
-      setStartIndex(Math.max(0, characters.length - cardsToShow));
+      setStartIndex(0);
     }
   };
+
+  const filteredCharacters = characters.filter((character) => {
+    let lowerCharacter = character.name.toLowerCase();
+    let lowerQuery = searchCharacter.toLowerCase();
+
+    if (lowerCharacter.includes(lowerQuery)) {
+      return true;
+    } else {
+      return false;
+    }
+  })
+
 
 
   useEffect(() => {
@@ -305,51 +320,51 @@ export default function Home() {
         </div>
         <div className="flex-1 flex flex-col gap-16">
           <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
-            <div className='flex'>
-              <div>
-                <p><Skull className='w-13 h-13 text-[#f89c0a]' /></p>
-                <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
-              </div>
-              <div className='ml-3 mb-5'>
-                <p className="text-white text-5xl font-banner">CHARACTERS</p>
-                <p className='text-zinc-400'>Browse and explore all characters from the world of Soul Eater.</p>
-              </div>
-            </div>
-            <div className='flex gap-4'>
-              <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[10%] rounded-md'>
-                <Search className='text-zinc-300 mr-2 mt-1' size={18} />
-                <input className='' type='text' placeholder='Search characters...' />
-              </div>
-              <div>
-                <select className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
-                  <option>Meister</option>
-                  <option>option2</option>
-                </select>
-              </div>
-              <div>
-                <select className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
-                  <option>Meister</option>
-                  <option>option2</option>
-                </select>
-              </div>
-              <div>
-                <select className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
-                  <option>Meister</option>
-                  <option>option2</option>
-                </select>
-              </div>
 
+            <div className='relative flex items-center justify-center gap-6'>
+              <button onClick={showPrevious} className='absolute left-0 px-2 py-2 pl-1 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
 
-            </div>
+              <div className='overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2'>
 
-            <div className='flex items-center justify-center gap-6'>
-              <button onClick={showPrevious} className='px-4 py-2 text-white hover:text-[#f89c0a]'><ChevronLeft className='cursor-pointer' size={100} /></button>
+                <div className='flex'>
+                  <div>
+                    <p><Skull className='w-13 h-13 text-[#f89c0a]' /></p>
+                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                  </div>
+                  <div className='ml-3 mb-5'>
+                    <p className="text-white text-5xl font-banner">CHARACTERS</p>
+                    <p className='text-zinc-400'>Browse and explore all characters from the world of Soul Eater.</p>
+                  </div>
+                </div>
+                <div className='flex gap-4'>
+                  <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md'>
+                    <Search className='text-zinc-300 mr-2 mt-1' size={18} />
+                    <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full' type='text' placeholder='Search characters...' />
+                  </div>
+                  <div>
+                    <select defaultValue="" className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
+                      <option>Meister</option>
+                      <option>option2</option>
+                    </select>
+                  </div>
+                  <div>
+                    <select defaultValue="" className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
+                      <option>Meister</option>
+                      <option>option2</option>
+                    </select>
+                  </div>
+                  <div>
+                    <select defaultValue="" className='p-1 border-2 border-zinc-800 w-30 rounded-md'>
+                      <option>Meister</option>
+                      <option>option2</option>
+                    </select>
+                  </div>
+                </div>
 
-              <div className='overflow-hidden w-full py-4 -my-4 px-2 -mx-2'>
                 <div className='flex gap-6 transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${startIndex * 324}px)` }}>
 
 
-                  {characters.map((character) => (
+                  {filteredCharacters.map((character) => (
                     <div key={character.id} className="w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
                       <div className="relative w-full h-60 bg-zinc-950">
                         <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
@@ -358,7 +373,7 @@ export default function Home() {
                       <div className="p-4 border-t border-zinc-800">
                         <h2 className="font-banner text-white text-2xl">{character.name}</h2>
                         <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                        <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
+                        <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
                         </a>
                       </div>
                     </div>
@@ -367,7 +382,7 @@ export default function Home() {
 
 
               </div>
-              <button onClick={showNext} className='px-4 py-2 text-white hover:text-[#f89c0a]'><ChevronRight className='cursor-pointer' size={100} /></button>
+              <button onClick={showNext} className='absolute right-0 px-2 py-2 pr-1 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronRight className='cursor-pointer' size={40} /></button>
             </div>
 
             <EndpointCard
