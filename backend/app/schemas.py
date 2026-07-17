@@ -7,6 +7,7 @@ class Character(BaseModel):
   affiliation: str 
   description: str
   image_url: str | None = None
+  species: str
 
 class Weapon(BaseModel):
   id: int
