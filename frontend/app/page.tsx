@@ -341,7 +341,7 @@ export default function Home() {
           <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
 
             <div className='flex items-center justify-center gap-4 w-full'>
-              <button onClick={showPrevious} className='p-2 translate-x-[40px] translate-y-[50px] z-50 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
+              <button onClick={showPrevious} className='p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
 
               <div className='overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2'>
 
@@ -456,7 +456,6 @@ export default function Home() {
               method='GET'
               path='/characters'
               description='Returns all characters.'
-              parameters='No parameters'
               example={characterExamples}
             />
 
@@ -464,7 +463,7 @@ export default function Home() {
               method='GET'
               path='/characters/{character_id}'
               description='Returns character by id.'
-              parameters='No parameters'
+              parameter={{ location: "Path parameter", name: "character_id", type: "integer", }}
               example={characterExamples[0]}
             />
 
@@ -472,7 +471,7 @@ export default function Home() {
               method='GET'
               path='/characters?name=Soul'
               description='Filters characters by name.'
-              parameters='No parameters'
+              parameter={{ location: "Query parameter", name: "name", type: "string", }}
               example={characterExamples[1]}
             />
 
@@ -480,15 +479,15 @@ export default function Home() {
               method='GET'
               path='/characters?role=Meister'
               description='Filters characters by role.'
-              parameters='No parameters'
+              parameter={{ location: "Query parameter", name: "role", type: "string", }}
               example={[characterExamples[0], characterExamples[2], characterExamples[3]]}
             />
 
             <EndpointCard
               method='GET'
-              path='/characters?name=DWMA'
+              path='/characters?affiliation=DWMA'
               description='Filters characters by affiliation.'
-              parameters='No parameters'
+              parameter={{ location: "Query parameter", name: "affiliation", type: "string", }}
               example={[characterExamples[0], characterExamples[1], characterExamples[2]]}
             />
 
@@ -496,7 +495,7 @@ export default function Home() {
               method='GET'
               path='/characters?species=Human'
               description='Filters characters by species.'
-              parameters='No parameters'
+              parameter={{ location: "Query parameter", name: "species", type: "string", }}
               example={[characterExamples[0], characterExamples[3]]}
             />
 
