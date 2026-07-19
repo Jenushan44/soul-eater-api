@@ -340,8 +340,8 @@ export default function Home() {
         <div className="flex-1 flex flex-col gap-16">
           <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
 
-            <div className='relative flex items-center justify-center gap-6'>
-              <button onClick={showPrevious} className='absolute left-0 px-2 py-2 pl-1 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
+            <div className='flex items-center justify-center gap-4 w-full'>
+              <button onClick={showPrevious} className='p-2 translate-x-[40px] translate-y-[50px] z-50 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
 
               <div className='overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2'>
 
@@ -356,9 +356,9 @@ export default function Home() {
                   </div>
                 </div>
                 <div className='flex gap-4'>
-                  <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md'>
-                    <Search className='text-zinc-300 mr-2 mt-1' size={18} />
-                    <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full' type='text' placeholder='Search characters...' />
+                  <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out'>
+                    <Search className='text-zinc-300 mr-2 ml-1 mt-[3px]' size={18} />
+                    <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full mt-[1px] outline-none border-none' type='text' placeholder='Search characters...' />
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
                     <p className="text-md font-semibold select-none whitespace-nowrap">Role:</p>
@@ -449,7 +449,7 @@ export default function Home() {
 
 
               </div>
-              <button onClick={showNext} className='absolute right-0 px-2 py-2 pr-1 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronRight className='cursor-pointer' size={40} /></button>
+              <button onClick={showNext} className='p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronRight className='cursor-pointer' size={40} /></button>
             </div>
 
             <EndpointCard
