@@ -31,6 +31,15 @@ type Weapon = {
   image_url?: string;
 }
 
+type Ability = {
+  id: number;
+  name: string;
+  ability_type: string;
+  user: string;
+  description: string;
+  image_url?: string;
+};
+
 type Arc = {
   id: number;
   name: string;
@@ -44,6 +53,7 @@ export default function Home() {
 
   const [characters, setCharacters] = useState<Character[]>([]);
   const [weapons, setWeapons] = useState<Weapon[]>([]);
+  const [abilities, setAbilities] = useState<Ability[]>([]);
   const [arcs, setArcs] = useState<Arc[]>([]);
 
   const [isOpen, setOpen] = useState(false);
@@ -60,6 +70,10 @@ export default function Home() {
   const [selectedWeaponCategory, setSelectedWeaponCategory] = useState("");
   const [selectedWeaponAffiliation, setSelectedWeaponAffiliation] = useState("");
   const [selectedWeaponStatus, setSelectedWeaponStatus] = useState("");
+  const [abilityStartIndex, setAbilityStartIndex] = useState(0);
+  const [searchAbility, setSearchAbility] = useState("");
+  const [selectedAbilityType, setSelectedAbilityType] = useState("");
+  const [selectedAbilityUser, setSelectedAbilityUser] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -156,6 +170,45 @@ export default function Home() {
     setWeaponStartIndex(0);
   };
 
+  const filteredAbilities = abilities.filter((ability) => {
+    const lowerAbility = ability.name.toLowerCase();
+    const lowerQuery = searchAbility.toLowerCase();
+    const matchesSearch = lowerAbility.includes(lowerQuery);
+    const matchesAbilityType = selectedAbilityType === "" || ability.ability_type.toLowerCase().includes(selectedAbilityType.toLowerCase());
+    const matchesUser = selectedAbilityUser === "" || ability.user.toLowerCase().includes(selectedAbilityUser.toLowerCase());
+
+    if (matchesSearch && matchesAbilityType && matchesUser) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  const showNextAbility = () => {
+    const maxStartIndex = filteredAbilities.length - cardsToShow;
+
+    if (abilityStartIndex + cardsToShow < maxStartIndex) {
+      setAbilityStartIndex(abilityStartIndex + cardsToShow);
+    } else {
+      setAbilityStartIndex(Math.max(0, maxStartIndex));
+    }
+  };
+
+  const showPreviousAbility = () => {
+    if (abilityStartIndex - cardsToShow >= 0) {
+      setAbilityStartIndex(abilityStartIndex - cardsToShow);
+    } else {
+      setAbilityStartIndex(0);
+    }
+  };
+
+  const clearAbilityFilters = () => {
+    setSearchAbility("");
+    setSelectedAbilityType("");
+    setSelectedAbilityUser("");
+    setAbilityStartIndex(0);
+  };
+
   useEffect(() => {
     setStartIndex(0);
   }, [searchCharacter, selectedRole, selectedAffiliation, selectedSpecies, selectedStatus]);
@@ -163,6 +216,10 @@ export default function Home() {
   useEffect(() => {
     setWeaponStartIndex(0);
   }, [searchWeapon, selectedWeaponType, selectedWeaponCategory, selectedWeaponAffiliation, selectedWeaponStatus]);
+
+  useEffect(() => {
+    setAbilityStartIndex(0);
+  }, [searchAbility, selectedAbilityType, selectedAbilityUser]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/characters")
@@ -179,6 +236,15 @@ export default function Home() {
       .then((data) => {
         const randomizedWeapons = [...data].sort(() => Math.random() - 0.5);
         setWeapons(randomizedWeapons);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/abilities")
+      .then((result) => result.json())
+      .then((data) => {
+        const randomizedAbilities = [...data].sort(() => Math.random() - 0.5);
+        setAbilities(randomizedAbilities);
       });
   }, []);
 
@@ -719,52 +785,134 @@ export default function Home() {
             />
           </div>
 
-          <div className="mx-6 mt-10" id="ability-section">
-            <p className="text-white text-5xl font-banner">Abilities</p>
-            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="ability-section">
+            <div className="flex items-center justify-center gap-4 w-full">
+              <button onClick={showPreviousAbility} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
+
+              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+                <div className="flex">
+                  <div>
+                    <p><Flame className="w-13 h-13 text-[#f89c0a]" /></p>
+                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                  </div>
+
+                  <div className="ml-3 mb-5">
+                    <p className="text-white text-5xl font-banner">ABILITIES</p>
+                    <p className="text-zinc-400">Browse and explore all abilities from the world of Soul Eater.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
+                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                    <input value={searchAbility} onChange={(event) => setSearchAbility(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search abilities..." />
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold whitespace-nowrap">Type:</p>
+
+                    <select value={selectedAbilityType} onChange={(event) => setSelectedAbilityType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a]">
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Offensive">Offensive</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Defensive">Defensive</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Support">Support</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Transformation">Transformation</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul Wavelength">Soul Wavelength</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul Resonance">Soul Resonance</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Magic">Magic</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold whitespace-nowrap">User:</p>
+                    <select value={selectedAbilityUser} onChange={(event) => setSelectedAbilityUser(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a]">
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Maka">Maka Albarn</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul">Soul Evans</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Black Star">Black Star</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Death the Kid">Death the Kid</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Franken">Franken Stein</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa">Medusa Gorgon</option>
+                    </select>
+                  </div>
+
+                  <div className="hover:text-white ml-auto">
+                    <button onClick={clearAbilityFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                  </div>
+                </div>
+
+                {filteredAbilities.length === 0 && (
+                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                    <p className="text-zinc-400 text-lg">No abilities match the selected filters.</p>
+                  </div>
+                )}
+
+                {filteredAbilities.length > 0 && (
+                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${abilityStartIndex * 324}px)` }}>
+                    {filteredAbilities.map((ability) => (
+                      <div key={ability.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                        <div className="relative w-full h-60 bg-zinc-950">
+                          <Image src={ability.image_url || "/characters/characters-placeholder.png"} alt="Ability Image" fill className="object-cover object-top" />
+                        </div>
+
+                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+                          <p className="font-banner">{ability.ability_type}</p>
+                        </div>
+
+                        <div className="p-4 border-t border-zinc-800">
+                          <h2 className="font-banner text-white text-2xl">{ability.name}</h2>
+                          <p className="text-zinc-400 text-xs font-semibold">{ability.user}</p>
+                          <a target="_blank" href={`http://127.0.0.1:8000/abilities/${ability.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <button onClick={showNextAbility} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
+            </div>
 
             <EndpointCard
-              method='GET'
-              path='/abilities'
-              description='Returns a list of all abilities'
-              parameters='No parameters'
+              method="GET"
+              path="/abilities"
+              description="Returns all abilities."
               example={abilityExamples}
             />
 
             <EndpointCard
-              method='GET'
-              path='/abilities/{id}'
-              description='Returns a specific ability by ID'
-              parameters='No parameters'
+              method="GET"
+              path="/abilities/{ability_id}"
+              description="Returns ability by id."
+              parameter={{ location: "Path parameter", name: "ability_id", type: "integer" }}
               example={abilityExamples[0]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/abilities?name=Black Blood Manipulation'
-              description='Returns abilities matching the provided name'
-              parameters='No parameters'
+              method="GET"
+              path="/abilities?name=Black Blood Manipulation"
+              description="Filters abilities by name."
+              parameter={{ location: "Query parameter", name: "name", type: "string" }}
               example={abilityExamples[3]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/abilities?ability_type=Offensive'
-              description='Returns abilities filtered by ability type'
-              parameters='No parameters'
+              method="GET"
+              path="/abilities?ability_type=Offensive"
+              description="Filters abilities by ability type."
+              parameter={{ location: "Query parameter", name: "ability_type", type: "string" }}
               example={[abilityExamples[2], abilityExamples[3]]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/abilities?user=Franken'
-              description='Returns abilities used by a specific character'
-              parameters='No parameters'
+              method="GET"
+              path="/abilities?user=Franken"
+              description="Filters abilities by user."
+              parameter={{ location: "Query parameter", name: "user", type: "string" }}
               example={[abilityExamples[0], abilityExamples[2]]}
             />
-          </div >
-
-
+          </div>
 
 
           <div className="mx-6 mt-10" id="organization-section">
