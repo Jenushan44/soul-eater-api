@@ -53,7 +53,13 @@ export default function Home() {
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedAffiliation, setSelectedAffiliation] = useState("");
   const [selectedSpecies, setSelectedSpecies] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("")
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [weaponStartIndex, setWeaponStartIndex] = useState(0);
+  const [searchWeapon, setSearchWeapon] = useState("");
+  const [selectedWeaponType, setSelectedWeaponType] = useState("");
+  const [selectedWeaponCategory, setSelectedWeaponCategory] = useState("");
+  const [selectedWeaponAffiliation, setSelectedWeaponAffiliation] = useState("");
+  const [selectedWeaponStatus, setSelectedWeaponStatus] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -116,12 +122,47 @@ export default function Home() {
 
   const clearFilter = () => {
     setSelectedRole("");
+    setSearchCharacter("");
     setSelectedAffiliation("");
     setSelectedSpecies("");
     setSelectedStatus("");
+    setStartIndex(0);
   }
 
+  const filteredWeapons = weapons.filter((weapon) => {
+    const matchesSearch = weapon.name.toLowerCase().includes(searchWeapon.toLowerCase());
+    const matchesWeaponType = selectedWeaponType === "" || weapon.weapon_type.toLowerCase().includes(selectedWeaponType.toLowerCase());
+    const matchesWeaponCategory = selectedWeaponCategory === "" || weapon.weapon_category.toLowerCase().includes(selectedWeaponCategory.toLowerCase());
+    const matchesAffiliation = selectedWeaponAffiliation === "" || weapon.affiliation.toLowerCase().includes(selectedWeaponAffiliation.toLowerCase());
+    const matchesStatus = selectedWeaponStatus === "" || weapon.status.toLowerCase().includes(selectedWeaponStatus.toLowerCase());
+    return (matchesSearch && matchesWeaponType && matchesWeaponCategory && matchesAffiliation && matchesStatus);
+  });
 
+  const showNextWeapon = () => {
+    const maxStartIndex = Math.max(0, filteredWeapons.length - cardsToShow);
+    setWeaponStartIndex((currentIndex) => Math.min(currentIndex + cardsToShow, maxStartIndex));
+  };
+
+  const showPreviousWeapon = () => {
+    setWeaponStartIndex((currentIndex) => Math.max(0, currentIndex - cardsToShow));
+  };
+
+  const clearWeaponFilters = () => {
+    setSearchWeapon("");
+    setSelectedWeaponType("");
+    setSelectedWeaponCategory("");
+    setSelectedWeaponAffiliation("");
+    setSelectedWeaponStatus("");
+    setWeaponStartIndex(0);
+  };
+
+  useEffect(() => {
+    setStartIndex(0);
+  }, [searchCharacter, selectedRole, selectedAffiliation, selectedSpecies, selectedStatus]);
+
+  useEffect(() => {
+    setWeaponStartIndex(0);
+  }, [searchWeapon, selectedWeaponType, selectedWeaponCategory, selectedWeaponAffiliation, selectedWeaponStatus]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/characters")
@@ -226,7 +267,7 @@ export default function Home() {
       <div className='flex flex-col gap-16 mx-6 mt-10'>
         <div className="sticky top-0 z-50 bg-black p-3 border border-zinc-900 rounded-md tracking-wide">
 
-          <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 uppercase font-sans">BROWSE THE SECTIONS</p>
+          <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 font-sans">BROWSE THE SECTIONS</p>
           <div className='flex flex-col grid grid-cols-5 gap-5 w-full'>
 
             <div className='border border-[#f89c0a66] relative'>
@@ -338,7 +379,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-16">
-          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
+          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="character-section">
 
             <div className='flex items-center justify-center gap-4 w-full'>
               <button onClick={showPrevious} className='p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
@@ -361,7 +402,7 @@ export default function Home() {
                     <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full mt-[1px] outline-none border-none' type='text' placeholder='Search characters...' />
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold select-none whitespace-nowrap">Role:</p>
+                    <p className="text-md font-semibold  whitespace-nowrap">Role:</p>
                     <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
@@ -377,7 +418,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold select-none whitespace-nowrap">Affiliation:</p>
+                    <p className="text-md font-semibold  whitespace-nowrap">Affiliation:</p>
                     <select value={selectedAffiliation} onChange={(event) => setSelectedAffiliation(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="DWMA">DWMA</option>
@@ -392,7 +433,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold select-none whitespace-nowrap">Species:</p>
+                    <p className="text-md font-semibold  whitespace-nowrap">Species:</p>
                     <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
@@ -408,7 +449,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold select-none whitespace-nowrap">Status:</p>
+                    <p className="text-md font-semibold  whitespace-nowrap">Status:</p>
                     <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
@@ -425,27 +466,33 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className='flex gap-6 transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${startIndex * 324}px)` }}>
+                {filteredCharacters.length === 0 && (
+                  <div className='flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg'>
+                    <p className='text-zinc-400 text-lg'>No characters match the selected filters.</p>
+                  </div>
+                )}
 
+                {filteredCharacters.length > 0 && (
+                  <div className='flex gap-6 transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${startIndex * 324}px)` }}>
+                    {filteredCharacters.map((character) => (
+                      <div key={character.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                        <div className="relative w-full h-60 bg-zinc-950">
+                          <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                        </div>
+                        <div className='absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10'>
+                          <p className='font-banner'>{character.role}</p>
+                        </div>
 
-                  {filteredCharacters.map((character) => (
-                    <div key={character.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                      <div className="relative w-full h-60 bg-zinc-950">
-                        <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+                        <div className="p-4 border-t border-zinc-800">
+                          <h2 className="font-banner text-white text-2xl">{character.name}</h2>
+                          <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
+                          <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
+                          </a>
+                        </div>
                       </div>
-                      <div className='absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10'>
-                        <p className='font-banner'>{character.role}</p>
-                      </div>
-
-                      <div className="p-4 border-t border-zinc-800">
-                        <h2 className="font-banner text-white text-2xl">{character.name}</h2>
-                        <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                        <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
-                        </a>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
 
 
               </div>
@@ -500,82 +547,175 @@ export default function Home() {
             />
 
           </div>
-          <div className="mx-6 mt-10" id="weapon-section">
-            <p className="text-white text-5xl font-banner">Weapons</p>
-            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
+            <div className="flex items-center justify-center gap-4 w-full">
+              <button onClick={showPreviousWeapon} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronLeft className="cursor-pointer" size={40} /></button>
 
-            <div className="flex flex-wrap gap-6 justify-center mt-6">
-              {weapons.slice(0, 6).map((weapon) => (
-                <div key={weapon.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                  <div className="relative w-full h-64 bg-zinc-950">
-                    <Image src={weapon.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+                <div className="flex">
+                  <div>
+                    <Swords className="w-13 h-13 text-[#f89c0a]" />
+                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
                   </div>
 
-                  <div className="p-4 border-t border-zinc-800">
-                    <h2 className="font-banner text-white text-2xl">{weapon.name}</h2>
-                    <p className="text-zinc-400 text-xs font-semibold">{weapon.weapon_type}</p>
-                    <a target="_blank" href={`http://127.0.0.1:8000/weapons/${weapon.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
-                    </a>
+                  <div className="ml-3 mb-5">
+                    <p className="text-white text-5xl font-banner">WEAPONS</p>
+                    <p className="text-zinc-400">Browse and explore all Demon Weapons from the world of Soul Eater.</p>
                   </div>
                 </div>
-              ))}
 
+                <div className="flex gap-4">
+                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] transition duration-300 ease-in-out">
+                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                    <input value={searchWeapon} onChange={(event) => setSearchWeapon(event.target.value)} className="w-full mt-[1px] outline-none border-none bg-transparent" type="text" placeholder="Search weapons..." />
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold  whitespace-nowrap">Type:</p>
+                    <select value={selectedWeaponType} onChange={(event) => setSelectedWeaponType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Scythe">Scythe</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Pistol">Pistol</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Sword">Sword</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Spear">Spear</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Hammer">Hammer</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Guillotine">Guillotine</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Multi-Form">Multi-Form</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold  whitespace-nowrap">Category:</p>
+
+                    <select value={selectedWeaponCategory} onChange={(event) => setSelectedWeaponCategory(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Demon Weapon">Demon Weapon</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Death Scythe">Death Scythe</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Shadow Weapon">Shadow Weapon</option>
+                    </select>
+                  </div>
+
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold whitespace-nowrap">Affiliation:</p>
+
+                    <select value={selectedWeaponAffiliation} onChange={(event) => setSelectedWeaponAffiliation(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="DWMA">DWMA</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Spartoi">Spartoi</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Arachnophobia">Arachnophobia</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Independent">Independent</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="None">No Affiliation</option>
+                    </select>
+                  </div>
+
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold whitespace-nowrap">Status:</p>
+
+                    <select value={selectedWeaponStatus} onChange={(event) => setSelectedWeaponStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Alive">Alive</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Deceased">Deceased</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Unknown">Unknown</option>
+                      <option className="bg-zinc-950 text-zinc-400" value="Destroyed">Destroyed</option>
+                    </select>
+                  </div>
+
+                  <div className="hover:text-white ml-auto">
+                    <button onClick={clearWeaponFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out whitespace-nowrap" >
+                      <FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                  </div>
+                </div>
+
+
+                {filteredWeapons.length === 0 && (
+                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                    <p className="text-zinc-400 text-lg">No weapons match the selected filters.</p>
+                  </div>
+                )}
+
+
+                {filteredWeapons.length > 0 && (
+                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${weaponStartIndex * 324}px)` }} >
+                    {filteredWeapons.map((weapon) => (
+                      <div key={weapon.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                        <div className="relative w-full h-60 bg-zinc-950">
+                          <Image src={weapon.image_url || "/characters/characters-placeholder.png"} alt={`${weapon.name} image`} fill className="object-cover object-top" />
+                        </div>
+
+                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+                          <p className="font-banner">{weapon.weapon_category}</p>
+                        </div>
+
+                        <div className="p-4 border-t border-zinc-800">
+                          <p className="font-banner text-white text-2xl">{weapon.name}</p>
+                          <p className="text-zinc-400 text-xs font-semibold">{weapon.weapon_type}</p>
+
+                          <a target="_blank" rel="noopener noreferrer" href={`http://127.0.0.1:8000/weapons/${weapon.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]" >VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <button onClick={showNextWeapon} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronRight className="cursor-pointer" size={40} /></button>
             </div>
-            {/*Fix weapon endpoint cards*/}
+
             <EndpointCard
-              method='GET'
-              path='/weapons'
-              description='Returns a list of all weapons'
-              parameters='No parameters'
+              method="GET"
+              path="/weapons"
+              description="Returns all weapons."
               example={weaponExamples}
             />
 
             <EndpointCard
-              method='GET'
-              path='/weapons/{id}'
-              description='Returns a specific weapon by ID'
-              parameters='No parameters'
+              method="GET"
+              path="/weapons/{weapon_id}"
+              description="Returns a weapon by ID."
+              parameter={{ location: "Path parameter", name: "weapon_id", type: "integer" }}
               example={weaponExamples[0]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/weapons?name=Nakatsukasa'
-              description='Returns weapons matching the provided name'
-              parameters='No parameters'
+              method="GET"
+              path="/weapons?name=Nakatsukasa"
+              description="Filters weapons by name."
+              parameter={{ location: "Query parameter", name: "name", type: "string" }}
               example={weaponExamples[1]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/abilities?ability_type=Offensive'
-              description='Returns weapons filtered by weapon type'
-              parameters='No parameters'
-              example={[abilityExamples[2], abilityExamples[3]]}
+              method="GET"
+              path="/weapons?weapon_type=Scythe"
+              description="Filters weapons by weapon type."
+              parameter={{ location: "Query parameter", name: "weapon_type", type: "string" }}
+              example={[weaponExamples[0], weaponExamples[1]]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/weapons?category=Franken'
-              description='Returns weapons filtered by weapon category'
-              parameters='No parameters'
-              example={[abilityExamples[0], abilityExamples[2]]}
+              method="GET"
+              path="/weapons?weapon_category=Death Scythe"
+              description="Filters weapons by weapon category."
+              parameter={{ location: "Query parameter", name: "weapon_category", type: "string" }}
+              example={[weaponExamples[0], weaponExamples[1]]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/abilities?ability_type=Offensive'
-              description='Returns weapons used by a specific meister'
-              parameters='No parameters'
-              example={[abilityExamples[2], abilityExamples[3]]}
+              method="GET"
+              path="/weapons?meister=Franken"
+              description="Filters weapons by Meister."
+              parameter={{ location: "Query parameter", name: "meister", type: "string" }}
+              example={[weaponExamples[0]]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/abilities?user=Franken'
-              description='Returns weapons filtered by affiliation'
-              parameters='No parameters'
-              example={[abilityExamples[0], abilityExamples[2]]}
+              method="GET"
+              path="/weapons?affiliation=DWMA"
+              description="Filters weapons by affiliation."
+              parameter={{ location: "Query parameter", name: "affiliation", type: "string" }}
+              example={weaponExamples}
             />
           </div>
 

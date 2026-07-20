@@ -23,12 +23,14 @@ type Character = {
   image_url: string;
 };
 
+
+
 type EndpointCardProps = {
   method: string;
   path: string;
   description: string;
   parameter?: Parameter;
-  example: Character | Character[];
+  example: unknown;
 };
 
 export default function EndpointCard({ method, path, description, parameter, example }: EndpointCardProps) {
@@ -58,7 +60,6 @@ export default function EndpointCard({ method, path, description, parameter, exa
           </div>
         ) : (
           <div className="mr-6 mt-5 flex min-w-[190px] items-center rounded-md border-2 border-[#222224] px-3 py-2">
-
             <p className="text-gray-500 text-sm">No parameters</p>
           </div>
         )}
