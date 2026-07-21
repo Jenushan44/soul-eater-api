@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from "next/image";
 import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 import { FunnelX, ChevronRight, ChevronLeft, BookOpen, School, User, Shield, Skull, Swords, Flame, MoonStar, BrickWallShield, MoveRight, Search } from 'lucide-react';
 import Link from 'next/link';
 import { characterExamples, weaponExamples, abilityExamples, organizationExamples, arcExamples, } from "./data/apiExamples";
@@ -1290,7 +1291,7 @@ export default function Home() {
 
 
 
-
+      <Footer />
     </div >
   );
 }
