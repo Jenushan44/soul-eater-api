@@ -40,6 +40,16 @@ type Ability = {
   image_url?: string;
 };
 
+type Organization = {
+  id: number;
+  name: string;
+  organization_type: string;
+  leader: string;
+  status: string;
+  description: string;
+  image_url?: string;
+};
+
 type Arc = {
   id: number;
   name: string;
@@ -54,6 +64,7 @@ export default function Home() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [weapons, setWeapons] = useState<Weapon[]>([]);
   const [abilities, setAbilities] = useState<Ability[]>([]);
+  const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [arcs, setArcs] = useState<Arc[]>([]);
 
   const [isOpen, setOpen] = useState(false);
@@ -74,6 +85,11 @@ export default function Home() {
   const [searchAbility, setSearchAbility] = useState("");
   const [selectedAbilityType, setSelectedAbilityType] = useState("");
   const [selectedAbilityUser, setSelectedAbilityUser] = useState("");
+  const [organizationStartIndex, setOrganizationStartIndex] = useState(0);
+  const [searchOrganization, setSearchOrganization] = useState("");
+  const [selectedOrganizationType, setSelectedOrganizationType] = useState("");
+  const [selectedOrganizationLeader, setSelectedOrganizationLeader] = useState("");
+  const [selectedOrganizationStatus, setSelectedOrganizationStatus] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -209,6 +225,50 @@ export default function Home() {
     setAbilityStartIndex(0);
   };
 
+  const filteredOrganizations = organizations.filter((organization) => {
+    const lowerOrganization = organization.name.toLowerCase();
+    const lowerQuery = searchOrganization.toLowerCase();
+    const matchesSearch = lowerOrganization.includes(lowerQuery);
+    const matchesOrganizationType = selectedOrganizationType === "" || organization.organization_type.toLowerCase().includes(selectedOrganizationType.toLowerCase());
+
+    const matchesLeader = selectedOrganizationLeader === "" || organization.leader.toLowerCase().includes(selectedOrganizationLeader.toLowerCase());
+
+    const matchesStatus = selectedOrganizationStatus === "" || organization.status.toLowerCase().includes(selectedOrganizationStatus.toLowerCase());
+
+    if (matchesSearch && matchesOrganizationType && matchesLeader && matchesStatus) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  const showNextOrganization = () => {
+    const maxStartIndex = filteredOrganizations.length - cardsToShow;
+
+    if (organizationStartIndex + cardsToShow < maxStartIndex) {
+      setOrganizationStartIndex(organizationStartIndex + cardsToShow);
+    } else {
+      setOrganizationStartIndex(Math.max(0, maxStartIndex));
+    }
+  };
+
+  const showPreviousOrganization = () => {
+    if (organizationStartIndex - cardsToShow >= 0) {
+      setOrganizationStartIndex(organizationStartIndex - cardsToShow);
+    } else {
+      setOrganizationStartIndex(0);
+    }
+  };
+
+  const clearOrganizationFilters = () => {
+    setSearchOrganization("");
+    setSelectedOrganizationType("");
+    setSelectedOrganizationLeader("");
+    setSelectedOrganizationStatus("");
+    setOrganizationStartIndex(0);
+  };
+
+
   useEffect(() => {
     setStartIndex(0);
   }, [searchCharacter, selectedRole, selectedAffiliation, selectedSpecies, selectedStatus]);
@@ -220,6 +280,10 @@ export default function Home() {
   useEffect(() => {
     setAbilityStartIndex(0);
   }, [searchAbility, selectedAbilityType, selectedAbilityUser]);
+
+  useEffect(() => {
+    setOrganizationStartIndex(0);
+  }, [searchOrganization, selectedOrganizationType, selectedOrganizationLeader, selectedOrganizationStatus]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/characters")
@@ -245,6 +309,15 @@ export default function Home() {
       .then((data) => {
         const randomizedAbilities = [...data].sort(() => Math.random() - 0.5);
         setAbilities(randomizedAbilities);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/organizations")
+      .then((result) => result.json())
+      .then((data) => {
+        const randomizedOrganizations = [...data].sort(() => Math.random() - 0.5);
+        setOrganizations(randomizedOrganizations);
       });
   }, []);
 
@@ -468,7 +541,7 @@ export default function Home() {
                     <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full mt-[1px] outline-none border-none' type='text' placeholder='Search characters...' />
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold  whitespace-nowrap">Role:</p>
+                    <p className="text-md font-semibold">Role:</p>
                     <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
@@ -484,7 +557,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold  whitespace-nowrap">Affiliation:</p>
+                    <p className="text-md font-semibold">Affiliation:</p>
                     <select value={selectedAffiliation} onChange={(event) => setSelectedAffiliation(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="DWMA">DWMA</option>
@@ -499,7 +572,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold  whitespace-nowrap">Species:</p>
+                    <p className="text-md font-semibold">Species:</p>
                     <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
@@ -515,7 +588,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold  whitespace-nowrap">Status:</p>
+                    <p className="text-md font-semibold">Status:</p>
                     <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
                       <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
@@ -637,7 +710,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold  whitespace-nowrap">Type:</p>
+                    <p className="text-md font-semibold">Type:</p>
                     <select value={selectedWeaponType} onChange={(event) => setSelectedWeaponType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                       <option className="bg-zinc-950 text-zinc-400" value="">All</option>
                       <option className="bg-zinc-950 text-zinc-400" value="Scythe">Scythe</option>
@@ -651,7 +724,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold  whitespace-nowrap">Category:</p>
+                    <p className="text-md font-semibold">Category:</p>
 
                     <select value={selectedWeaponCategory} onChange={(event) => setSelectedWeaponCategory(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                       <option className="bg-zinc-950 text-zinc-400" value="">All</option>
@@ -663,7 +736,7 @@ export default function Home() {
 
 
                   <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold whitespace-nowrap">Affiliation:</p>
+                    <p className="text-md font-semibold">Affiliation:</p>
 
                     <select value={selectedWeaponAffiliation} onChange={(event) => setSelectedWeaponAffiliation(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                       <option className="bg-zinc-950 text-zinc-400" value="">All</option>
@@ -677,7 +750,7 @@ export default function Home() {
 
 
                   <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold whitespace-nowrap">Status:</p>
+                    <p className="text-md font-semibold">Status:</p>
 
                     <select value={selectedWeaponStatus} onChange={(event) => setSelectedWeaponStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                       <option className="bg-zinc-950 text-zinc-400" value="">All</option>
@@ -689,7 +762,7 @@ export default function Home() {
                   </div>
 
                   <div className="hover:text-white ml-auto">
-                    <button onClick={clearWeaponFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out whitespace-nowrap" >
+                    <button onClick={clearWeaponFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out" >
                       <FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
                   </div>
                 </div>
@@ -809,7 +882,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold whitespace-nowrap">Type:</p>
+                    <p className="text-md font-semibold">Type:</p>
 
                     <select value={selectedAbilityType} onChange={(event) => setSelectedAbilityType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a]">
                       <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
@@ -825,7 +898,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold whitespace-nowrap">User:</p>
+                    <p className="text-md font-semibold">User:</p>
                     <select value={selectedAbilityUser} onChange={(event) => setSelectedAbilityUser(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a]">
                       <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
                       <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Maka">Maka Albarn</option>
@@ -915,59 +988,150 @@ export default function Home() {
           </div>
 
 
-          <div className="mx-6 mt-10" id="organization-section">
-            <p className="text-white text-5xl font-banner">Organizations</p>
-            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="organization-section">
+            <div className="flex items-center justify-center gap-4 w-full">
+              <button onClick={showPreviousOrganization} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
+
+              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+                <div className="flex">
+                  <div>
+                    <p><School className="w-13 h-13 text-[#f89c0a]" /></p>
+                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                  </div>
+
+                  <div className="ml-3 mb-5">
+                    <p className="text-white text-5xl font-banner">ORGANIZATIONS</p>
+                    <p className="text-zinc-400">Browse and explore all organizations from the world of Soul Eater.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
+                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                    <input value={searchOrganization} onChange={(event) => setSearchOrganization(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search organizations..." />
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold">Type:</p>
+
+                    <select value={selectedOrganizationType}
+                      onChange={(event) => setSelectedOrganizationType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Academy">Academy</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Faction">Faction</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Task Force">Task Force</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Clan">Clan</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Government">Government</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold">Leader:</p>
+                    <select value={selectedOrganizationLeader} onChange={(event) => setSelectedOrganizationLeader(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Lord Death">Lord Death</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa">Medusa Gorgon</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Arachne">Arachne Gorgon</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Noah">Noah</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold">Status:</p>
+                    <select value={selectedOrganizationStatus} onChange={(event) => setSelectedOrganizationStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Active">Active</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Disbanded">Disbanded</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Destroyed">Destroyed</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Unknown">Unknown</option>
+                    </select>
+                  </div>
+
+                  <div className="hover:text-white ml-auto">
+                    <button onClick={clearOrganizationFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                  </div>
+                </div>
+
+                {filteredOrganizations.length === 0 && (
+                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                    <p className="text-zinc-400 text-lg">No organizations match the selected filters.</p>
+                  </div>
+                )}
+
+                {filteredOrganizations.length > 0 && (
+                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${organizationStartIndex * 324}px)` }}>
+                    {filteredOrganizations.map((organization) => (
+                      <div key={organization.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                        <div className="relative w-full h-60 bg-zinc-950">
+                          <Image src={organization.image_url || "/characters/characters-placeholder.png"} alt="Organization Image" fill className="object-cover object-top" />
+                        </div>
+
+                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+                          <p className="font-banner">{organization.organization_type}</p>
+                        </div>
+
+                        <div className="p-4 border-t border-zinc-800">
+                          <p className="font-banner text-white text-2xl">{organization.name}</p>
+                          <p className="text-zinc-400 text-xs font-semibold">{organization.leader}</p>
+                          <a target="_blank" href={`http://127.0.0.1:8000/organizations/${organization.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <button onClick={showNextOrganization} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
+            </div>
 
             <EndpointCard
-              method='GET'
-              path='/organizations'
-              description='Returns a list of all organizations'
-              parameters='No parameters'
+              method="GET"
+              path="/organizations"
+              description="Returns all organizations."
               example={organizationExamples}
             />
 
             <EndpointCard
-              method='GET'
-              path='/organizations/{id}'
-              description='Returns a specific organization by ID'
-              parameters='No parameters'
+              method="GET"
+              path="/organizations/{organization_id}"
+              description="Returns organization by id."
+              parameter={{ location: "Path parameter", name: "organization_id", type: "integer" }}
               example={organizationExamples[0]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/organizations?name=Faction'
-              description='Returns organizations matching the provided name'
-              parameters='No parameters'
+              method="GET"
+              path="/organizations?name=Faction"
+              description="Filters organizations by name."
+              parameter={{ location: "Query parameter", name: "name", type: "string" }}
               example={organizationExamples[3]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/organizations?organization_type=task'
-              description='Returns organizations filtered by organization type'
-              parameters='No parameters'
+              method="GET"
+              path="/organizations?organization_type=Task Force"
+              description="Filters organizations by organization type."
+              parameter={{ location: "Query parameter", name: "organization_type", type: "string" }}
               example={organizationExamples[1]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/organizations?leader=Gorgon'
-              description='Returns organizations led by a specific leader'
-              parameters='No parameters'
+              method="GET"
+              path="/organizations?leader=Gorgon"
+              description="Filters organizations by leader."
+              parameter={{ location: "Query parameter", name: "leader", type: "string" }}
               example={[organizationExamples[2], organizationExamples[3]]}
             />
 
             <EndpointCard
-              method='GET'
-              path='organizations?status=Active'
-              description='Returns organizations filtered by status'
-              parameters='No parameters'
+              method="GET"
+              path="/organizations?status=Active"
+              description="Filters organizations by status."
+              parameter={{ location: "Query parameter", name: "status", type: "string" }}
               example={[organizationExamples[0], organizationExamples[1]]}
             />
-
-          </div >
+          </div>
 
 
           <div className="mx-6 mt-10" id="arc-section">
