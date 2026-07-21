@@ -35,7 +35,7 @@ export default function Footbar() {
             <MoveRight className="text-[#f89c0a] transition-transform group-hover:translate-x-2" size={28} />
           </a>
 
-          <a href="https://github.com/Jenushan44" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between border-b border-zinc-800 py-5">
+          <a href="https://github.com/Jenushan44/soul-eater-api" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between border-b border-zinc-800 py-5">
             <div className="flex items-center gap-4">
               <Image src={"/github-icon.png"} alt="GitHub logo" width={30} height={30} className="text-[#f89c0a]" />
 
