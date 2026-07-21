@@ -90,6 +90,9 @@ export default function Home() {
   const [selectedOrganizationType, setSelectedOrganizationType] = useState("");
   const [selectedOrganizationLeader, setSelectedOrganizationLeader] = useState("");
   const [selectedOrganizationStatus, setSelectedOrganizationStatus] = useState("");
+  const [arcStartIndex, setArcStartIndex] = useState(0);
+  const [searchArc, setSearchArc] = useState("");
+  const [selectedArcCharacter, setSelectedArcCharacter] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -268,6 +271,43 @@ export default function Home() {
     setOrganizationStartIndex(0);
   };
 
+  const filteredArcs = arcs.filter((arc) => {
+    const lowerArc = arc.name.toLowerCase();
+    const lowerQuery = searchArc.toLowerCase();
+    const matchesSearch = lowerArc.includes(lowerQuery);
+    const matchesCharacter = selectedArcCharacter === "" || arc.main_characters.some((character) => character.toLowerCase().includes(selectedArcCharacter.toLowerCase()));
+
+    if (matchesSearch && matchesCharacter) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  const showNextArc = () => {
+    const maxStartIndex = filteredArcs.length - cardsToShow;
+
+    if (arcStartIndex + cardsToShow < maxStartIndex) {
+      setArcStartIndex(arcStartIndex + cardsToShow);
+    } else {
+      setArcStartIndex(Math.max(0, maxStartIndex));
+    }
+  };
+
+  const showPreviousArc = () => {
+    if (arcStartIndex - cardsToShow >= 0) {
+      setArcStartIndex(arcStartIndex - cardsToShow);
+    } else {
+      setArcStartIndex(0);
+    }
+  };
+
+  const clearArcFilters = () => {
+    setSearchArc("");
+    setSelectedArcCharacter("");
+    setArcStartIndex(0);
+  };
+
 
   useEffect(() => {
     setStartIndex(0);
@@ -284,6 +324,10 @@ export default function Home() {
   useEffect(() => {
     setOrganizationStartIndex(0);
   }, [searchOrganization, selectedOrganizationType, selectedOrganizationLeader, selectedOrganizationStatus]);
+
+  useEffect(() => {
+    setArcStartIndex(0);
+  }, [searchArc, selectedArcCharacter]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/characters")
@@ -1134,66 +1178,110 @@ export default function Home() {
           </div>
 
 
-          <div className="mx-6 mt-10" id="arc-section">
-            <p className="text-white text-5xl font-banner">Arcs</p>
-            <div className="w-full h-1 bg-[#f89c0a] mx-auto" />
+          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="arc-section">
+            <div className="flex items-center justify-center gap-4 w-full">
+              <button onClick={showPreviousArc} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
 
-            <div className="flex flex-wrap gap-6 justify-center mt-6">
-              {arcs.slice(0, 6).map((arc) => (
-                <div key={arc.id} className="w-64 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                  <div className="relative w-full h-64 bg-zinc-950">
-                    <Image src={arc.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover object-top" />
+              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+                <div className="flex">
+                  <div>
+                    <p><MoonStar className="w-13 h-13 text-[#f89c0a]" /></p>
+                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
                   </div>
 
-                  <div className="p-4 border-t border-zinc-800">
-                    <h2 className="font-banner text-white text-2xl">{arc.name}</h2>
-                    <p className="text-zinc-400 text-xs font-semibold">{`Episodes ${arc.episodes}`}</p>
-                    <a target="_blank" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex mt-3 text-[#f89c0a] text-xs font-bold cursor-pointer gap-2">VIEW <MoveRight className="-translate-y-1" />
-                    </a>
+                  <div className="ml-3 mb-5">
+                    <p className="text-white text-5xl font-banner">ARCS</p>
+                    <p className="text-zinc-400">Browse and explore all story arcs from the world of Soul Eater.</p>
                   </div>
                 </div>
-              ))}
 
+                <div className="flex gap-4">
+                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
+                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                    <input value={searchArc} onChange={(event) => setSearchArc(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search arcs..." />
+                  </div>
+
+                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                    <p className="text-md font-semibold">Character:</p>
+
+                    <select value={selectedArcCharacter} onChange={(event) => setSelectedArcCharacter(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Maka Albarn">Maka Albarn</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul Evans">Soul Evans</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Black Star">Black Star</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Death the Kid">Death the Kid</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Franken Stein">Franken Stein</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa Gorgon">Medusa Gorgon</option>
+                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Mifune">Mifune</option>
+                    </select>
+                  </div>
+
+                  <div className="hover:text-white ml-auto">
+                    <button onClick={clearArcFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                  </div>
+                </div>
+
+                {filteredArcs.length === 0 && (
+                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                    <p className="text-zinc-400 text-lg">No arcs match the selected filters.</p>
+                  </div>
+                )}
+
+                {filteredArcs.length > 0 && (
+                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${arcStartIndex * 324}px)` }}>
+                    {filteredArcs.map((arc) => (
+                      <div key={arc.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                        <div className="relative w-full h-60 bg-zinc-950">
+                          <Image src={arc.image_url || "/characters/characters-placeholder.png"} alt="Arc Image" fill className="object-cover object-top" />
+                        </div>
+
+                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+                          <p className="font-banner">Episodes {arc.episodes}</p>
+                        </div>
+
+                        <div className="p-4 border-t border-zinc-800">
+                          <p className="font-banner text-white text-2xl">{arc.name}</p>
+                          <p className="text-zinc-400 text-xs font-semibold">Episodes {arc.episodes}</p>
+                          <a target="_blank" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <button onClick={showNextArc} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
             </div>
 
             <EndpointCard
-              method='GET'
-              path='/arcs'
-              description='Returns a list of all story arcs'
-              parameters='No parameters'
+              method="GET"
+              path="/arcs"
+              description="Returns all story arcs."
               example={arcExamples}
             />
 
             <EndpointCard
-              method='GET'
-              path='/arcs/{id}'
-              description='Returns a specific story arc by ID'
-              parameters='No parameters'
+              method="GET"
+              path="/arcs/{arc_id}"
+              description="Returns arc by id."
+              parameter={{ location: "Path parameter", name: "arc_id", type: "integer" }}
               example={arcExamples[0]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/arcs?name=Lesson'
-              description='Returns arcs matching the provided name'
-              parameters='No parameters'
+              method="GET"
+              path="/arcs?name=Lesson"
+              description="Filters arcs by name."
+              parameter={{ location: "Query parameter", name: "name", type: "string" }}
               example={arcExamples[1]}
             />
 
             <EndpointCard
-              method='GET'
-              path='/arcs?characters=Mifune'
-              description='Returns arcs containing a specific character'
-              parameters='No parameters'
-              example={organizationExamples[2]}
-            />
-
-            <EndpointCard
-              method='GET'
-              path='/organizations?leader=Gorgon'
-              description='Returns arcs filtered by completion status'
-              parameters='No parameters'
-              example={[organizationExamples[2], organizationExamples[3]]}
+              method="GET"
+              path="/arcs?characters=Mifune"
+              description="Filters arcs by character."
+              parameter={{ location: "Query parameter", name: "characters", type: "string" }}
+              example={arcExamples[2]}
             />
           </div>
 
