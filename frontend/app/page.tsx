@@ -55,6 +55,7 @@ type Arc = {
   id: number;
   name: string;
   episodes: string;
+  manga_chapters: string;
   main_characters: string[];
   description: string;
   image_url?: string;
@@ -370,8 +371,8 @@ export default function Home() {
     fetch("http://127.0.0.1:8000/arcs")
       .then((result) => result.json())
       .then((data) => {
-        const randomizedArcs = [...data].sort(() => Math.random() - 0.5);
-        setArcs(randomizedArcs);
+        const sortedArcs = [...data].sort((a, b) => a.id - b.id);
+        setArcs(sortedArcs);
       });
   }, []);
 
@@ -670,7 +671,7 @@ export default function Home() {
                         <div className="p-4 border-t border-zinc-800">
                           <h2 className="font-banner text-white text-2xl">{character.name}</h2>
                           <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                          <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
+                          <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
                           </a>
                         </div>
                       </div>
@@ -1231,19 +1232,22 @@ export default function Home() {
                 {filteredArcs.length > 0 && (
                   <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${arcStartIndex * 324}px)` }}>
                     {filteredArcs.map((arc) => (
-                      <div key={arc.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                      <div key={arc.id} className="relative flex w-75 shrink-0 flex-col bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
                         <div className="relative w-full h-60 bg-zinc-950">
                           <Image src={arc.image_url || "/characters/characters-placeholder.png"} alt="Arc Image" fill className="object-cover object-top" />
                         </div>
 
                         <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
-                          <p className="font-banner">Episodes {arc.episodes}</p>
+
+                          {arc.episodes ? <p className="font-banner">Episodes {arc.episodes}</p> : <p className='font-banner'>Chapters {arc.manga_chapters}</p>}
                         </div>
 
-                        <div className="p-4 border-t border-zinc-800">
+                        <div className="flex flex-1 flex-col p-4 border-t border-zinc-800">
                           <p className="font-banner text-white text-2xl">{arc.name}</p>
-                          <p className="text-zinc-400 text-xs font-semibold">Episodes {arc.episodes}</p>
-                          <a target="_blank" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+
+                          {arc.episodes ? <p className="text-zinc-400 text-xs font-semibold">Episodes: {arc.episodes}</p> : <p className="text-zinc-400 text-xs font-semibold">Episodes: Manga Only</p>}
+                          {arc.manga_chapters ? <p className="text-zinc-400 text-xs font-semibold">Chapters: {arc.manga_chapters}</p> : <p className="text-zinc-400 text-xs font-semibold">Chapters: Anime Only</p>}
+                          <a target="_blank" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
                         </div>
                       </div>
                     ))}
