@@ -42,8 +42,8 @@ class Ability(BaseModel):
 class Arc(BaseModel): 
   id: int
   name: str
-  episodes: str
-  manga_chapters: str
+  episodes: str | None = None
+  manga_chapters: str | None = None
   main_characters: list[str]
   main_conflict: str
   description: str
