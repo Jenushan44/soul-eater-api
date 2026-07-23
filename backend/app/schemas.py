@@ -26,11 +26,13 @@ class Organization(BaseModel):
     id: int
     name: str
     organization_type: str
+    display_type: str
     leader: str
     location: str
     members: list[str]
     description: str
     status: str
+    image_url: str | None = None
 
 class Ability(BaseModel): 
   id: int

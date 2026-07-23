@@ -45,7 +45,9 @@ type Organization = {
   id: number;
   name: string;
   organization_type: string;
+  display_type: string;
   leader: string;
+  location: string;
   status: string;
   description: string;
   image_url?: string;
@@ -453,11 +455,11 @@ export default function Home() {
         <div className="sticky top-0 z-50 bg-black p-3 border border-zinc-900 rounded-md tracking-wide">
 
           <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 font-sans">BROWSE THE SECTIONS</p>
-          <div className='flex flex-col grid grid-cols-5 gap-5 w-full'>
+          <div className='grid w-full grid-cols-5 gap-5'>
 
             <div className='border border-[#f89c0a66] relative'>
-              <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/characters-card.png"} alt='Character Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute top-0 left-0 w-full h-50 lg:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
+              <Image className='brightness-[0.3] w-full h-50 xl:h-85 object-cover' src={"/browse-section/characters-card.png"} alt='Character Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-50 xl:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
               <div className="absolute inset-0 gap-3">
                 <Skull className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-25 left-2" />
                 <p className='text-[40px] absolute top-43 left-5 font-semibold font-banner'>CHARACTERS</p>
@@ -477,8 +479,8 @@ export default function Home() {
             </div>
 
             <div className='border border-[#f89c0a66] relative'>
-              <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/weapons-card.png"} alt='Weapon Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute top-0 left-0 w-full h-50 lg:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
+              <Image className='brightness-[0.3] w-full h-50 xl:h-85 object-cover' src={"/browse-section/weapons-card.png"} alt='Weapon Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-50 xl:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
 
               <div className="absolute inset-0 gap-3">
                 <Swords className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-25 left-3" />
@@ -499,8 +501,8 @@ export default function Home() {
             </div>
 
             <div className='border border-[#f89c0a66] relative'>
-              <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/abilities-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute top-0 left-0 w-full h-50 lg:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
+              <Image className='brightness-[0.3] w-full h-50 xl:h-85 object-cover' src={"/browse-section/abilities-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-50 xl:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
               <div className="absolute inset-0 gap-3">
                 <Flame className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-25 left-2" />
                 <p className='text-[40px] absolute top-43 left-5 font-semibold font-banner'>ABILITIES</p>
@@ -520,8 +522,8 @@ export default function Home() {
             </div>
 
             <div className='border border-[#f89c0a66] relative'>
-              <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/organization-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute top-0 left-0 w-full h-50 lg:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
+              <Image className='brightness-[0.3] w-full h-50 xl:h-85 object-cover' src={"/browse-section/organization-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-50 xl:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
               <div className="absolute inset-0 gap-3">
                 <School className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-25 left-4" />
                 <p className='text-[40px] absolute top-43 left-5 font-semibold font-banner'>ORGANIZATIONS</p>
@@ -541,8 +543,8 @@ export default function Home() {
             </div>
 
             <div className='border border-[#f89c0a66] relative'>
-              <Image className='brightness-[0.3] w-full h-50 lg:h-85 object-cover' src={"/browse-section/arcs-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute top-0 left-0 w-full h-50 lg:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
+              <Image className='brightness-[0.3] w-full h-50 xl:h-85 object-cover' src={"/browse-section/arcs-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
+              <div className="absolute top-0 left-0 w-full h-50 xl:h-85 bg-gradient-to-b from-transparent to-zinc-950" />
               <div className="absolute inset-0 gap-3">
                 <MoonStar className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-25 left-4" />
                 <p className='text-[40px] absolute top-43 left-5 font-semibold font-banner'>ARCS</p>
@@ -1114,12 +1116,13 @@ export default function Home() {
                         </div>
 
                         <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
-                          <p className="font-banner">{organization.organization_type}</p>
+                          <p className="font-banner">{organization.display_type}</p>
                         </div>
 
                         <div className="p-4 border-t border-zinc-800">
                           <p className="font-banner text-white text-2xl">{organization.name}</p>
-                          <p className="text-zinc-400 text-xs font-semibold">{organization.leader}</p>
+                          <p className="text-zinc-400 text-xs font-semibold">Leader: {organization.leader}</p>
+                          <p className="text-zinc-400 text-xs font-semibold">Location: {organization.location}</p>
                           <a target="_blank" href={`http://127.0.0.1:8000/organizations/${organization.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
                         </div>
                       </div>
