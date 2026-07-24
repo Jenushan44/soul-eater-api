@@ -37,9 +37,11 @@ class Organization(BaseModel):
 class Ability(BaseModel): 
   id: int
   name: str 
-  ability_type: str 
+  category: str
   users: list[str] 
   description: str 
+  continuity: str
+  image_url: str | None = None
 
 class Arc(BaseModel): 
   id: int

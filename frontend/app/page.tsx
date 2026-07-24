@@ -35,9 +35,10 @@ type Weapon = {
 type Ability = {
   id: number;
   name: string;
-  ability_type: string;
-  user: string;
+  category: string;
+  users: string[];
   description: string;
+  continuity: string;
   image_url?: string;
 };
 
@@ -197,9 +198,8 @@ export default function Home() {
     const lowerAbility = ability.name.toLowerCase();
     const lowerQuery = searchAbility.toLowerCase();
     const matchesSearch = lowerAbility.includes(lowerQuery);
-    const matchesAbilityType = selectedAbilityType === "" || ability.ability_type.toLowerCase().includes(selectedAbilityType.toLowerCase());
-    const matchesUser = selectedAbilityUser === "" || ability.user.toLowerCase().includes(selectedAbilityUser.toLowerCase());
-
+    const matchesAbilityType = selectedAbilityType === "" || ability.category.toLowerCase().includes(selectedAbilityType.toLowerCase());
+    const matchesUser = selectedAbilityUser === "" || ability.users.some((user) => user.toLowerCase().includes(selectedAbilityUser.toLowerCase()));
     if (matchesSearch && matchesAbilityType && matchesUser) {
       return true;
     } else {
@@ -978,12 +978,12 @@ export default function Home() {
                         </div>
 
                         <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
-                          <p className="font-banner">{ability.ability_type}</p>
+                          <p className="font-banner">{ability.category}</p>
                         </div>
 
                         <div className="p-4 border-t border-zinc-800">
                           <h2 className="font-banner text-white text-2xl">{ability.name}</h2>
-                          <p className="text-zinc-400 text-xs font-semibold">{ability.user}</p>
+                          <p className="text-zinc-400 text-xs font-semibold">{ability.users.join(", ")}</p>
                           <a target="_blank" href={`http://127.0.0.1:8000/abilities/${ability.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
                         </div>
                       </div>
