@@ -38,7 +38,7 @@ class Ability(BaseModel):
   id: int
   name: str 
   category: str
-  users: list[str] 
+  users: list[list[str]] 
   description: str 
   continuity: str
   image_url: str | None = None
