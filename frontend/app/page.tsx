@@ -98,6 +98,8 @@ export default function Home() {
   const [arcStartIndex, setArcStartIndex] = useState(0);
   const [searchArc, setSearchArc] = useState("");
   const [selectedArcCharacter, setSelectedArcCharacter] = useState("");
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -312,6 +314,104 @@ export default function Home() {
     setArcStartIndex(0);
   };
 
+  const abilityUsers = [
+    "Akane Hoshi",
+    "Alexandre",
+    "Alone",
+    "Arachne Gorgon",
+    "Asura",
+    "Azusa Yumi",
+    "Black☆Star",
+    "Blair",
+    "Boris Factory Clown",
+    "Crona",
+    "Death the Kid",
+    "Dengu Dinga",
+    "Eibon",
+    "Eruka Frog",
+    "Excalibur",
+    "Feodor",
+    "Fire",
+    "Flying Dutchman",
+    "Franken Stein",
+    "Free",
+    "Gigant",
+    "Giriko",
+    "Gopher",
+    "Grand Witch",
+    "Gravestone",
+    "Great Old One of Power",
+    "Harvar D. Éclair",
+    "Hellworm",
+    "Hero",
+    "House Hoshi",
+    "Inca Kasugatani",
+    "Jacqueline O'Lantern Dupré",
+    "Jester Clown",
+    "Jinn Galland",
+    "Joe Buttataki",
+    "Justin Law",
+    "Kaguya",
+    "Kim Diehl",
+    "Kimial Diehl",
+    "Kirikou Rung",
+    "Little Ogre",
+    "Liz Thompson",
+    "Lord Death",
+    "Maba",
+    "Maka Albarn",
+    "Marie Mjolnir",
+    "Masamune Nakatsukasa",
+    "Medusa Gorgon",
+    "Meme Tatane",
+    "Mifune",
+    "Mizune Family",
+    "Moonlight",
+    "Mosquito",
+    "Nakatsukasa Clan",
+    "Nals Garner",
+    "Noah (Greed)",
+    "Noah (Wrath)",
+    "Ox Ford",
+    "Patty Thompson",
+    "Ponera",
+    "Ragnarok",
+    "Ryūku (Possessed)",
+    "Shaula Gorgon",
+    "Sid Barrett",
+    "Sky Whale",
+    "Sofia Ressa Valk",
+    "Sofia Ressa Valk II",
+    "Soul Eater Evans",
+    "Spirit Albarn",
+    "Tabatha Butterfly",
+    "Tanuki Witches",
+    "Taruho Firefly",
+    "Tezca Tlipoca",
+    "Thunder",
+    "Tsar Pushka",
+    "Tsubaki Nakatsukasa",
+    "Tsumigi Harudori",
+    "White Rabbit",
+    "Witch Judge",
+    "Zubaidah",
+  ];
+
+  const abilityTypes = [
+    "Weapon Ability",
+    "Soul Ability",
+    "Soul Resonance",
+    "Magic",
+    "Reaper Power",
+    "Book of Eibon Ability",
+    "Black Blood",
+    "Martial Art",
+    "Sensory Ability",
+    "Support Ability",
+    "Defense Ability",
+    "Sword Technique",
+    "Madness",
+  ];
 
   useEffect(() => {
     setStartIndex(0);
@@ -924,42 +1024,55 @@ export default function Home() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
+                  <div className="flex border-zinc-800 cursor-pointer border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
                     <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
-                    <input value={searchAbility} onChange={(event) => setSearchAbility(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search abilities..." />
+                    <input value={searchAbility} onChange={(event) => setSearchAbility(event.target.value)} className="w-full mt-[1px] outline-none cursor-pointer border-none" type="text" placeholder="Search abilities..." />
                   </div>
 
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <div className="relative flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
                     <p className="text-md font-semibold">Type:</p>
 
-                    <select value={selectedAbilityType} onChange={(event) => setSelectedAbilityType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a]">
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Offensive">Offensive</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Defensive">Defensive</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Support">Support</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Transformation">Transformation</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul Wavelength">Soul Wavelength</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul Resonance">Soul Resonance</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Magic">Magic</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Other">Other</option>
-                    </select>
+                    <button type="button" onClick={() => setIsTypeDropdownOpen((current) => !current)} className="flex w-48 items-center justify-between rounded-lg cursor-pointer border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
+                      <p className="truncate">{selectedAbilityType || "All"}</p>
+                      <ChevronRight size={18} className={`transition-transform ${isTypeDropdownOpen ? "rotate-90" : ""}`} />
+                    </button>
+
+                    {isTypeDropdownOpen && (
+                      <div className="absolute left-12 top-12 z-[100] w-[520px] rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
+                        <div className="grid grid-cols-3 gap-1">
+                          <button type="button" onClick={() => { setSelectedAbilityType(""); setIsTypeDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left text-sm transition-colors cursor-pointer hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityType === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
+
+                          {abilityTypes.map((type) => (
+                            <button key={type} type="button" onClick={() => { setSelectedAbilityType(type); setIsTypeDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left cursor-pointer text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityType === type ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{type}</button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <div className="relative mb-5 flex cursor-pointer items-center gap-2 rounded-md bg-black text-zinc-400">
                     <p className="text-md font-semibold">User:</p>
-                    <select value={selectedAbilityUser} onChange={(event) => setSelectedAbilityUser(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a]">
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Maka">Maka Albarn</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul">Soul Evans</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Black Star">Black Star</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Death the Kid">Death the Kid</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Franken">Franken Stein</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa">Medusa Gorgon</option>
-                    </select>
+
+                    <button type="button" onClick={() => setIsUserDropdownOpen((current) => !current)} className="flex w-48 items-center cursor-pointer justify-between rounded-lg border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
+                      <p className="truncate">{selectedAbilityUser || "All"}</p>
+                      <ChevronRight size={18} className={`transition-transform ${isUserDropdownOpen ? "rotate-90" : ""}`} />
+                    </button>
+
+                    {isUserDropdownOpen && (
+                      <div className="absolute left-14 top-12 z-[100] max-h-[430px] w-[760px] overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
+                        <div className="grid grid-cols-4 gap-1">
+                          <button type="button" onClick={() => { setSelectedAbilityUser(""); setIsUserDropdownOpen(false); }} className={`rounded-md px-3 cursor-pointer py-2 text-left text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityUser === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
+
+                          {abilityUsers.map((user) => (
+                            <button key={user} type="button" onClick={() => { setSelectedAbilityUser(user); setIsUserDropdownOpen(false); }} className={`rounded-md px-3 py-2 cursor-pointer text-left text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityUser === user ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{user}</button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <div className="hover:text-white ml-auto">
-                    <button onClick={clearAbilityFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                    <button onClick={clearAbilityFilters} className="group text-sm flex gap-2 rounded-md cursor-pointer p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
                   </div>
                 </div>
 

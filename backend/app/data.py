@@ -309,7 +309,6 @@ abilities = [
     {"id": 195, "name": "Manipulation Magic", "category": "Magic", "users": [["Shaula Gorgon"]], "description": "A type of magic that allows the user to seize control of another individual's mind and actions through techniques such as poison and other methods of mental manipulation. The caster must remain within a certain range to maintain control over the target.", "continuity": "Soul Eater NOT!", "image_url": "/abilities/manipulation-magic.png"},
     {"id": 196, "name": "Regeneration Magic", "category": "Magic", "users": [["Tanuki Witches"], ["Kimial Diehl"]], "description": "A healing magic that restores injuries, illnesses, and poisons while also repairing damaged objects. Although highly effective at regeneration, it cannot heal scars if the injured person refuses to be healed.", "continuity": "Manga", "image_url": "/abilities/regeneration-magic.png"},
     {"id": 197, "name": "Summon", "category": "Magic", "users": [["Inca Kasugatani"], ["Noah (Greed)"], ["Noah (Wrath)"], ["Eibon"]], "description": "A magic technique that allows the user to summon and materialize other entities, including demons, magical creatures, or constructs. Summoning may be performed directly through magic or by using magical artifacts such as Demon Books.", "continuity": "Manga and Game", "image_url": "/abilities/summon.png"},
-    
 ]
 
 organizations = [
