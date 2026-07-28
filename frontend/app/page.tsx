@@ -14,9 +14,16 @@ type Character = {
   role: string;
   affiliation: string;
   description: string;
-  image_url: string;
+  image_url: string | null;
   species: string;
+  sex: string;
+  soul_type: string;
   status: string;
+  occupations: string[];
+  partners: string[];
+  abilities: string[];
+  debut: string;
+  continuity: string;
 };
 
 type Weapon = {
@@ -24,13 +31,14 @@ type Weapon = {
   name: string;
   weapon_type: string;
   weapon_category: string;
-  meister: string;
+  meister: string[];
   affiliation: string;
   abilities: string[];
   description: string;
   status: string;
-  image_url?: string;
-}
+  image_url: string | null;
+  continuity: string;
+};
 
 type Ability = {
   id: number;
