@@ -491,26 +491,25 @@ export default function Home() {
   return (
     <div className="bg-black" id="home-section">
       <Navbar />
-      <div className="w-full relative flex justify-end">
-        <Image src="/Soul-Eater-Medusa-Banner.png" alt="Banner" width={1000} height={300} className="w-[60%] h-auto relative" priority></Image>
+      <div className="relative flex h-[680px] xl:h-[760px] 2xl:h-[850px] w-full justify-end overflow-hidden">
+        <Image src="/Soul-Eater-Medusa-Banner.png" alt="Banner" width={1000} height={300} className="w-[60%] h-full object-cover object-right" priority></Image>
         <div className="absolute inset-y-0 left-0 w-[85%] bg-gradient-to-r from-black via-black/100 to-transparent pointer-events-none" />
-
-        <div className="absolute 2xl:top-[5%] xl:top-[5%] sm:top-[5%] md:top-[5%] left-[2%]">
-          <p className="font-semibold text-[#f89c0a] text-[15px] md:text-[20px] lg:text-[30px] 2xl:text-[40px]">WELCOME TO THE</p>
-          <p className="font-banner text-[60px] md:text-[80px] lg:text-[150px] 2xl:text-[200px] leading-[0.8] mt-3">SOUL EATER</p>
-          <p className="font-banner text-[60px] md:text-[80px] lg:text-[150px] 2xl:text-[200px] leading-[0.8] text-[#f89c0a] mt-2 mb-2">API</p>
-          <p className="font-semibold mb-5 max-w-[500px] text-[15px] md:text-[18px] lg:text-[20px] 2xl:text-[23px]">A comprehensive REST API for Soul Eater, providing structured data on characters, weapons, abilities, organizations, and story arcs.</p>
-          <div className="flex gap-3 md:gap-8">
-            <button className="font-semibold cursor-pointer text-black p-3 2xl:p-8 2xl:text-[20px] border-2 border-black rounded-sm bg-[#f89c0a] hover:bg-black hover:border-[#f89c0a] hover:text-[#f89c0a]">EXPLORE DATABASE</button>
-            <button className="font-semibold cursor-pointer text-[#f89c0a] p-3 2xl:p-8 2xl:text-[20px] border border-[#f89c0a] rounded-sm hover:bg-[#f89c0a] hover:border-black hover:text-black">LEARN MORE</button>
+        <div className="absolute left-[2%] top-1/2 z-10 -translate-y-1/2">
+          <p className="font-banner tracking-[0.5em] text-[#f89c0a] text-[15px] md:text-[20px] lg:text-[30px] xl:text-[50px] 2xl:text-[50px]">WELCOME TO THE</p>
+          <p className="font-banner text-[60px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] mt-3">SOUL EATER</p>
+          <p className="font-banner text-[60px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] text-[#f89c0a] mt-2 mb-2">API</p>
+          <p className="font-semibold mb-5 max-w-[650px] text-[15px] md:text-[18px] lg:text-[20px] xl:text-[23px] 2xl:text-[25px]">A comprehensive REST API for Soul Eater, providing structured data on characters, weapons, abilities, organizations, and story arcs.</p>
+          <div className="flex items-center md:gap-8">
+            <button className="w-[275px] font-semibold cursor-pointer text-black p-3 2xl:py-5 2xl:text-[25px] xl:text-[20px] flex items-center justify-between border-2 border-black rounded-xl rounded-sm bg-[#f89c0a] hover:bg-black hover:border-[#f89c0a] hover:text-[#f89c0a] pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">EXPLORE API <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></button>
+            <button className="w-[275px] font-semibold flex items-center justify-between cursor-pointer text-[#f89c0a] p-3 2xl:py-5 2xl:text-[25px] xl:text-[20px] border border-[#f89c0a] rounded-xl hover:bg-[#f89c0a] hover:border-black hover:text-black pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">LEARN MORE <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></button>
           </div>
         </div>
       </div>
 
 
-      <div className="h-40 xl:h-50 border rounded-lg bg-black/70 border-zinc-800 border-3 flex bg-black gap-2 md:gap-8 lg:gap-15 mx-5">
-        <div className="flex m-auto">
-          <User className="w-15 h-15 lg:w-20 lg:h-20 xl:w-25 xl:h-25" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
+      <div className="mx-5 grid grid-cols-2 gap-4 rounded-lg border-3 border-zinc-800 bg-black/70 p-4 md:grid-cols-3 xl:grid-cols-5 xl:gap-0">
+        <div className="flex items-center justify-center gap-3 rounded-lg border border-zinc-800 py-4 xl:rounded-none xl:border-y-0 xl:border-l-0 xl:border-r">
+          <User className="h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
 
           <div>
             <p className="text-[#f89c0a] text-[30px] xl:text-[40px] font-bold">60+</p>
@@ -518,10 +517,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-[2px] h-[60%] bg-zinc-800 my-auto" />
-
-        <div className="flex m-auto">
-          <Swords className="w-15 h-15 lg:w-20 lg:h-20 xl:w-25 xl:h-25" fill="#000000" stroke="#f89c0a" strokeWidth={1.5} />
+        <div className="flex items-center justify-center gap-3 rounded-lg border border-zinc-800 py-4 xl:rounded-none xl:border-y-0 xl:border-l-0 xl:border-r">
+          <Swords className="h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16" fill="#000000" stroke="#f89c0a" strokeWidth={1.5} />
 
           <div>
             <p className="text-[#f89c0a] text-[30px] xl:text-[40px] font-bold">20+</p>
@@ -529,29 +526,25 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-[2px] h-[60%] bg-zinc-800 my-auto" />
-        <div className="flex m-auto">
-          <Flame className="w-15 h-15 lg:w-20 lg:h-20 xl:w-25 xl:h-25" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
+        <div className="flex items-center justify-center gap-3 rounded-lg border border-zinc-800 py-4 xl:rounded-none xl:border-y-0 xl:border-l-0 xl:border-r">
+          <Flame className="h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
           <div>
             <p className="text-[#f89c0a] text-[30px] xl:text-[40px] font-bold">190+</p>
             <p className="font-semibold text-[14px] lg:text-[18px]">ABILITIES</p>
           </div>
         </div>
 
-        <div className="w-[2px] h-[60%] bg-zinc-800 my-auto" />
-
-        <div className="flex m-auto">
-          <BrickWallShield className="w-15 h-15 lg:w-20 lg:h-20 xl:w-25 xl:h-25" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
+        <div className="flex items-center justify-center gap-3 rounded-lg border border-zinc-800 py-4 xl:rounded-none xl:border-y-0 xl:border-l-0 xl:border-r">
+          <BrickWallShield className="h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
           <div>
             <p className="text-[#f89c0a] text-[30px] xl:text-[40px] font-bold">5+</p>
             <p className="font-semibold text-[14px] lg:text-[18px]">ORGANIZATIONS</p>
           </div>
         </div>
 
-        <div className="w-[2px] h-[60%] bg-zinc-800 my-auto" />
 
-        <div className="flex m-auto">
-          <MoonStar className="w-15 h-15 lg:w-20 lg:h-20 xl:w-25 xl:h-25" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
+        <div className="col-span-2 flex items-center justify-center gap-3 rounded-lg border border-zinc-800 py-4 md:col-span-1 xl:rounded-none xl:border-0">
+          <MoonStar className="h-12 w-12 lg:h-14 lg:w-14 xl:h-16 xl:w-16" fill="#f89c0a" stroke="#000000" strokeWidth={1.5} />
           <div>
             <p className="text-[#f89c0a] text-[30px] xl:text-[40px] font-bold">20+</p>
             <p className="font-semibold text-[14px] lg:text-[18px]">ARCS</p>

@@ -19,7 +19,7 @@ export default function Navbar() {
           <a href="#home-section" className="group flex items-center justify-between py-5">
             <div className="flex items-center gap-4">
               <button className='hover:text-[#f89c0a] transition duration-200 ease-in-out cursor-pointer'>
-                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2px] hover:scale-110 hover:text-xl hover:underline underline-offset-8'>Home</p>
+                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2px] hover:scale-110 hover:text-xl 2xl:text-2xl 2xl:hover:text-2xl hover:underline underline-offset-8'>Home</p>
               </button>
               <div className="h-10 w-[2px] ml-10 bg-zinc-700" />
             </div>
@@ -29,7 +29,7 @@ export default function Navbar() {
           <a href="#character-section" className="group flex items-center justify-between py-5">
             <div className="flex items-center gap-4">
               <button className='hover:text-[#f89c0a] transition duration-200 ease-in-out cursor-pointer'>
-                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2] hover:scale-110 hover:text-xl hover:underline underline-offset-8'>API Docs</p>
+                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2] hover:scale-110 hover:text-xl hover:underline underline-offset-8 2xl:text-2xl 2xl:hover:text-2xl'>API Docs</p>
               </button>
               <div className="h-10 w-[2px] ml-10 bg-zinc-700" />
             </div>
@@ -38,7 +38,7 @@ export default function Navbar() {
           <a href="#character-section" className="group flex items-center justify-between py-5">
             <div className="flex items-center gap-4">
               <button className='hover:text-[#f89c0a] transition duration-200 ease-in-out cursor-pointer'>
-                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2] hover:scale-110 hover:text-xl hover:underline underline-offset-8'>Endpoints</p>
+                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2] hover:scale-110 hover:text-xl hover:underline underline-offset-8 2xl:text-2xl 2xl:hover:text-2xl'>Endpoints</p>
               </button>
               <div className="h-10 w-[2px] ml-10 bg-zinc-700" />
             </div>
@@ -48,7 +48,7 @@ export default function Navbar() {
           <a href="https://github.com/Jenushan44/soul-eater-api" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between py-5">
             <div className="flex items-center gap-4">
               <button className='hover:text-[#f89c0a] transition duration-200 ease-in-out cursor-pointer'>
-                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2] hover:scale-110 hover:text-xl hover:underline underline-offset-8'>About</p>
+                <p className='font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2] hover:scale-110 hover:text-xl hover:underline underline-offset-8 2xl:text-2xl 2xl:hover:text-2xl'>About</p>
               </button>
             </div>
           </a>
@@ -56,14 +56,14 @@ export default function Navbar() {
       </div>
 
 
-      <div className='flex gap-10'>
+      <div className='flex gap-5'>
         <button className="group flex items-center justify-between py-2 my-0 rounded-md cursor-pointer">
-          <Image src="/github-icon.png" alt="Github Logo" width={40} height={40} className='cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-110'></Image>
+          <Image src="/github-icon.png" alt="Github Logo" width={50} height={50} className='cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-110'></Image>
         </button>
 
 
-        <button className="group flex items-center justify-between px-4 py-2 my-0 border-2 border-[#f89c0a] rounded-md gap-2 hover:bg-[#f89c0a] hover:text-white transition duration-200 ease-in-out cursor-pointer mr-10 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-          <p className='m-0 font-bold'>Report an Issue</p>
+        <button className="group flex items-center justify-between px-4 py-2 my-0 gap-2 hover:text-white transition duration-200 ease-in-out cursor-pointer mr-2 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-110">
+          <p className='m-0 font-bold 2xl:text-xl'><TriangleAlert className='text-[#f89c0a]' width={50} height={50} /></p>
         </button>
       </div>
 
