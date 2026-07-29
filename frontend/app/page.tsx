@@ -108,6 +108,7 @@ export default function Home() {
   const [selectedArcCharacter, setSelectedArcCharacter] = useState("");
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
+  const [isBrowseOpen, setIsBrowseOpen] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -550,953 +551,950 @@ export default function Home() {
             <p className="font-semibold text-[14px] lg:text-[18px]">ARCS</p>
           </div>
         </div>
-
-
       </div>
 
-
-      <div className='flex flex-col gap-16 mx-6 mt-10'>
-        <div className="w-full sticky top-0 z-50 bg-black p-3 border border-zinc-900 rounded-md tracking-wide">
-          <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 font-sans">BROWSE THE SECTIONS</p>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:hidden">
-            <a href="#character-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
-                <Skull className="h-6 w-6 text-[#f89c0a]" />
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="font-banner text-lg font-semibold text-white">CHARACTERS</p>
-                <p className="text-xs text-zinc-500">60+ records</p>
-              </div>
-
-              <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
-            </a>
-
-            <a href="#weapon-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
-                <Swords className="h-6 w-6 text-[#f89c0a]" />
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="font-banner text-lg font-semibold text-white">WEAPONS</p>
-                <p className="text-xs text-zinc-500">20+ records</p>
-              </div>
-
-              <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
-            </a>
-
-            <a href="#ability-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
-                <Flame className="h-6 w-6 text-[#f89c0a]" />
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="font-banner text-lg font-semibold text-white">ABILITIES</p>
-                <p className="text-xs text-zinc-500">190+ records</p>
-              </div>
-
-              <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
-            </a>
-
-            <a href="#organization-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
-                <School className="h-6 w-6 text-[#f89c0a]" />
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="truncate font-banner text-lg font-semibold text-white">ORGANIZATIONS</p>
-                <p className="text-xs text-zinc-500">5+ records</p>
-              </div>
-              <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
-            </a>
-
-            <a href="#arc-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
-                <MoonStar className="h-6 w-6 text-[#f89c0a]" />
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="font-banner text-lg font-semibold text-white">ARCS</p>
-                <p className="text-xs text-zinc-500">20+ records</p>
-              </div>
-
-              <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
-            </a>
-
-          </div>
-
-
-          <div className='hidden grid-cols-5 gap-3 2xl:grid'>
-
-            <div className='border border-[#f89c0a66] relative'>
-              <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/characters-card.png"} alt='Character Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
-              <div className="absolute inset-0 gap-3">
-                <Skull className="w-12 h-12 2xl:w-18 2xl:h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-2" />
-                <p className='text-3xl 2xl:text-[40px] absolute top-40 left-5 font-semibold font-banner'>CHARACTERS</p>
-                <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
-
-
-                <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
-                  <p className="hidden 2xl:block text-zinc-400">Browse meisters, Demon Weapons, witches, villains, and supporting characters</p>
-                  <div className="mt-auto flex items-center pt-2 gap-1">
-                    <User className="h-5 w-5 text-[#f89c0a]" />
-                    <p className="font-bold">60+</p>
-                    <p>Records</p>
-                  </div>
-                </div>
-
-
-
-              </div>
-              <a href="#character-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Characters <MoveRight className="-translate-y-0" />
-              </a>
-            </div>
-
-            <div className='border border-[#f89c0a66] relative'>
-              <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/weapons-card.png"} alt='Weapon Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
-
-              <div className="absolute inset-0 gap-3">
-                <Swords className="h-10 w-10 2xl:h-18 2xl:w-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-3" />
-                <p className='text-2xl 2xl:text-[40px] absolute top-40 left-5 font-semibold font-banner'>Weapons</p>
-                <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
-                <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
-                  <p className="hidden 2xl:block text-zinc-400">Explore Demon Weapons, Death Scythes, weapon forms, and their meisters.</p>
-                  <div className="mt-auto flex items-center pt-2 gap-1">
-                    <Swords className="h-5 w-5 text-[#f89c0a]" />
-                    <p className="font-bold">20+</p>
-                    <p>Records</p>
-                  </div>
-                </div>
-              </div>
-              <a href="#weapon-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Weapons <MoveRight className="-translate-y-0" />
-              </a>
-            </div>
-
-            <div className='border border-[#f89c0a66] relative'>
-              <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/abilities-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
-              <div className="absolute inset-0 gap-3">
-                <Flame className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-2" />
-                <p className='text-[40px] absolute top-40 left-5 font-semibold font-banner'>ABILITIES</p>
-                <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
-
-                <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
-                  <p className="hidden 2xl:block text-zinc-400">Explore soul wavelengths, resonance techniques, magic, and combat abilities.</p>
-                  <div className="mt-auto flex items-center pt-2 gap-1">
-                    <Flame className="h-5 w-5 text-[#f89c0a]" />
-                    <p className="font-bold">190+</p>
-                    <p>Records</p>
-                  </div>
-                </div>
-
-
-              </div>
-
-
-              <a href="#ability-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Abilities <MoveRight className="-translate-y-0" />
-              </a>
-            </div>
-
-            <div className='border border-[#f89c0a66] relative'>
-              <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/organization-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
-              <div className="absolute inset-0 gap-3">
-                <School className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-4" />
-                <p className='text-[40px] absolute top-40 left-5 font-semibold font-banner'>ORGANIZATIONS</p>
-                <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
-
-                <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
-                  <p className="hidden 2xl:block text-zinc-400">Discover the academies, factions, clans, and groups that shape the Soul Eater world.</p>
-                  <div className="mt-auto flex items-center pt-2 gap-1">
-                    <Shield className="h-5 w-5 text-[#f89c0a]" />
-                    <p className="font-bold">5+</p>
-                    <p>Records</p>
-                  </div>
-                </div>
-
-
-              </div>
-              <a href="#organization-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Organizations <MoveRight className="-translate-y-0" />
-              </a>
-            </div>
-
-            <div className='border border-[#f89c0a66] relative'>
-              <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/arcs-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
-              <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
-              <div className="absolute inset-0 gap-3">
-                <MoonStar className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-4" />
-                <p className='text-[40px] absolute top-40 left-5 font-semibold font-banner'>ARCS</p>
-                <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
-
-
-                <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
-                  <p className="hidden 2xl:block text-zinc-400">Follow the story from the opening missions through the final battles.</p>
-                  <div className="mt-auto flex items-center pt-2 gap-1">
-                    <BookOpen className="h-5 w-5 text-[#f89c0a]" />
-                    <p className="font-bold">20+</p>
-                    <p>Records</p>
-                  </div>
-                </div>
-
-
-              </div>
-              <a href="#arc-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
-                View Arcs <MoveRight className="-translate-y-0" />
-              </a>
-            </div>
-
-          </div>
+      <div className="sticky top-0 mt-5 z-50 w-full rounded-md border border-zinc-900 bg-black p-3 tracking-wide">
+        <div className="flex items-center justify-between">
+          <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 font-sans ml-5">BROWSE THE SECTIONS</p>
+          <button type="button" onClick={() => setIsBrowseOpen((current) => !current)} aria-expanded={isBrowseOpen} aria-label={isBrowseOpen ? "Hide browse section" : "Show browse section"} className="flex mb-5 cursor-pointer items-center gap-2 rounded-md border border-zinc-800 mr-5 px-3 py-1.5 text-sm font-semibold text-zinc-400 transition-colors hover:border-[#f89c0a] hover:text-[#f89c0a]">{isBrowseOpen ? "Hide" : "Show"}
+            <ChevronRight className={`h-4 w-4 transition-transform duration-300 ${isBrowseOpen ? "-rotate-90" : "rotate-90"}`} />
+          </button>
         </div>
 
 
-        <div className="flex-1 flex flex-col gap-16">
-          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="character-section">
-
-            <div className='flex items-center justify-center gap-4 w-full'>
-              <button onClick={showPrevious} className='p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
-
-              <div className='overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2'>
-
-                <div className='flex'>
-                  <div>
-                    <p><Skull className='w-13 h-13 text-[#f89c0a]' /></p>
-                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
-                  </div>
-                  <div className='ml-3 mb-5'>
-                    <p className="text-white text-5xl font-banner">CHARACTERS</p>
-                    <p className='text-zinc-400'>Browse and explore all characters from the world of Soul Eater.</p>
-                  </div>
-                </div>
-                <div className='flex gap-4'>
-                  <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out'>
-                    <Search className='text-zinc-300 mr-2 ml-1 mt-[3px]' size={18} />
-                    <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full mt-[1px] outline-none border-none' type='text' placeholder='Search characters...' />
-                  </div>
-                  <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold">Role:</p>
-                    <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer hover:bg-[#f89c0ac]' value="Demon Weapon">Demon Weapon</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death Scythe">Death Scythe</option>
-                      <option className='bg-zinc-950 hover:bg-[#f89c0a] text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Teacher">Teacher</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Staff">Staff</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Student">Student</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Kishin">Kishin</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Other">Other</option>
-                    </select>
-                  </div>
-                  <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold">Affiliation:</p>
-                    <select value={selectedAffiliation} onChange={(event) => setSelectedAffiliation(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="DWMA">DWMA</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Spartoi">Spartoi</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Medusa">Medusa's Faction</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Arachnophobia">Arachnophobia</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch Council / Witches Realm</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Noah">Noah's Faction</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death City">Death City</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Independent">Independent</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="None">No Affiliation</option>
-                    </select>
-                  </div>
-                  <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold">Species:</p>
-                    <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Demon Weapon">Demon Weapon</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="God">God / Great Old One</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Monster">Monster</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Animal">Animal</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Werewolf">Werewolf</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead / Spirit</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Construct">Construct</option>
-                    </select>
-                  </div>
-                  <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                    <p className="text-md font-semibold">Status:</p>
-                    <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Deceased">Deceased</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unknown">Unknown</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Sealed">Sealed</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Destroyed">Destroyed</option>
-                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unconfirmed">Unconfirmed</option>
-                    </select>
-                  </div>
-                  <div className='hover:text-white ml-auto'>
-                    <button onClick={clearFilter} className='group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out'><FunnelX className='group-hover:text-white text-[#f89c0a]' size={20} /> Clear Filters</button>
-                  </div>
+        <div className={`overflow-hidden transition-all duration-300 ${isBrowseOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
+          <div>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:hidden">
+              <a href="#character-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
+                  <Skull className="h-6 w-6 text-[#f89c0a]" />
                 </div>
 
-                {filteredCharacters.length === 0 && (
-                  <div className='flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg'>
-                    <p className='text-zinc-400 text-lg'>No characters match the selected filters.</p>
-                  </div>
-                )}
+                <div className="min-w-0 flex-1">
+                  <p className="font-banner text-lg font-semibold text-white">CHARACTERS</p>
+                  <p className="text-xs text-zinc-500">60+ records</p>
+                </div>
 
-                {filteredCharacters.length > 0 && (
-                  <div className='flex gap-6 transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${startIndex * 324}px)` }}>
-                    {filteredCharacters.map((character) => (
-                      <div key={character.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                        <div className="relative w-full h-60 bg-zinc-950">
-                          <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover" />
-                        </div>
-                        <div className='absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10'>
-                          <p className='font-banner'>{character.role}</p>
-                        </div>
+                <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
+              </a>
 
-                        <div className="p-4 border-t border-zinc-800">
-                          <h2 className="font-banner text-white text-2xl">{character.name}</h2>
-                          <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
-                          <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
-                          </a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+              <a href="#weapon-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
+                  <Swords className="h-6 w-6 text-[#f89c0a]" />
+                </div>
 
+                <div className="min-w-0 flex-1">
+                  <p className="font-banner text-lg font-semibold text-white">WEAPONS</p>
+                  <p className="text-xs text-zinc-500">20+ records</p>
+                </div>
 
-              </div>
-              <button onClick={showNext} className='p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronRight className='cursor-pointer' size={40} /></button>
+                <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
+              </a>
+
+              <a href="#ability-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
+                  <Flame className="h-6 w-6 text-[#f89c0a]" />
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <p className="font-banner text-lg font-semibold text-white">ABILITIES</p>
+                  <p className="text-xs text-zinc-500">190+ records</p>
+                </div>
+
+                <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
+              </a>
+
+              <a href="#organization-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
+                  <School className="h-6 w-6 text-[#f89c0a]" />
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <p className="truncate font-banner text-lg font-semibold text-white">ORGANIZATIONS</p>
+                  <p className="text-xs text-zinc-500">5+ records</p>
+                </div>
+                <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
+              </a>
+
+              <a href="#arc-section" className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 transition hover:border-[#f89c0a] hover:bg-zinc-900">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#f89c0a]/10">
+                  <MoonStar className="h-6 w-6 text-[#f89c0a]" />
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <p className="font-banner text-lg font-semibold text-white">ARCS</p>
+                  <p className="text-xs text-zinc-500">20+ records</p>
+                </div>
+
+                <ChevronRight className="h-5 w-5 shrink-0 text-zinc-600 transition group-hover:translate-x-1 group-hover:text-[#f89c0a]" />
+              </a>
+
             </div>
 
-            <EndpointCard
-              method='GET'
-              path='/characters'
-              description='Returns all characters.'
-              example={characterExamples}
-            />
+            <div className='hidden grid-cols-5 gap-3 2xl:grid ml-5'>
 
-            <EndpointCard
-              method='GET'
-              path='/characters/{character_id}'
-              description='Returns character by id.'
-              parameter={{ location: "Path parameter", name: "character_id", type: "integer", }}
-              example={characterExamples[0]}
-            />
+              <div className='border border-[#f89c0a66] relative'>
+                <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/characters-card.png"} alt='Character Browse Section Image' width={220} height={220}></Image>
+                <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
+                <div className="absolute inset-0 gap-3">
+                  <Skull className="w-12 h-12 2xl:w-18 2xl:h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-2" />
+                  <p className='text-3xl 2xl:text-[40px] absolute top-40 left-5 font-semibold font-banner'>CHARACTERS</p>
+                  <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
 
-            <EndpointCard
-              method='GET'
-              path='/characters?name=Soul'
-              description='Filters characters by name.'
-              parameter={{ location: "Query parameter", name: "name", type: "string", }}
-              example={characterExamples[1]}
-            />
 
-            <EndpointCard
-              method='GET'
-              path='/characters?role=Meister'
-              description='Filters characters by role.'
-              parameter={{ location: "Query parameter", name: "role", type: "string", }}
-              example={[characterExamples[0], characterExamples[2], characterExamples[3]]}
-            />
-
-            <EndpointCard
-              method='GET'
-              path='/characters?affiliation=DWMA'
-              description='Filters characters by affiliation.'
-              parameter={{ location: "Query parameter", name: "affiliation", type: "string", }}
-              example={[characterExamples[0], characterExamples[1], characterExamples[2]]}
-            />
-
-            <EndpointCard
-              method='GET'
-              path='/characters?species=Human'
-              description='Filters characters by species.'
-              parameter={{ location: "Query parameter", name: "species", type: "string", }}
-              example={[characterExamples[0], characterExamples[3]]}
-            />
-
-          </div>
-          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
-            <div className="flex items-center justify-center gap-4 w-full">
-              <button onClick={showPreviousWeapon} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronLeft className="cursor-pointer" size={40} /></button>
-
-              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
-                <div className="flex">
-                  <div>
-                    <Swords className="w-13 h-13 text-[#f89c0a]" />
-                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                  <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
+                    <p className="hidden 2xl:block text-zinc-400">Browse meisters, Demon Weapons, witches, villains, and supporting characters</p>
+                    <div className="mt-auto flex items-center pt-2 gap-1">
+                      <User className="h-5 w-5 text-[#f89c0a]" />
+                      <p className="font-bold">60+</p>
+                      <p>Records</p>
+                    </div>
                   </div>
 
-                  <div className="ml-3 mb-5">
-                    <p className="text-white text-5xl font-banner">WEAPONS</p>
-                    <p className="text-zinc-400">Browse and explore all Demon Weapons from the world of Soul Eater.</p>
-                  </div>
+
+
                 </div>
-
-                <div className="flex gap-4">
-                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] transition duration-300 ease-in-out">
-                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
-                    <input value={searchWeapon} onChange={(event) => setSearchWeapon(event.target.value)} className="w-full mt-[1px] outline-none border-none bg-transparent" type="text" placeholder="Search weapons..." />
-                  </div>
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Type:</p>
-                    <select value={selectedWeaponType} onChange={(event) => setSelectedWeaponType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Scythe">Scythe</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Pistol">Pistol</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Sword">Sword</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Spear">Spear</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Hammer">Hammer</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Guillotine">Guillotine</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Multi-Form">Multi-Form</option>
-                    </select>
-                  </div>
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Category:</p>
-
-                    <select value={selectedWeaponCategory} onChange={(event) => setSelectedWeaponCategory(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Demon Weapon">Demon Weapon</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Death Scythe">Death Scythe</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Shadow Weapon">Shadow Weapon</option>
-                    </select>
-                  </div>
-
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Affiliation:</p>
-
-                    <select value={selectedWeaponAffiliation} onChange={(event) => setSelectedWeaponAffiliation(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="DWMA">DWMA</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Spartoi">Spartoi</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Arachnophobia">Arachnophobia</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Independent">Independent</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="None">No Affiliation</option>
-                    </select>
-                  </div>
-
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Status:</p>
-
-                    <select value={selectedWeaponStatus} onChange={(event) => setSelectedWeaponStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Alive">Alive</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Deceased">Deceased</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Unknown">Unknown</option>
-                      <option className="bg-zinc-950 text-zinc-400" value="Destroyed">Destroyed</option>
-                    </select>
-                  </div>
-
-                  <div className="hover:text-white ml-auto">
-                    <button onClick={clearWeaponFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out" >
-                      <FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
-                  </div>
-                </div>
-
-
-                {filteredWeapons.length === 0 && (
-                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
-                    <p className="text-zinc-400 text-lg">No weapons match the selected filters.</p>
-                  </div>
-                )}
-
-
-                {filteredWeapons.length > 0 && (
-                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${weaponStartIndex * 324}px)` }} >
-                    {filteredWeapons.map((weapon) => (
-                      <div key={weapon.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                        <div className="relative w-full h-60 bg-zinc-950">
-                          <Image src={weapon.image_url || "/characters/characters-placeholder.png"} alt={`${weapon.name} image`} fill className="object-cover" />
-                        </div>
-
-                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
-                          <p className="font-banner">{weapon.weapon_category}</p>
-                        </div>
-
-                        <div className="p-4 border-t border-zinc-800">
-                          <p className="font-banner text-white text-2xl">{weapon.name}</p>
-                          <p className="text-zinc-400 text-xs font-semibold">{weapon.weapon_type}</p>
-
-                          <a target="_blank" rel="noopener noreferrer" href={`http://127.0.0.1:8000/weapons/${weapon.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]" >VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <a href="#character-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                  View Characters <MoveRight className="-translate-y-0" />
+                </a>
               </div>
 
-              <button onClick={showNextWeapon} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronRight className="cursor-pointer" size={40} /></button>
-            </div>
+              <div className='border border-[#f89c0a66] relative'>
+                <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/weapons-card.png"} alt='Weapon Browse Section Image' width={220} height={220}></Image>
+                <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
 
-            <EndpointCard
-              method="GET"
-              path="/weapons"
-              description="Returns all weapons."
-              example={weaponExamples}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/weapons/{weapon_id}"
-              description="Returns a weapon by ID."
-              parameter={{ location: "Path parameter", name: "weapon_id", type: "integer" }}
-              example={weaponExamples[0]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/weapons?name=Nakatsukasa"
-              description="Filters weapons by name."
-              parameter={{ location: "Query parameter", name: "name", type: "string" }}
-              example={weaponExamples[1]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/weapons?weapon_type=Scythe"
-              description="Filters weapons by weapon type."
-              parameter={{ location: "Query parameter", name: "weapon_type", type: "string" }}
-              example={[weaponExamples[0], weaponExamples[1]]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/weapons?weapon_category=Death Scythe"
-              description="Filters weapons by weapon category."
-              parameter={{ location: "Query parameter", name: "weapon_category", type: "string" }}
-              example={[weaponExamples[0], weaponExamples[1]]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/weapons?meister=Franken"
-              description="Filters weapons by Meister."
-              parameter={{ location: "Query parameter", name: "meister", type: "string" }}
-              example={[weaponExamples[0]]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/weapons?affiliation=DWMA"
-              description="Filters weapons by affiliation."
-              parameter={{ location: "Query parameter", name: "affiliation", type: "string" }}
-              example={weaponExamples}
-            />
-          </div>
-
-          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="ability-section">
-            <div className="flex items-center justify-center gap-4 w-full">
-              <button onClick={showPreviousAbility} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
-
-              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
-                <div className="flex">
-                  <div>
-                    <p><Flame className="w-13 h-13 text-[#f89c0a]" /></p>
-                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
-                  </div>
-
-                  <div className="ml-3 mb-5">
-                    <p className="text-white text-5xl font-banner">ABILITIES</p>
-                    <p className="text-zinc-400">Browse and explore all abilities from the world of Soul Eater.</p>
+                <div className="absolute inset-0 gap-3">
+                  <Swords className="h-10 w-10 2xl:h-18 2xl:w-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-3" />
+                  <p className='text-2xl 2xl:text-[40px] absolute top-40 left-5 font-semibold font-banner'>Weapons</p>
+                  <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
+                  <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
+                    <p className="hidden 2xl:block text-zinc-400">Explore Demon Weapons, Death Scythes, weapon forms, and their meisters.</p>
+                    <div className="mt-auto flex items-center pt-2 gap-1">
+                      <Swords className="h-5 w-5 text-[#f89c0a]" />
+                      <p className="font-bold">20+</p>
+                      <p>Records</p>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex gap-4">
-                  <div className="flex border-zinc-800 cursor-pointer border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
-                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
-                    <input value={searchAbility} onChange={(event) => setSearchAbility(event.target.value)} className="w-full mt-[1px] outline-none cursor-pointer border-none" type="text" placeholder="Search abilities..." />
-                  </div>
-
-                  <div className="relative flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Type:</p>
-
-                    <button type="button" onClick={() => setIsTypeDropdownOpen((current) => !current)} className="flex w-48 items-center justify-between rounded-lg cursor-pointer border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
-                      <p className="truncate">{selectedAbilityType || "All"}</p>
-                      <ChevronRight size={18} className={`transition-transform ${isTypeDropdownOpen ? "rotate-90" : ""}`} />
-                    </button>
-
-                    {isTypeDropdownOpen && (
-                      <div className="absolute left-12 top-12 z-[100] w-[520px] rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
-                        <div className="grid grid-cols-3 gap-1">
-                          <button type="button" onClick={() => { setSelectedAbilityType(""); setIsTypeDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left text-sm transition-colors cursor-pointer hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityType === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
-
-                          {abilityTypes.map((type) => (
-                            <button key={type} type="button" onClick={() => { setSelectedAbilityType(type); setIsTypeDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left cursor-pointer text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityType === type ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{type}</button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="relative mb-5 flex cursor-pointer items-center gap-2 rounded-md bg-black text-zinc-400">
-                    <p className="text-md font-semibold">User:</p>
-
-                    <button type="button" onClick={() => setIsUserDropdownOpen((current) => !current)} className="flex w-48 items-center cursor-pointer justify-between rounded-lg border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
-                      <p className="truncate">{selectedAbilityUser || "All"}</p>
-                      <ChevronRight size={18} className={`transition-transform ${isUserDropdownOpen ? "rotate-90" : ""}`} />
-                    </button>
-
-                    {isUserDropdownOpen && (
-                      <div className="absolute left-14 top-12 z-[100] max-h-[430px] w-[760px] overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
-                        <div className="grid grid-cols-4 gap-1">
-                          <button type="button" onClick={() => { setSelectedAbilityUser(""); setIsUserDropdownOpen(false); }} className={`rounded-md px-3 cursor-pointer py-2 text-left text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityUser === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
-
-                          {abilityUsers.map((user) => (
-                            <button key={user} type="button" onClick={() => { setSelectedAbilityUser(user); setIsUserDropdownOpen(false); }} className={`rounded-md px-3 py-2 cursor-pointer text-left text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityUser === user ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{user}</button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="hover:text-white ml-auto">
-                    <button onClick={clearAbilityFilters} className="group text-sm flex gap-2 rounded-md cursor-pointer p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
-                  </div>
-                </div>
-
-                {filteredAbilities.length === 0 && (
-                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
-                    <p className="text-zinc-400 text-lg">No abilities match the selected filters.</p>
-                  </div>
-                )}
-
-                {filteredAbilities.length > 0 && (
-                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${abilityStartIndex * 324}px)` }}>
-                    {filteredAbilities.map((ability) => (
-                      <div key={ability.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                        <div className="relative w-full h-60 bg-zinc-950">
-                          <Image src={ability.image_url || "/characters/characters-placeholder.png"} alt="Ability Image" fill className="object-cover object-top" />
-                        </div>
-
-                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
-                          <p className="font-banner">{ability.category}</p>
-                        </div>
-
-                        <div className="p-4 border-t border-zinc-800">
-                          <h2 className="font-banner text-white text-2xl">{ability.name}</h2>
-                          <p className="text-zinc-400 text-xs font-semibold">{ability.users.map((group) => group.join(" + ")).join(", ")}</p>
-                          <a target="_blank" href={`http://127.0.0.1:8000/abilities/${ability.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <a href="#weapon-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                  View Weapons <MoveRight className="-translate-y-0" />
+                </a>
               </div>
 
-              <button onClick={showNextAbility} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
-            </div>
+              <div className='border border-[#f89c0a66] relative'>
+                <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/abilities-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
+                <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
+                <div className="absolute inset-0 gap-3">
+                  <Flame className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-2" />
+                  <p className='text-[40px] absolute top-40 left-5 font-semibold font-banner'>ABILITIES</p>
+                  <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
 
-            <EndpointCard
-              method="GET"
-              path="/abilities"
-              description="Returns all abilities."
-              example={abilityExamples}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/abilities/{ability_id}"
-              description="Returns ability by id."
-              parameter={{ location: "Path parameter", name: "ability_id", type: "integer" }}
-              example={abilityExamples[0]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/abilities?name=Black Blood Manipulation"
-              description="Filters abilities by name."
-              parameter={{ location: "Query parameter", name: "name", type: "string" }}
-              example={abilityExamples[3]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/abilities?ability_type=Offensive"
-              description="Filters abilities by ability type."
-              parameter={{ location: "Query parameter", name: "ability_type", type: "string" }}
-              example={[abilityExamples[2], abilityExamples[3]]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/abilities?user=Franken"
-              description="Filters abilities by user."
-              parameter={{ location: "Query parameter", name: "user", type: "string" }}
-              example={[abilityExamples[0], abilityExamples[2]]}
-            />
-          </div>
-
-
-          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="organization-section">
-            <div className="flex items-center justify-center gap-4 w-full">
-              <button onClick={showPreviousOrganization} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
-
-              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
-                <div className="flex">
-                  <div>
-                    <p><School className="w-13 h-13 text-[#f89c0a]" /></p>
-                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
-                  </div>
-
-                  <div className="ml-3 mb-5">
-                    <p className="text-white text-5xl font-banner">ORGANIZATIONS</p>
-                    <p className="text-zinc-400">Browse and explore all organizations from the world of Soul Eater.</p>
+                  <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
+                    <p className="hidden 2xl:block text-zinc-400">Explore soul wavelengths, resonance techniques, magic, and combat abilities.</p>
+                    <div className="mt-auto flex items-center pt-2 gap-1">
+                      <Flame className="h-5 w-5 text-[#f89c0a]" />
+                      <p className="font-bold">190+</p>
+                      <p>Records</p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
-                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
-                    <input value={searchOrganization} onChange={(event) => setSearchOrganization(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search organizations..." />
-                  </div>
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Type:</p>
-
-                    <select value={selectedOrganizationType}
-                      onChange={(event) => setSelectedOrganizationType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Academy">Academy</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Faction">Faction</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Task Force">Task Force</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Clan">Clan</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Government">Government</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Other">Other</option>
-                    </select>
-                  </div>
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Leader:</p>
-                    <select value={selectedOrganizationLeader} onChange={(event) => setSelectedOrganizationLeader(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Lord Death">Lord Death</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa">Medusa Gorgon</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Arachne">Arachne Gorgon</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Noah">Noah</option>
-                    </select>
-                  </div>
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Status:</p>
-                    <select value={selectedOrganizationStatus} onChange={(event) => setSelectedOrganizationStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Active">Active</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Disbanded">Disbanded</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Destroyed">Destroyed</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Unknown">Unknown</option>
-                    </select>
-                  </div>
-
-                  <div className="hover:text-white ml-auto">
-                    <button onClick={clearOrganizationFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
-                  </div>
-                </div>
-
-                {filteredOrganizations.length === 0 && (
-                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
-                    <p className="text-zinc-400 text-lg">No organizations match the selected filters.</p>
-                  </div>
-                )}
-
-                {filteredOrganizations.length > 0 && (
-                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${organizationStartIndex * 324}px)` }}>
-                    {filteredOrganizations.map((organization) => (
-                      <div key={organization.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                        <div className="relative w-full h-60 bg-zinc-950">
-                          <Image src={organization.image_url || "/characters/characters-placeholder.png"} alt="Organization Image" fill className="object-cover object-top" />
-                        </div>
-
-                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
-                          <p className="font-banner">{organization.display_type}</p>
-                        </div>
-
-                        <div className="p-4 border-t border-zinc-800">
-                          <p className="font-banner text-white text-2xl">{organization.name}</p>
-                          <p className="text-zinc-400 text-xs font-semibold">Leader: {organization.leader}</p>
-                          <p className="text-zinc-400 text-xs font-semibold">Location: {organization.location}</p>
-                          <a target="_blank" href={`http://127.0.0.1:8000/organizations/${organization.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <a href="#ability-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                  View Abilities <MoveRight className="-translate-y-0" />
+                </a>
               </div>
 
-              <button onClick={showNextOrganization} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
-            </div>
+              <div className='border border-[#f89c0a66] relative'>
+                <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/organization-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
+                <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
+                <div className="absolute inset-0 gap-3">
+                  <School className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-4" />
+                  <p className='text-[40px] absolute top-40 left-5 font-semibold font-banner'>ORGANIZATIONS</p>
+                  <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
 
-            <EndpointCard
-              method="GET"
-              path="/organizations"
-              description="Returns all organizations."
-              example={organizationExamples}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/organizations/{organization_id}"
-              description="Returns organization by id."
-              parameter={{ location: "Path parameter", name: "organization_id", type: "integer" }}
-              example={organizationExamples[0]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/organizations?name=Faction"
-              description="Filters organizations by name."
-              parameter={{ location: "Query parameter", name: "name", type: "string" }}
-              example={organizationExamples[3]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/organizations?organization_type=Task Force"
-              description="Filters organizations by organization type."
-              parameter={{ location: "Query parameter", name: "organization_type", type: "string" }}
-              example={organizationExamples[1]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/organizations?leader=Gorgon"
-              description="Filters organizations by leader."
-              parameter={{ location: "Query parameter", name: "leader", type: "string" }}
-              example={[organizationExamples[2], organizationExamples[3]]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/organizations?status=Active"
-              description="Filters organizations by status."
-              parameter={{ location: "Query parameter", name: "status", type: "string" }}
-              example={[organizationExamples[0], organizationExamples[1]]}
-            />
-          </div>
-
-
-          <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="arc-section">
-            <div className="flex items-center justify-center gap-4 w-full">
-              <button onClick={showPreviousArc} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
-
-              <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
-                <div className="flex">
-                  <div>
-                    <p><MoonStar className="w-13 h-13 text-[#f89c0a]" /></p>
-                    <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
-                  </div>
-
-                  <div className="ml-3 mb-5">
-                    <p className="text-white text-5xl font-banner">ARCS</p>
-                    <p className="text-zinc-400">Browse and explore all story arcs from the world of Soul Eater.</p>
+                  <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
+                    <p className="hidden 2xl:block text-zinc-400">Discover the academies, factions, clans, and groups that shape the Soul Eater world.</p>
+                    <div className="mt-auto flex items-center pt-2 gap-1">
+                      <Shield className="h-5 w-5 text-[#f89c0a]" />
+                      <p className="font-bold">5+</p>
+                      <p>Records</p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
-                    <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
-                    <input value={searchArc} onChange={(event) => setSearchArc(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search arcs..." />
-                  </div>
-
-                  <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                    <p className="text-md font-semibold">Character:</p>
-
-                    <select value={selectedArcCharacter} onChange={(event) => setSelectedArcCharacter(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Maka Albarn">Maka Albarn</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul Evans">Soul Evans</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Black Star">Black Star</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Death the Kid">Death the Kid</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Franken Stein">Franken Stein</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa Gorgon">Medusa Gorgon</option>
-                      <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Mifune">Mifune</option>
-                    </select>
-                  </div>
-
-                  <div className="hover:text-white ml-auto">
-                    <button onClick={clearArcFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
-                  </div>
-                </div>
-
-                {filteredArcs.length === 0 && (
-                  <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
-                    <p className="text-zinc-400 text-lg">No arcs match the selected filters.</p>
-                  </div>
-                )}
-
-                {filteredArcs.length > 0 && (
-                  <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${arcStartIndex * 324}px)` }}>
-                    {filteredArcs.map((arc) => (
-                      <div key={arc.id} className="relative flex w-75 shrink-0 flex-col bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
-                        <div className="relative w-full h-60 bg-zinc-950">
-                          <Image src={arc.image_url || "/characters/characters-placeholder.png"} alt="Arc Image" fill className="object-cover object-top" />
-                        </div>
-
-                        <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
-
-                          {arc.episodes ? <p className="font-banner">Episodes {arc.episodes}</p> : <p className='font-banner'>Chapters {arc.manga_chapters}</p>}
-                        </div>
-
-                        <div className="flex flex-1 flex-col p-4 border-t border-zinc-800">
-                          <p className="font-banner text-white text-2xl">{arc.name}</p>
-
-                          {arc.episodes ? <p className="text-zinc-400 text-xs font-semibold">Episodes: {arc.episodes}</p> : <p className="text-zinc-400 text-xs font-semibold">Episodes: Manga Only</p>}
-                          {arc.manga_chapters ? <p className="text-zinc-400 text-xs font-semibold">Chapters: {arc.manga_chapters}</p> : <p className="text-zinc-400 text-xs font-semibold">Chapters: Anime Only</p>}
-                          <a target="_blank" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <a href="#organization-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                  View Organizations <MoveRight className="-translate-y-0" />
+                </a>
               </div>
 
-              <button onClick={showNextArc} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
+              <div className='border border-[#f89c0a66] relative'>
+                <Image className='h-56 w-full object-cover brightness-[0.3] 2xl:h-85' src={"/browse-section/arcs-card.png"} alt='Ability Browse Section Image' width={220} height={220}></Image>
+                <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-transparent to-zinc-950 2xl:h-85" />
+                <div className="absolute inset-0 gap-3">
+                  <MoonStar className="w-18 h-18 text-[#f89c0a] group-hover:text-[#f89c0a] transition-colors absolute top-22 left-4" />
+                  <p className='text-[40px] absolute top-40 left-5 font-semibold font-banner'>ARCS</p>
+                  <div className="w-[20%] ml-5 h-1 bg-[#f89c0a] mx-auto absolute top-53" />
+
+
+                  <div className="absolute top-58 left-5 right-5 flex h-[95px] flex-col">
+                    <p className="hidden 2xl:block text-zinc-400">Follow the story from the opening missions through the final battles.</p>
+                    <div className="mt-auto flex items-center pt-2 gap-1">
+                      <BookOpen className="h-5 w-5 text-[#f89c0a]" />
+                      <p className="font-bold">20+</p>
+                      <p>Records</p>
+                    </div>
+                  </div>
+                </div>
+                <a href="#arc-section" className="text-[#f89c0a] border-zinc-800 flex items-center justify-between font-semibold hover:text-white hover:bg-red-950/30 px-3 py-2 rounded text-sm font-medium transition-all group border border-transparent hover:border-red-900/30">
+                  View Arcs <MoveRight className="-translate-y-0" />
+                </a>
+              </div>
             </div>
-
-            <EndpointCard
-              method="GET"
-              path="/arcs"
-              description="Returns all story arcs."
-              example={arcExamples}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/arcs/{arc_id}"
-              description="Returns arc by id."
-              parameter={{ location: "Path parameter", name: "arc_id", type: "integer" }}
-              example={arcExamples[0]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/arcs?name=Lesson"
-              description="Filters arcs by name."
-              parameter={{ location: "Query parameter", name: "name", type: "string" }}
-              example={arcExamples[1]}
-            />
-
-            <EndpointCard
-              method="GET"
-              path="/arcs?characters=Mifune"
-              description="Filters arcs by character."
-              parameter={{ location: "Query parameter", name: "characters", type: "string" }}
-              example={arcExamples[2]}
-            />
           </div>
+        </div>
+      </div>
+
+      <div className="flex-1 flex flex-col gap-16">
+        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="character-section">
+
+          <div className='flex items-center justify-center gap-4 w-full'>
+            <button onClick={showPrevious} className='p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
+
+            <div className='overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2'>
+
+              <div className='flex'>
+                <div>
+                  <p><Skull className='w-13 h-13 text-[#f89c0a]' /></p>
+                  <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                </div>
+                <div className='ml-3 mb-5'>
+                  <p className="text-white text-5xl font-banner">CHARACTERS</p>
+                  <p className='text-zinc-400'>Browse and explore all characters from the world of Soul Eater.</p>
+                </div>
+              </div>
+              <div className='flex gap-4'>
+                <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out'>
+                  <Search className='text-zinc-300 mr-2 ml-1 mt-[3px]' size={18} />
+                  <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full mt-[1px] outline-none border-none' type='text' placeholder='Search characters...' />
+                </div>
+                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
+                  <p className="text-md font-semibold">Role:</p>
+                  <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer hover:bg-[#f89c0ac]' value="Demon Weapon">Demon Weapon</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death Scythe">Death Scythe</option>
+                    <option className='bg-zinc-950 hover:bg-[#f89c0a] text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Teacher">Teacher</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Staff">Staff</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Student">Student</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Kishin">Kishin</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Other">Other</option>
+                  </select>
+                </div>
+                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
+                  <p className="text-md font-semibold">Affiliation:</p>
+                  <select value={selectedAffiliation} onChange={(event) => setSelectedAffiliation(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="DWMA">DWMA</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Spartoi">Spartoi</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Medusa">Medusa's Faction</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Arachnophobia">Arachnophobia</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch Council / Witches Realm</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Noah">Noah's Faction</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death City">Death City</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Independent">Independent</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="None">No Affiliation</option>
+                  </select>
+                </div>
+                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
+                  <p className="text-md font-semibold">Species:</p>
+                  <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Demon Weapon">Demon Weapon</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="God">God / Great Old One</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Monster">Monster</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Animal">Animal</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Werewolf">Werewolf</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead / Spirit</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Construct">Construct</option>
+                  </select>
+                </div>
+                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
+                  <p className="text-md font-semibold">Status:</p>
+                  <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Deceased">Deceased</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unknown">Unknown</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Sealed">Sealed</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Destroyed">Destroyed</option>
+                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unconfirmed">Unconfirmed</option>
+                  </select>
+                </div>
+                <div className='hover:text-white ml-auto'>
+                  <button onClick={clearFilter} className='group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out'><FunnelX className='group-hover:text-white text-[#f89c0a]' size={20} /> Clear Filters</button>
+                </div>
+              </div>
+
+              {filteredCharacters.length === 0 && (
+                <div className='flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg'>
+                  <p className='text-zinc-400 text-lg'>No characters match the selected filters.</p>
+                </div>
+              )}
+
+              {filteredCharacters.length > 0 && (
+                <div className='flex gap-6 transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${startIndex * 324}px)` }}>
+                  {filteredCharacters.map((character) => (
+                    <div key={character.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                      <div className="relative w-full h-60 bg-zinc-950">
+                        <Image src={character.image_url || "/characters/characters-placeholder.png"} alt="Character Image" fill className="object-cover" />
+                      </div>
+                      <div className='absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10'>
+                        <p className='font-banner'>{character.role}</p>
+                      </div>
+
+                      <div className="p-4 border-t border-zinc-800">
+                        <h2 className="font-banner text-white text-2xl">{character.name}</h2>
+                        <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
+                        <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+
+            </div>
+            <button onClick={showNext} className='p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronRight className='cursor-pointer' size={40} /></button>
+          </div>
+
+          <EndpointCard
+            method='GET'
+            path='/characters'
+            description='Returns all characters.'
+            example={characterExamples}
+          />
+
+          <EndpointCard
+            method='GET'
+            path='/characters/{character_id}'
+            description='Returns character by id.'
+            parameter={{ location: "Path parameter", name: "character_id", type: "integer", }}
+            example={characterExamples[0]}
+          />
+
+          <EndpointCard
+            method='GET'
+            path='/characters?name=Soul'
+            description='Filters characters by name.'
+            parameter={{ location: "Query parameter", name: "name", type: "string", }}
+            example={characterExamples[1]}
+          />
+
+          <EndpointCard
+            method='GET'
+            path='/characters?role=Meister'
+            description='Filters characters by role.'
+            parameter={{ location: "Query parameter", name: "role", type: "string", }}
+            example={[characterExamples[0], characterExamples[2], characterExamples[3]]}
+          />
+
+          <EndpointCard
+            method='GET'
+            path='/characters?affiliation=DWMA'
+            description='Filters characters by affiliation.'
+            parameter={{ location: "Query parameter", name: "affiliation", type: "string", }}
+            example={[characterExamples[0], characterExamples[1], characterExamples[2]]}
+          />
+
+          <EndpointCard
+            method='GET'
+            path='/characters?species=Human'
+            description='Filters characters by species.'
+            parameter={{ location: "Query parameter", name: "species", type: "string", }}
+            example={[characterExamples[0], characterExamples[3]]}
+          />
 
         </div>
+        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
+          <div className="flex items-center justify-center gap-4 w-full">
+            <button onClick={showPreviousWeapon} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronLeft className="cursor-pointer" size={40} /></button>
+
+            <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+              <div className="flex">
+                <div>
+                  <Swords className="w-13 h-13 text-[#f89c0a]" />
+                  <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                </div>
+
+                <div className="ml-3 mb-5">
+                  <p className="text-white text-5xl font-banner">WEAPONS</p>
+                  <p className="text-zinc-400">Browse and explore all Demon Weapons from the world of Soul Eater.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] transition duration-300 ease-in-out">
+                  <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                  <input value={searchWeapon} onChange={(event) => setSearchWeapon(event.target.value)} className="w-full mt-[1px] outline-none border-none bg-transparent" type="text" placeholder="Search weapons..." />
+                </div>
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Type:</p>
+                  <select value={selectedWeaponType} onChange={(event) => setSelectedWeaponType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Scythe">Scythe</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Pistol">Pistol</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Sword">Sword</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Spear">Spear</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Hammer">Hammer</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Guillotine">Guillotine</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Multi-Form">Multi-Form</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Category:</p>
+
+                  <select value={selectedWeaponCategory} onChange={(event) => setSelectedWeaponCategory(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Demon Weapon">Demon Weapon</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Death Scythe">Death Scythe</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Shadow Weapon">Shadow Weapon</option>
+                  </select>
+                </div>
+
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Affiliation:</p>
+
+                  <select value={selectedWeaponAffiliation} onChange={(event) => setSelectedWeaponAffiliation(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="DWMA">DWMA</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Spartoi">Spartoi</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Arachnophobia">Arachnophobia</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Independent">Independent</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="None">No Affiliation</option>
+                  </select>
+                </div>
+
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Status:</p>
+
+                  <select value={selectedWeaponStatus} onChange={(event) => setSelectedWeaponStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Alive">Alive</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Deceased">Deceased</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Unknown">Unknown</option>
+                    <option className="bg-zinc-950 text-zinc-400" value="Destroyed">Destroyed</option>
+                  </select>
+                </div>
+
+                <div className="hover:text-white ml-auto">
+                  <button onClick={clearWeaponFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out" >
+                    <FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                </div>
+              </div>
+
+
+              {filteredWeapons.length === 0 && (
+                <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                  <p className="text-zinc-400 text-lg">No weapons match the selected filters.</p>
+                </div>
+              )}
+
+
+              {filteredWeapons.length > 0 && (
+                <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${weaponStartIndex * 324}px)` }} >
+                  {filteredWeapons.map((weapon) => (
+                    <div key={weapon.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                      <div className="relative w-full h-60 bg-zinc-950">
+                        <Image src={weapon.image_url || "/characters/characters-placeholder.png"} alt={`${weapon.name} image`} fill className="object-cover" />
+                      </div>
+
+                      <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+                        <p className="font-banner">{weapon.weapon_category}</p>
+                      </div>
+
+                      <div className="p-4 border-t border-zinc-800">
+                        <p className="font-banner text-white text-2xl">{weapon.name}</p>
+                        <p className="text-zinc-400 text-xs font-semibold">{weapon.weapon_type}</p>
+
+                        <a target="_blank" rel="noopener noreferrer" href={`http://127.0.0.1:8000/weapons/${weapon.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]" >VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button onClick={showNextWeapon} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2 disabled:opacity-40 disabled:cursor-not-allowed"><ChevronRight className="cursor-pointer" size={40} /></button>
+          </div>
+
+          <EndpointCard
+            method="GET"
+            path="/weapons"
+            description="Returns all weapons."
+            example={weaponExamples}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/weapons/{weapon_id}"
+            description="Returns a weapon by ID."
+            parameter={{ location: "Path parameter", name: "weapon_id", type: "integer" }}
+            example={weaponExamples[0]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/weapons?name=Nakatsukasa"
+            description="Filters weapons by name."
+            parameter={{ location: "Query parameter", name: "name", type: "string" }}
+            example={weaponExamples[1]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/weapons?weapon_type=Scythe"
+            description="Filters weapons by weapon type."
+            parameter={{ location: "Query parameter", name: "weapon_type", type: "string" }}
+            example={[weaponExamples[0], weaponExamples[1]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/weapons?weapon_category=Death Scythe"
+            description="Filters weapons by weapon category."
+            parameter={{ location: "Query parameter", name: "weapon_category", type: "string" }}
+            example={[weaponExamples[0], weaponExamples[1]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/weapons?meister=Franken"
+            description="Filters weapons by Meister."
+            parameter={{ location: "Query parameter", name: "meister", type: "string" }}
+            example={[weaponExamples[0]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/weapons?affiliation=DWMA"
+            description="Filters weapons by affiliation."
+            parameter={{ location: "Query parameter", name: "affiliation", type: "string" }}
+            example={weaponExamples}
+          />
+        </div>
+
+        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="ability-section">
+          <div className="flex items-center justify-center gap-4 w-full">
+            <button onClick={showPreviousAbility} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
+
+            <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+              <div className="flex">
+                <div>
+                  <p><Flame className="w-13 h-13 text-[#f89c0a]" /></p>
+                  <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                </div>
+
+                <div className="ml-3 mb-5">
+                  <p className="text-white text-5xl font-banner">ABILITIES</p>
+                  <p className="text-zinc-400">Browse and explore all abilities from the world of Soul Eater.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex border-zinc-800 cursor-pointer border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
+                  <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                  <input value={searchAbility} onChange={(event) => setSearchAbility(event.target.value)} className="w-full mt-[1px] outline-none cursor-pointer border-none" type="text" placeholder="Search abilities..." />
+                </div>
+
+                <div className="relative flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Type:</p>
+
+                  <button type="button" onClick={() => setIsTypeDropdownOpen((current) => !current)} className="flex w-48 items-center justify-between rounded-lg cursor-pointer border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
+                    <p className="truncate">{selectedAbilityType || "All"}</p>
+                    <ChevronRight size={18} className={`transition-transform ${isTypeDropdownOpen ? "rotate-90" : ""}`} />
+                  </button>
+
+                  {isTypeDropdownOpen && (
+                    <div className="absolute left-12 top-12 z-[100] w-[520px] rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
+                      <div className="grid grid-cols-3 gap-1">
+                        <button type="button" onClick={() => { setSelectedAbilityType(""); setIsTypeDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left text-sm transition-colors cursor-pointer hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityType === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
+
+                        {abilityTypes.map((type) => (
+                          <button key={type} type="button" onClick={() => { setSelectedAbilityType(type); setIsTypeDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left cursor-pointer text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityType === type ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{type}</button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="relative mb-5 flex cursor-pointer items-center gap-2 rounded-md bg-black text-zinc-400">
+                  <p className="text-md font-semibold">User:</p>
+
+                  <button type="button" onClick={() => setIsUserDropdownOpen((current) => !current)} className="flex w-48 items-center cursor-pointer justify-between rounded-lg border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
+                    <p className="truncate">{selectedAbilityUser || "All"}</p>
+                    <ChevronRight size={18} className={`transition-transform ${isUserDropdownOpen ? "rotate-90" : ""}`} />
+                  </button>
+
+                  {isUserDropdownOpen && (
+                    <div className="absolute left-14 top-12 z-[100] max-h-[430px] w-[760px] overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
+                      <div className="grid grid-cols-4 gap-1">
+                        <button type="button" onClick={() => { setSelectedAbilityUser(""); setIsUserDropdownOpen(false); }} className={`rounded-md px-3 cursor-pointer py-2 text-left text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityUser === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
+
+                        {abilityUsers.map((user) => (
+                          <button key={user} type="button" onClick={() => { setSelectedAbilityUser(user); setIsUserDropdownOpen(false); }} className={`rounded-md px-3 py-2 cursor-pointer text-left text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedAbilityUser === user ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{user}</button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="hover:text-white ml-auto">
+                  <button onClick={clearAbilityFilters} className="group text-sm flex gap-2 rounded-md cursor-pointer p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                </div>
+              </div>
+
+              {filteredAbilities.length === 0 && (
+                <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                  <p className="text-zinc-400 text-lg">No abilities match the selected filters.</p>
+                </div>
+              )}
+
+              {filteredAbilities.length > 0 && (
+                <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${abilityStartIndex * 324}px)` }}>
+                  {filteredAbilities.map((ability) => (
+                    <div key={ability.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                      <div className="relative w-full h-60 bg-zinc-950">
+                        <Image src={ability.image_url || "/characters/characters-placeholder.png"} alt="Ability Image" fill className="object-cover object-top" />
+                      </div>
+
+                      <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+                        <p className="font-banner">{ability.category}</p>
+                      </div>
+
+                      <div className="p-4 border-t border-zinc-800">
+                        <h2 className="font-banner text-white text-2xl">{ability.name}</h2>
+                        <p className="text-zinc-400 text-xs font-semibold">{ability.users.map((group) => group.join(" + ")).join(", ")}</p>
+                        <a target="_blank" href={`http://127.0.0.1:8000/abilities/${ability.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button onClick={showNextAbility} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
+          </div>
+
+          <EndpointCard
+            method="GET"
+            path="/abilities"
+            description="Returns all abilities."
+            example={abilityExamples}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/abilities/{ability_id}"
+            description="Returns ability by id."
+            parameter={{ location: "Path parameter", name: "ability_id", type: "integer" }}
+            example={abilityExamples[0]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/abilities?name=Black Blood Manipulation"
+            description="Filters abilities by name."
+            parameter={{ location: "Query parameter", name: "name", type: "string" }}
+            example={abilityExamples[3]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/abilities?ability_type=Offensive"
+            description="Filters abilities by ability type."
+            parameter={{ location: "Query parameter", name: "ability_type", type: "string" }}
+            example={[abilityExamples[2], abilityExamples[3]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/abilities?user=Franken"
+            description="Filters abilities by user."
+            parameter={{ location: "Query parameter", name: "user", type: "string" }}
+            example={[abilityExamples[0], abilityExamples[2]]}
+          />
+        </div>
+
+
+        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="organization-section">
+          <div className="flex items-center justify-center gap-4 w-full">
+            <button onClick={showPreviousOrganization} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
+
+            <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+              <div className="flex">
+                <div>
+                  <p><School className="w-13 h-13 text-[#f89c0a]" /></p>
+                  <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                </div>
+
+                <div className="ml-3 mb-5">
+                  <p className="text-white text-5xl font-banner">ORGANIZATIONS</p>
+                  <p className="text-zinc-400">Browse and explore all organizations from the world of Soul Eater.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
+                  <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                  <input value={searchOrganization} onChange={(event) => setSearchOrganization(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search organizations..." />
+                </div>
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Type:</p>
+
+                  <select value={selectedOrganizationType}
+                    onChange={(event) => setSelectedOrganizationType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Academy">Academy</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Faction">Faction</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Task Force">Task Force</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Clan">Clan</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Government">Government</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Leader:</p>
+                  <select value={selectedOrganizationLeader} onChange={(event) => setSelectedOrganizationLeader(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Lord Death">Lord Death</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa">Medusa Gorgon</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Arachne">Arachne Gorgon</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Noah">Noah</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Status:</p>
+                  <select value={selectedOrganizationStatus} onChange={(event) => setSelectedOrganizationStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Active">Active</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Disbanded">Disbanded</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Destroyed">Destroyed</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Unknown">Unknown</option>
+                  </select>
+                </div>
+
+                <div className="hover:text-white ml-auto">
+                  <button onClick={clearOrganizationFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                </div>
+              </div>
+
+              {filteredOrganizations.length === 0 && (
+                <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                  <p className="text-zinc-400 text-lg">No organizations match the selected filters.</p>
+                </div>
+              )}
+
+              {filteredOrganizations.length > 0 && (
+                <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${organizationStartIndex * 324}px)` }}>
+                  {filteredOrganizations.map((organization) => (
+                    <div key={organization.id} className="relative w-75 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                      <div className="relative w-full h-60 bg-zinc-950">
+                        <Image src={organization.image_url || "/characters/characters-placeholder.png"} alt="Organization Image" fill className="object-cover object-top" />
+                      </div>
+
+                      <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+                        <p className="font-banner">{organization.display_type}</p>
+                      </div>
+
+                      <div className="p-4 border-t border-zinc-800">
+                        <p className="font-banner text-white text-2xl">{organization.name}</p>
+                        <p className="text-zinc-400 text-xs font-semibold">Leader: {organization.leader}</p>
+                        <p className="text-zinc-400 text-xs font-semibold">Location: {organization.location}</p>
+                        <a target="_blank" href={`http://127.0.0.1:8000/organizations/${organization.id}`} className="flex justify-between mt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button onClick={showNextOrganization} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
+          </div>
+
+          <EndpointCard
+            method="GET"
+            path="/organizations"
+            description="Returns all organizations."
+            example={organizationExamples}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/organizations/{organization_id}"
+            description="Returns organization by id."
+            parameter={{ location: "Path parameter", name: "organization_id", type: "integer" }}
+            example={organizationExamples[0]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/organizations?name=Faction"
+            description="Filters organizations by name."
+            parameter={{ location: "Query parameter", name: "name", type: "string" }}
+            example={organizationExamples[3]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/organizations?organization_type=Task Force"
+            description="Filters organizations by organization type."
+            parameter={{ location: "Query parameter", name: "organization_type", type: "string" }}
+            example={organizationExamples[1]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/organizations?leader=Gorgon"
+            description="Filters organizations by leader."
+            parameter={{ location: "Query parameter", name: "leader", type: "string" }}
+            example={[organizationExamples[2], organizationExamples[3]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/organizations?status=Active"
+            description="Filters organizations by status."
+            parameter={{ location: "Query parameter", name: "status", type: "string" }}
+            example={[organizationExamples[0], organizationExamples[1]]}
+          />
+        </div>
+
+
+        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="arc-section">
+          <div className="flex items-center justify-center gap-4 w-full">
+            <button onClick={showPreviousArc} className="p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronLeft className="cursor-pointer" size={40} /></button>
+
+            <div className="overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2">
+              <div className="flex">
+                <div>
+                  <p><MoonStar className="w-13 h-13 text-[#f89c0a]" /></p>
+                  <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
+                </div>
+
+                <div className="ml-3 mb-5">
+                  <p className="text-white text-5xl font-banner">ARCS</p>
+                  <p className="text-zinc-400">Browse and explore all story arcs from the world of Soul Eater.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out">
+                  <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
+                  <input value={searchArc} onChange={(event) => setSearchArc(event.target.value)} className="w-full mt-[1px] outline-none border-none" type="text" placeholder="Search arcs..." />
+                </div>
+
+                <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
+                  <p className="text-md font-semibold">Character:</p>
+
+                  <select value={selectedArcCharacter} onChange={(event) => setSelectedArcCharacter(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Maka Albarn">Maka Albarn</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Soul Evans">Soul Evans</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Black Star">Black Star</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Death the Kid">Death the Kid</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Franken Stein">Franken Stein</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Medusa Gorgon">Medusa Gorgon</option>
+                    <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Mifune">Mifune</option>
+                  </select>
+                </div>
+
+                <div className="hover:text-white ml-auto">
+                  <button onClick={clearArcFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out"><FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                </div>
+              </div>
+
+              {filteredArcs.length === 0 && (
+                <div className="flex items-center justify-center min-h-80 border border-zinc-800 rounded-lg">
+                  <p className="text-zinc-400 text-lg">No arcs match the selected filters.</p>
+                </div>
+              )}
+
+              {filteredArcs.length > 0 && (
+                <div className="flex gap-6 transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${arcStartIndex * 324}px)` }}>
+                  {filteredArcs.map((arc) => (
+                    <div key={arc.id} className="relative flex w-75 shrink-0 flex-col bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden transition-transform duration-200 hover:scale-105 hover:border-[#f89c0a]">
+                      <div className="relative w-full h-60 bg-zinc-950">
+                        <Image src={arc.image_url || "/characters/characters-placeholder.png"} alt="Arc Image" fill className="object-cover object-top" />
+                      </div>
+
+                      <div className="absolute top-0 ml-2 mt-2 px-2 border-[#f89c0a] text-[#f8b40a] text-[19px] border-1 rounded-md bg-[#f89c0a]/10">
+
+                        {arc.episodes ? <p className="font-banner">Episodes {arc.episodes}</p> : <p className='font-banner'>Chapters {arc.manga_chapters}</p>}
+                      </div>
+
+                      <div className="flex flex-1 flex-col p-4 border-t border-zinc-800">
+                        <p className="font-banner text-white text-2xl">{arc.name}</p>
+
+                        {arc.episodes ? <p className="text-zinc-400 text-xs font-semibold">Episodes: {arc.episodes}</p> : <p className="text-zinc-400 text-xs font-semibold">Episodes: Manga Only</p>}
+                        {arc.manga_chapters ? <p className="text-zinc-400 text-xs font-semibold">Chapters: {arc.manga_chapters}</p> : <p className="text-zinc-400 text-xs font-semibold">Chapters: Anime Only</p>}
+                        <a target="_blank" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" /></a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button onClick={showNextArc} className="p-2 translate-x-[-30px] translate-y-[50px] rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2"><ChevronRight className="cursor-pointer" size={40} /></button>
+          </div>
+
+          <EndpointCard
+            method="GET"
+            path="/arcs"
+            description="Returns all story arcs."
+            example={arcExamples}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/arcs/{arc_id}"
+            description="Returns arc by id."
+            parameter={{ location: "Path parameter", name: "arc_id", type: "integer" }}
+            example={arcExamples[0]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/arcs?name=Lesson"
+            description="Filters arcs by name."
+            parameter={{ location: "Query parameter", name: "name", type: "string" }}
+            example={arcExamples[1]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/arcs?characters=Mifune"
+            description="Filters arcs by character."
+            parameter={{ location: "Query parameter", name: "characters", type: "string" }}
+            example={arcExamples[2]}
+          />
+        </div>
+
       </div>
 
 
