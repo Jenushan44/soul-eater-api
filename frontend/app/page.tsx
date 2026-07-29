@@ -760,86 +760,97 @@ export default function Home() {
           <div className='flex items-center justify-center gap-4 w-full'>
             <button onClick={showPrevious} className='p-2 translate-x-[40px] translate-y-[50px] z-40 rounded-full text-[#f89c0a] hover:text-white bg-zinc-900 border-zinc-800 border-2'><ChevronLeft className='cursor-pointer' size={40} /></button>
 
-            <div className='overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2'>
+            <div className='overflow-hidden w-[90%] py-4 -my-4 px-2 -mx-2 md:flex-col 2xl:flex-row'>
 
               <div className='flex'>
+
                 <div>
                   <p><Skull className='w-13 h-13 text-[#f89c0a]' /></p>
                   <div className="w-[80%] mt-2 h-[2px] bg-zinc-700 mx-auto" />
                 </div>
+
                 <div className='ml-3 mb-5'>
                   <p className="text-white text-5xl font-banner">CHARACTERS</p>
                   <p className='text-zinc-400'>Browse and explore all characters from the world of Soul Eater.</p>
                 </div>
               </div>
-              <div className='flex gap-4'>
-                <div className='flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] hover:border-1 transition duration-300 ease-in-out'>
+
+              <div className='mb-5 flex flex-wrap items-center gap-4 min-[1800px]:flex-nowrap'>
+
+                <div className='order-1 flex min-w-0 md:flex-1 border-zinc-800 border-2 p-1 rounded-md hover:border-[#f89c0a] w-full transition duration-300 ease-in-out min-[1800px]:flex-none min-[1800px]:w-[15%]'>
                   <Search className='text-zinc-300 mr-2 ml-1 mt-[3px]' size={18} />
                   <input value={searchCharacter} onChange={(event) => setSearchCharacter(event.target.value)} className='w-full mt-[1px] outline-none border-none' type='text' placeholder='Search characters...' />
                 </div>
-                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                  <p className="text-md font-semibold">Role:</p>
-                  <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer hover:bg-[#f89c0ac]' value="Demon Weapon">Demon Weapon</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death Scythe">Death Scythe</option>
-                    <option className='bg-zinc-950 hover:bg-[#f89c0a] text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Teacher">Teacher</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Staff">Staff</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Student">Student</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Kishin">Kishin</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Other">Other</option>
-                  </select>
+
+                <div className='order-2 min-w-0 md:flex-1 shrink-0 hover:text-white min-[1800px]:order-3 min-[1800px]:flex-none w-full min-[1800px]:w-auto'>
+                  <button onClick={clearFilter} className='group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out w-full'><FunnelX className='group-hover:text-white text-[#f89c0a]' size={20} /> Clear Filters</button>
                 </div>
-                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                  <p className="text-md font-semibold">Affiliation:</p>
-                  <select value={selectedAffiliation} onChange={(event) => setSelectedAffiliation(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="DWMA">DWMA</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Spartoi">Spartoi</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Medusa">Medusa's Faction</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Arachnophobia">Arachnophobia</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch Council / Witches Realm</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Noah">Noah's Faction</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death City">Death City</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Independent">Independent</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="None">No Affiliation</option>
-                  </select>
+
+
+                <div className='order-3 grid grid-cols-1 basis-full min-w-0 items-center gap-4 md:grid-cols-2 xl:grid-cols-4 min-[1800px]:order-2 min-[1800px]:flex min-[1800px]:basis-auto min-[1800px]:flex-1 min-[1800px]:flex-nowrap'>
+                  <div className='flex min-w-0 md:flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
+                    <p className="shrink-0 text-md font-semibold">Role:</p>
+                    <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium min-w-0 flex-1 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer hover:bg-[#f89c0ac]' value="Demon Weapon">Demon Weapon</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death Scythe">Death Scythe</option>
+                      <option className='bg-zinc-950 hover:bg-[#f89c0a] text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Teacher">Teacher</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Staff">Staff</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Student">Student</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Kishin">Kishin</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className='flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
+                    <p className="shrink-0 text-md font-semibold">Affiliation:</p>
+                    <select value={selectedAffiliation} onChange={(event) => setSelectedAffiliation(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium min-w-0 flex-1 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="DWMA">DWMA</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Spartoi">Spartoi</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Medusa">Medusa's Faction</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Arachnophobia">Arachnophobia</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch Council / Witches Realm</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Noah">Noah's Faction</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death City">Death City</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Independent">Independent</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="None">No Affiliation</option>
+                    </select>
+                  </div>
+                  <div className='flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
+                    <p className="shrink-0 text-md font-semibold">Species:</p>
+                    <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium min-w-0 flex-1 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Demon Weapon">Demon Weapon</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="God">God / Great Old One</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Monster">Monster</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Animal">Animal</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Werewolf">Werewolf</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead / Spirit</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Construct">Construct</option>
+                    </select>
+                  </div>
+                  <div className='flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
+                    <p className="shrink-0 text-md font-semibold">Status:</p>
+                    <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium min-w-0 flex-1 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Deceased">Deceased</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unknown">Unknown</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Sealed">Sealed</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Destroyed">Destroyed</option>
+                      <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unconfirmed">Unconfirmed</option>
+                    </select>
+                  </div>
                 </div>
-                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                  <p className="text-md font-semibold">Species:</p>
-                  <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Demon Weapon">Demon Weapon</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="God">God / Great Old One</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Monster">Monster</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Animal">Animal</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Werewolf">Werewolf</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead / Spirit</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Construct">Construct</option>
-                  </select>
-                </div>
-                <div className='flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2'>
-                  <p className="text-md font-semibold">Status:</p>
-                  <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Deceased">Deceased</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unknown">Unknown</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Sealed">Sealed</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Destroyed">Destroyed</option>
-                    <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unconfirmed">Unconfirmed</option>
-                  </select>
-                </div>
-                <div className='hover:text-white ml-auto'>
-                  <button onClick={clearFilter} className='group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out'><FunnelX className='group-hover:text-white text-[#f89c0a]' size={20} /> Clear Filters</button>
-                </div>
+
               </div>
 
               {filteredCharacters.length === 0 && (
@@ -941,13 +952,13 @@ export default function Home() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex border-zinc-800 border-2 p-1 mb-5 w-[15%] rounded-md hover:border-[#f89c0a] transition duration-300 ease-in-out">
+                <div className="flex border-zinc-800 border-2 p-1 mb-5 md:w-full w-[15%] rounded-md hover:border-[#f89c0a] transition duration-300 ease-in-out">
                   <Search className="text-zinc-300 mr-2 ml-1 mt-[3px]" size={18} />
                   <input value={searchWeapon} onChange={(event) => setSearchWeapon(event.target.value)} className="w-full mt-[1px] outline-none border-none bg-transparent" type="text" placeholder="Search weapons..." />
                 </div>
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Type:</p>
+                  <p className="shrink-0 text-md font-semibold">Type:</p>
                   <select value={selectedWeaponType} onChange={(event) => setSelectedWeaponType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                     <option className="bg-zinc-950 text-zinc-400" value="">All</option>
                     <option className="bg-zinc-950 text-zinc-400" value="Scythe">Scythe</option>
@@ -961,7 +972,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Category:</p>
+                  <p className="shrink-0 text-md font-semibold">Category:</p>
 
                   <select value={selectedWeaponCategory} onChange={(event) => setSelectedWeaponCategory(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                     <option className="bg-zinc-950 text-zinc-400" value="">All</option>
@@ -973,7 +984,7 @@ export default function Home() {
 
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Affiliation:</p>
+                  <p className="shrink-0 text-md font-semibold">Affiliation:</p>
 
                   <select value={selectedWeaponAffiliation} onChange={(event) => setSelectedWeaponAffiliation(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                     <option className="bg-zinc-950 text-zinc-400" value="">All</option>
@@ -987,7 +998,7 @@ export default function Home() {
 
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Status:</p>
+                  <p className="shrink-0 text-md font-semibold">Status:</p>
 
                   <select value={selectedWeaponStatus} onChange={(event) => setSelectedWeaponStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                     <option className="bg-zinc-950 text-zinc-400" value="">All</option>
@@ -998,9 +1009,10 @@ export default function Home() {
                   </select>
                 </div>
 
-                <div className="hover:text-white ml-auto">
+                <div className="hover:text-white ml-auto md:w-full">
                   <button onClick={clearWeaponFilters} className="group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out" >
-                    <FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters</button>
+                    <FunnelX className="group-hover:text-white text-[#f89c0a]" size={20} />Clear Filters
+                  </button>
                 </div>
               </div>
 
@@ -1119,7 +1131,7 @@ export default function Home() {
                 </div>
 
                 <div className="relative flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Type:</p>
+                  <p className="shrink-0 text-md font-semibold">Type:</p>
 
                   <button type="button" onClick={() => setIsTypeDropdownOpen((current) => !current)} className="flex w-48 items-center justify-between rounded-lg cursor-pointer border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
                     <p className="truncate">{selectedAbilityType || "All"}</p>
@@ -1140,7 +1152,7 @@ export default function Home() {
                 </div>
 
                 <div className="relative mb-5 flex cursor-pointer items-center gap-2 rounded-md bg-black text-zinc-400">
-                  <p className="text-md font-semibold">User:</p>
+                  <p className="shrink-0 text-md font-semibold">User:</p>
 
                   <button type="button" onClick={() => setIsUserDropdownOpen((current) => !current)} className="flex w-48 items-center cursor-pointer justify-between rounded-lg border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
                     <p className="truncate">{selectedAbilityUser || "All"}</p>
@@ -1262,7 +1274,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Type:</p>
+                  <p className="shrink-0 text-md font-semibold">Type:</p>
 
                   <select value={selectedOrganizationType}
                     onChange={(event) => setSelectedOrganizationType(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
@@ -1277,7 +1289,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Leader:</p>
+                  <p className="shrink-0 text-md font-semibold">Leader:</p>
                   <select value={selectedOrganizationLeader} onChange={(event) => setSelectedOrganizationLeader(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                     <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
                     <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Lord Death">Lord Death</option>
@@ -1288,7 +1300,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Status:</p>
+                  <p className="shrink-0 text-md font-semibold">Status:</p>
                   <select value={selectedOrganizationStatus} onChange={(event) => setSelectedOrganizationStatus(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                     <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
                     <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="Active">Active</option>
@@ -1409,7 +1421,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center rounded-md mb-5 bg-black text-zinc-400 gap-2">
-                  <p className="text-md font-semibold">Character:</p>
+                  <p className="shrink-0 text-md font-semibold">Character:</p>
 
                   <select value={selectedArcCharacter} onChange={(event) => setSelectedArcCharacter(event.target.value)} className="p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium w-40 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none">
                     <option className="bg-zinc-950 text-zinc-400 py-2 cursor-pointer" value="">All</option>
