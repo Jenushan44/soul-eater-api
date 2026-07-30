@@ -640,7 +640,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="sticky top-0 mt-5 z-50 w-full rounded-md border border-zinc-900 bg-black p-3 tracking-wide">
+      <div className="sticky top-0 mt-5 z-200 w-full rounded-md border border-zinc-900 bg-black p-3 tracking-wide">
         <div className="flex items-center justify-between">
           <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 font-sans ml-5">BROWSE THE SECTIONS</p>
           <button type="button" onClick={() => setIsBrowseOpen((current) => !current)} aria-expanded={isBrowseOpen} aria-label={isBrowseOpen ? "Hide browse section" : "Show browse section"} className="flex mb-5 cursor-pointer items-center gap-2 rounded-md border border-zinc-800 mr-5 px-3 py-1.5 text-sm font-semibold text-zinc-400 transition-colors hover:border-[#f89c0a] hover:text-[#f89c0a]">{isBrowseOpen ? "Hide" : "Show"}
@@ -874,7 +874,7 @@ export default function Home() {
                     </div>
 
                     <div className='order-2 min-w-0 md:flex-1 shrink-0 hover:text-white min-[1800px]:order-3 min-[1800px]:flex-none w-full min-[1800px]:w-auto'>
-                      <button onClick={clearFilter} className='group text-sm flex gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out w-full'><FunnelX className='group-hover:text-white text-[#f89c0a]' size={20} /> Clear Filters</button>
+                      <button onClick={clearFilter} className='group text-sm flex justify-center gap-2 rounded-md p-2 px-3 cursor-pointer border-[#f89c0a] hover:bg-[#f89c0a] text-[#f89c0a] hover:text-white border-1 transition duration-200 ease-in-out w-full'><FunnelX className='group-hover:text-white text-[#f89c0a]' size={20} /> Clear Filters</button>
                     </div>
 
 
@@ -1000,7 +1000,10 @@ export default function Home() {
 
                           <div className="p-4 border-t border-zinc-800">
                             <h2 className="font-banner text-white text-2xl">{character.name}</h2>
-                            <p className="text-zinc-400 text-xs font-semibold">{character.role}</p>
+                            <p className="text-zinc-400 text-xs font-semibold">Role: {character.role}</p>
+                            <p className='text-zinc-400 text-xs font-semibold'>Affiliation: {character.affiliation}</p>
+                            <p className='text-zinc-400 text-xs font-semibold'>Status: {character.status}</p>
+
                             <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
                             </a>
                           </div>
@@ -1042,15 +1045,15 @@ export default function Home() {
             path='/characters?role=Meister'
             description='Filters characters by role.'
             parameter={{ location: "Query parameter", name: "role", type: "string", }}
-            example={[characterExamples[0], characterExamples[2], characterExamples[3]]}
+            example={[characterExamples[0], characterExamples[2]]}
           />
 
           <EndpointCard
             method='GET'
-            path='/characters?affiliation=DWMA'
+            path='/characters?affiliation=Death Weapon Meister Academy'
             description='Filters characters by affiliation.'
             parameter={{ location: "Query parameter", name: "affiliation", type: "string", }}
-            example={[characterExamples[0], characterExamples[1], characterExamples[2]]}
+            example={[characterExamples[0], characterExamples[1], characterExamples[2], characterExamples[3]]}
           />
 
           <EndpointCard
@@ -1059,6 +1062,62 @@ export default function Home() {
             description='Filters characters by species.'
             parameter={{ location: "Query parameter", name: "species", type: "string", }}
             example={[characterExamples[0], characterExamples[3]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/characters?status=Alive"
+            description="Filters characters by status."
+            parameter={{ location: "Query parameter", name: "status", type: "string", }}
+            example={[characterExamples[0], characterExamples[1], characterExamples[2], characterExamples[3],]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/characters?sex=Female"
+            description="Filters characters by sex."
+            parameter={{ location: "Query parameter", name: "sex", type: "string", }}
+            example={[characterExamples[0]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/characters?soul_type=Human Soul"
+            description="Filters characters by soul type."
+            parameter={{ location: "Query parameter", name: "soul_type", type: "string", }}
+            example={[characterExamples[3]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/characters?continuity=Manga %26 Anime"
+            description="Filters characters by continuity."
+            parameter={{ location: "Query parameter", name: "continuity", type: "string", }}
+            example={[characterExamples[0], characterExamples[1], characterExamples[2], characterExamples[3],]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/characters?occupation=Weapon Meister"
+            description="Filters characters by occupation."
+            parameter={{ location: "Query parameter", name: "occupation", type: "string", }}
+            example={[characterExamples[0], characterExamples[2],]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/characters?partner=Maka Albarn"
+            description="Filters characters by partner."
+            parameter={{ location: "Query parameter", name: "partner", type: "string", }}
+            example={[characterExamples[1]]}
+          />
+
+          <EndpointCard
+            method="GET"
+            path="/characters?ability=Soul Resonance"
+            description="Filters characters by ability."
+            parameter={{ location: "Query parameter", name: "ability", type: "string", }}
+            example={[characterExamples[0], characterExamples[1], characterExamples[2], characterExamples[3],]}
           />
 
         </div>
