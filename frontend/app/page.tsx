@@ -109,6 +109,7 @@ export default function Home() {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
   const [isBrowseOpen, setIsBrowseOpen] = useState(true);
+  const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -152,12 +153,35 @@ export default function Home() {
     }
   };
 
+  const mainCharacterRoles = [
+    "Meister",
+    "Demon Weapon",
+    "Death Scythe",
+    "Witch",
+    "Grim Reaper",
+    "Kishin",
+    "Sorcerer",
+    "Werewolf",
+    "Demon",
+  ]
+
+  const characterRoles = [...mainCharacterRoles, "Other"];
+
   const filteredCharacters = characters.filter((character) => {
     let lowerCharacter = character.name.toLowerCase();
     let lowerQuery = searchCharacter.toLowerCase();
+    let matchesRole;
+
+    if (selectedRole === "") {
+      matchesRole = true;
+    } else if (selectedRole === "Other") {
+      matchesRole = !mainCharacterRoles.includes(character.role);
+    } else {
+      matchesRole = character.role === selectedRole;
+    }
+
 
     const matchesSearch = lowerCharacter.includes(lowerQuery);
-    const matchesRole = selectedRole === "" || character.role.toLowerCase().includes(selectedRole.toLowerCase());
     const matchesAffiliation = selectedAffiliation === "" || character.affiliation.toLowerCase().includes(selectedAffiliation.toLowerCase());
     const matchesSpecies = selectedSpecies === "" || character.species.toLowerCase().includes(selectedSpecies.toLowerCase());
     const matchesStatus = selectedStatus === "" || character.status.toLowerCase().includes(selectedStatus.toLowerCase());
@@ -792,21 +816,28 @@ export default function Home() {
 
 
                     <div className='order-3 grid grid-cols-1 basis-full min-w-0 items-center gap-4 md:grid-cols-2 xl:grid-cols-4 min-[1800px]:order-2 min-[1800px]:flex min-[1800px]:basis-auto min-[1800px]:flex-1 min-[1800px]:flex-nowrap'>
-                      <div className='flex min-w-0 md:flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
+                      <div className='relative flex min-w-0 md:flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
                         <p className="shrink-0 text-md font-semibold">Role:</p>
-                        <select value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium min-w-0 flex-1 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Meister">Meister</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer hover:bg-[#f89c0ac]' value="Demon Weapon">Demon Weapon</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Death Scythe">Death Scythe</option>
-                          <option className='bg-zinc-950 hover:bg-[#f89c0a] text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Teacher">Teacher</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Staff">Staff</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Student">Student</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Kishin">Kishin</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Other">Other</option>
-                        </select>
+                        <button type="button" onClick={() => setIsRoleDropdownOpen((current) => !current)} className="flex flex-1 items-center justify-between rounded-lg cursor-pointer border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
+                          <p className="truncate">{selectedRole || "All"}</p>
+                          <ChevronRight size={18} className={`transition-transform ${isRoleDropdownOpen ? "rotate-90" : ""}`} />
+                        </button>
+
+                        {isRoleDropdownOpen && (
+                          <button type="button" onClick={() => setIsRoleDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close role dropdown" />
+                        )}
+
+                        {isRoleDropdownOpen && (
+                          <div className="role-scrollbar absolute left-12 max-h-64 overflow-y-auto top-12 z-[100] w-[85%] md:w-full sm:w-[85%] rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
+                            <div className="grid grid-cols-1 gap-1">
+                              <button type="button" onClick={() => { setSelectedRole(""); setIsRoleDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left text-sm transition-colors cursor-pointer hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedRole === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
+
+                              {characterRoles.map((type) => (
+                                <button key={type} type="button" onClick={() => { setSelectedRole(type); setIsRoleDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left cursor-pointer text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedRole === type ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{type}</button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       <div className='flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>

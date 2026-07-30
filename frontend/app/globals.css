@@ -26,3 +26,32 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@media (max-width: 639px) {
+  .role-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .role-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.role-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  cursor: pointer;
+}
+
+.role-scrollbar::-webkit-scrollbar-track {
+  background: #18181b;
+  border-radius: 999px;
+}
+
+.role-scrollbar::-webkit-scrollbar-thumb {
+  background: #f89c0a;
+  border-radius: 999px;
+}
+
+.role-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ffb33b;
+}
