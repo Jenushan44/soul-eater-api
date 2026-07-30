@@ -85,8 +85,6 @@ export default function Home() {
   const [cardsToShow, setCardsToShow] = useState(3);
   const [searchCharacter, setSearchCharacter] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
-  const [selectedSpecies, setSelectedSpecies] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
   const [weaponStartIndex, setWeaponStartIndex] = useState(0);
   const [searchWeapon, setSearchWeapon] = useState("");
   const [selectedWeaponType, setSelectedWeaponType] = useState("");
@@ -113,6 +111,11 @@ export default function Home() {
   const [selectedAffiliation, setSelectedAffiliation] = useState("");
   const [isAffiliationDropdownOpen, setIsAffiliationDropdownOpen] = useState(false);
 
+  const [selectedSpecies, setSelectedSpecies] = useState("");
+  const [isSpeciesDropdownOpen, setIsSpeciesDropdownOpen] = useState(false);
+
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -181,6 +184,27 @@ export default function Home() {
 
   const affiliations = [...mainAffiliations, "Other"];
 
+  const mainCharacterSpecies = [
+    "Human",
+    "Demon Weapon",
+    "Witch",
+    "Grim Reaper",
+    "Werewolf",
+    "Sorcerer",
+    "Demon",
+  ];
+
+  const characterStatuses = [
+    "Active",
+    "Alive",
+    "Deceased",
+    "Inactive",
+    "Unknown",
+    "Fused with Crona",
+  ];
+
+  const characterSpecies = [...mainCharacterSpecies, "Other"];
+
   const filteredCharacters = characters.filter((character) => {
     let lowerCharacter = character.name.toLowerCase();
     let lowerQuery = searchCharacter.toLowerCase();
@@ -205,10 +229,25 @@ export default function Home() {
       matchesAffiliation = character.affiliation === selectedAffiliation;
     }
 
+    let matchesSpecies = false;
+
+    if (selectedSpecies === "") {
+      matchesSpecies = true;
+    } else if (selectedSpecies === "Other") {
+      matchesSpecies = !mainCharacterSpecies.includes(character.species);
+    } else {
+      matchesSpecies = character.species === selectedSpecies;
+    }
+
+    let matchesStatus = false;
+
+    if (selectedStatus === "") {
+      matchesStatus = true;
+    } else {
+      matchesStatus = character.status === selectedStatus;
+    }
 
     const matchesSearch = lowerCharacter.includes(lowerQuery);
-    const matchesSpecies = selectedSpecies === "" || character.species.toLowerCase().includes(selectedSpecies.toLowerCase());
-    const matchesStatus = selectedStatus === "" || character.status.toLowerCase().includes(selectedStatus.toLowerCase());
 
     if (matchesSearch && matchesRole && matchesAffiliation && matchesSpecies && matchesStatus) {
       return true;
@@ -887,35 +926,57 @@ export default function Home() {
                           </div>
                         )}
                       </div>
-                      <div className='flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
+
+                      <div className='relative flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
                         <p className="shrink-0 text-md font-semibold">Species:</p>
-                        <select value={selectedSpecies} onChange={(event) => setSelectedSpecies(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium min-w-0 flex-1 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Human">Human</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Demon Weapon">Demon Weapon</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Witch">Witch</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Grim Reaper">Grim Reaper</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="God">God / Great Old One</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Monster">Monster</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Animal">Animal</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Werewolf">Werewolf</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead / Spirit</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Construct">Construct</option>
-                        </select>
+                        <button type="button" onClick={() => setIsSpeciesDropdownOpen((current) => !current)} className="flex flex-1 items-center justify-between rounded-lg cursor-pointer border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
+                          <p className="truncate">{selectedSpecies || "All"}</p>
+                          <ChevronRight size={18} className={`transition-transform ${isSpeciesDropdownOpen ? "rotate-90" : ""}`} />
+                        </button>
+
+                        {isSpeciesDropdownOpen && (
+                          <button type="button" onClick={() => setIsSpeciesDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close role dropdown" />
+                        )}
+
+                        {isSpeciesDropdownOpen && (
+                          <div className="role-scrollbar absolute left-0 sm:left-12 md:left-18 top-12 z-[100] w-full sm:w-[85%] md:w-[70%] lg:w-[80%] max-h-64 overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
+                            <div className="grid grid-cols-1 gap-1">
+                              <button type="button" onClick={() => { setSelectedSpecies(""); setIsSpeciesDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left text-sm transition-colors cursor-pointer hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedSpecies === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
+
+                              {characterSpecies.map((type) => (
+                                <button key={type} type="button" onClick={() => { setSelectedSpecies(type); setIsSpeciesDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left cursor-pointer text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedSpecies === type ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{type}</button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <div className='flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
+
+
+
+                      <div className='relative flex min-w-0 flex-1 items-center rounded-md bg-black text-zinc-400 gap-2'>
                         <p className="shrink-0 text-md font-semibold">Status:</p>
-                        <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)} className='p-2 pr-8 border border-zinc-800 bg-black text-white text-sm font-medium min-w-0 flex-1 rounded-lg cursor-pointer transition-colors hover:border-[#f89c0a] outline-none'>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="">All</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Alive">Alive</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Deceased">Deceased</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unknown">Unknown</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Sealed">Sealed</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Undead">Undead</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Destroyed">Destroyed</option>
-                          <option className='bg-zinc-950 text-zinc-400 py-2 cursor-pointer' value="Unconfirmed">Unconfirmed</option>
-                        </select>
+                        <button type="button" onClick={() => setIsStatusDropdownOpen((current) => !current)} className="flex flex-1 items-center justify-between rounded-lg cursor-pointer border border-zinc-800 bg-black p-2 text-sm font-medium text-white transition-colors hover:border-[#f89c0a]">
+                          <p className="truncate">{selectedStatus || "All"}</p>
+                          <ChevronRight size={18} className={`transition-transform ${isStatusDropdownOpen ? "rotate-90" : ""}`} />
+                        </button>
+
+                        {isStatusDropdownOpen && (
+                          <button type="button" onClick={() => setIsStatusDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close role dropdown" />
+                        )}
+
+                        {isStatusDropdownOpen && (
+                          <div className="role-scrollbar absolute left-0 sm:left-12 md:left-18 top-12 z-[100] w-full sm:w-[85%] md:w-[70%] lg:w-[80%] max-h-64 overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
+                            <div className="grid grid-cols-1 gap-1">
+                              <button type="button" onClick={() => { setSelectedStatus(""); setIsStatusDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left text-sm transition-colors cursor-pointer hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedStatus === "" ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>All</button>
+
+                              {characterStatuses.map((type) => (
+                                <button key={type} type="button" onClick={() => { setSelectedStatus(type); setIsStatusDropdownOpen(false); }} className={`rounded-md px-3 py-2 text-left cursor-pointer text-sm transition-colors hover:bg-zinc-900 hover:text-[#f89c0a] ${selectedStatus === type ? "bg-[#f89c0a]/10 text-[#f89c0a]" : "text-zinc-400"}`}>{type}</button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
+
                     </div>
 
                   </div>
