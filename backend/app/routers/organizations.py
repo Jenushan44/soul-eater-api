@@ -7,11 +7,11 @@ router = APIRouter()
 
 
 @router.get("/organizations", response_model=list[Organization])
-def get_organizations(name: str | None = None, organization_type: str | None = None, leader: str | None = None, status: str | None = None): 
+def get_organizations( name: str | None = None, organization_type: str | None = None, leader: str | None = None, location: str | None = None, status: str | None = None):  
   result = organizations 
 
-  if name is None and organization_type is None and leader is None and status is None: 
-    return organizations 
+  if (name is None and organization_type is None and leader is None and location is None and status is None):
+    return organizations
 
   if name is not None: 
     filter_name = []
@@ -41,6 +41,14 @@ def get_organizations(name: str | None = None, organization_type: str | None = N
         filter_status.append(organization)
     result = filter_status
 
+  if location is not None:
+    filter_location = []
+
+  for organization in result:
+    if location.lower() in organization["location"].lower():
+      filter_location.append(organization)
+
+  result = filter_location
 
   return result
 
