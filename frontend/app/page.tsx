@@ -10,7 +10,7 @@ import { characterExamples, weaponExamples, abilityExamples, organizationExample
 import LearnMoreModal from "./components/LearnMoreModal";
 import type { Character, Weapon, Ability, Organization, Arc, } from "./types/api";
 import { mainCharacterRoles, characterRoles, mainAffiliations, affiliations, mainCharacterSpecies, characterSpecies, characterStatuses, weaponTypes, weaponCategories, weaponAffiliations, weaponStatuses, abilityUsers, abilityTypes, organizationTypes, organizationLeaders, organizationStatuses, arcCharacters, arcContinuities, arcEpisodeRanges, arcChapterRanges, } from "./data/filterOptions";
-
+import HeroSection from "./components/HeroSection";
 
 export default function Home() {
 
@@ -403,22 +403,7 @@ export default function Home() {
   return (
     <div className="bg-black" id="home-section">
       <Navbar />
-      <div className="relative flex h-[680px] xl:h-[760px] 2xl:h-[850px] w-full justify-end overflow-hidden">
-        <Image src="/Soul-Eater-Medusa-Banner.png" alt="Banner" width={1000} height={300} className="w-[60%] h-full object-cover object-right" priority></Image>
-        <div className="absolute inset-y-0 left-0 w-[85%] bg-gradient-to-r from-black via-black/100 to-transparent pointer-events-none" />
-        <div className="absolute left-[2%] top-[65%] md:top-[65%] lg:top-1/2 z-10 -translate-y-1/2">
-          <p className="font-banner tracking-[0.5em] text-[#f89c0a] text-[20px] md:text-[25px] lg:text-[30px] xl:text-[50px] 2xl:text-[50px]">WELCOME TO THE</p>
-          <p className="font-banner text-[70px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] mt-3">SOUL EATER</p>
-          <p className="font-banner text-[70px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] text-[#f89c0a] mt-2 mb-2">API</p>
-          <p className="font-semibold mb-5 max-w-[650px] text-[18px] md:text-[18px] lg:text-[20px] xl:text-[23px] 2xl:text-[25px]">A comprehensive REST API for Soul Eater, providing structured data on characters, weapons, abilities, organizations, and story arcs.</p>
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 self-start">
-            <a href="#character-section" className="w-[275px] font-semibold cursor-pointer text-black p-3 md:p-5 md:text-[20px] 2xl:py-5 2xl:text-[25px] xl:text-[20px] flex items-center justify-between border-2 border-black rounded-xl rounded-sm bg-[#f89c0a] hover:bg-black hover:border-[#f89c0a] hover:text-[#f89c0a] pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">EXPLORE API <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></a>
-            <button type="button" onClick={() => setIsLearnMoreOpen(true)} className="w-[275px] font-semibold flex items-center justify-between cursor-pointer text-[#f89c0a] p-3 2xl:py-5 2xl:text-[25px] xl:text-[20px] border border-[#f89c0a] rounded-xl hover:bg-[#f89c0a] hover:border-black hover:text-black pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">
-              LEARN MORE<ChevronRight width={30} height={30} className="font-bold stroke-[3]" />
-            </button>
-          </div>
-        </div>
-      </div>
+      <HeroSection onLearnMore={() => setIsLearnMoreOpen(true)} />
 
 
       <div className="mx-5 grid grid-cols-2 gap-4 rounded-lg border-3 border-zinc-800 bg-black/70 p-4 md:grid-cols-3 xl:grid-cols-5 xl:gap-0">
