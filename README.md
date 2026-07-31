@@ -32,12 +32,6 @@ https://soul-eater-api.onrender.com/docs
 
 ---
 
-### Browse Sections
-
-![Browse Sections](./frontend/public/screenshots/browse-sections.png)
-
----
-
 ### Characters
 
 ![Characters](./frontend/public/screenshots/characters.png)
