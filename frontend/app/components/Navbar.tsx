@@ -3,9 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, TriangleAlert, X } from "lucide-react";
+import ReportIssueModal from "./ReportIssueModal";
+import LearnMoreModal from "../components/LearnMoreModal";
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
 
   return (
     <div className="relative bg-black border-zinc-900 border-b-2">
@@ -33,11 +38,11 @@ export default function Navbar() {
               </div>
             </a>
 
-            <a href="https://github.com/Jenushan44/soul-eater-api" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between py-5">
+            <button type="button" onClick={() => setIsLearnMoreOpen(true)} className="group flex items-center justify-between py-5">
               <div className="flex items-center gap-4">
                 <p className="font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2px] hover:scale-110 hover:text-xl hover:text-[#f89c0a] hover:underline underline-offset-8 2xl:text-2xl 2xl:hover:text-2xl">About</p>
               </div>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -46,10 +51,9 @@ export default function Navbar() {
             <Image src="/github-icon.png" alt="Github Logo" width={50} height={50} className="w-[35px] sm:w-[42px] lg:w-[50px] h-auto cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-110" />
           </a>
 
-          <button type="button" className="group flex items-center justify-between px-1 sm:px-4 py-2 gap-2 hover:text-white cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-110">
+          <button type="button" onClick={() => setIsReportOpen(true)} className="group flex items-center justify-between px-1 sm:px-4 py-2 gap-2 hover:text-white cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-110">
             <TriangleAlert className="text-[#f89c0a] w-[35px] h-[35px] sm:w-[42px] sm:h-[42px] lg:w-[50px] lg:h-[50px]" />
           </button>
-
           <button type="button" onClick={() => setIsMenuOpen((current) => !current)} className="lg:hidden text-[#f89c0a] border border-zinc-800 rounded-md p-2 cursor-pointer transition duration-200 hover:border-[#f89c0a] hover:text-white">
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -61,10 +65,18 @@ export default function Navbar() {
           <div className="flex flex-col">
             <a href="http://127.0.0.1:8000/docs" onClick={() => setIsMenuOpen(false)} className="py-3 font-semibold text-lg border-b border-zinc-900 transition duration-200 hover:text-[#f89c0a]">API Docs</a>
             <a href="#character-section" onClick={() => setIsMenuOpen(false)} className="py-3 font-semibold text-lg border-b border-zinc-900 transition duration-200 hover:text-[#f89c0a]">Endpoints</a>
-            <a href="https://github.com/Jenushan44/soul-eater-api" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="py-3 font-semibold text-lg transition duration-200 hover:text-[#f89c0a]">About</a>
+            <button type="button" onClick={() => setIsLearnMoreOpen(true)} className="group flex items-center justify-between py-3">
+              <div className="flex items-center gap-4">
+                <p className="font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2px] hover:scale-110 hover:text-xl hover:text-[#f89c0a] hover:underline underline-offset-8 2xl:text-2xl 2xl:hover:text-2xl">About</p>
+              </div>
+            </button>
           </div>
         </div>
       )}
+
+      <ReportIssueModal isOpen={isReportOpen} onClose={() => setIsReportOpen(false)} />
+      <LearnMoreModal isOpen={isLearnMoreOpen} onClose={() => setIsLearnMoreOpen(false)} />
+
     </div>
   );
 }

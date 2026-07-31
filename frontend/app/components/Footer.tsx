@@ -1,7 +1,11 @@
+import { useState } from "react";
 import Image from "next/image";
 import { BookOpen, TriangleAlert, MoveRight } from "lucide-react";
+import ReportIssueModal from "./ReportIssueModal";
 
 export default function Footbar() {
+  const [isReportOpen, setIsReportOpen] = useState(false);
+
   return (
     <footer className="mt-10 border-t border-zinc-800 bg-zinc-950">
       <div className="mx-auto flex max-w-[1500px] flex-col gap-10 px-8 py-6 pb-10 lg:flex-row lg:items-center lg:justify-between">
@@ -48,18 +52,18 @@ export default function Footbar() {
             <MoveRight className="text-[#f89c0a] transition-transform group-hover:translate-x-2" size={28} />
           </a>
 
-          <a href="" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between py-5">
+          <button type="button" onClick={() => setIsReportOpen(true)} className="group flex w-full cursor-pointer items-center justify-between py-5 text-left">
             <div className="flex items-center gap-4">
               <TriangleAlert className="text-[#f89c0a]" size={30} />
 
               <div>
                 <p className="font-bold text-white">REPORT AN ISSUE</p>
-                <p className="text-sm text-zinc-400">Found a bug or have a suggestion?</p>
+                <p className="text-sm text-zinc-400">Found a bug, missing information, or have a suggestion?</p>
               </div>
             </div>
 
             <MoveRight className="text-[#f89c0a] transition-transform group-hover:translate-x-2" size={28} />
-          </a>
+          </button>
         </div>
       </div>
 
@@ -76,6 +80,11 @@ export default function Footbar() {
         <p>Soul Eater is © Atsushi Ohkubo.</p>
         <p>This is an unofficial fan project and is not affiliated with the official series.</p>
       </div>
+
+      <ReportIssueModal isOpen={isReportOpen} onClose={() => setIsReportOpen(false)} />
+
     </footer>
+
+
   );
 }

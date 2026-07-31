@@ -4,9 +4,11 @@ import Image from "next/image";
 import EndpointCard from "./components/EndpointCard"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
-import { FunnelX, ChevronRight, ChevronLeft, BookOpen, School, User, Shield, Skull, Sword, Swords, Flame, MoonStar, BrickWallShield, MoveRight, Search } from 'lucide-react';
+import { X, FunnelX, ChevronRight, ChevronLeft, BookOpen, School, User, Shield, Skull, Sword, Swords, Flame, MoonStar, BrickWallShield, MoveRight, Search } from 'lucide-react';
 import Link from 'next/link';
 import { characterExamples, weaponExamples, abilityExamples, organizationExamples, arcExamples, } from "./data/apiExamples";
+import LearnMoreModal from "./components/LearnMoreModal";
+
 
 type Character = {
   id: number;
@@ -137,6 +139,8 @@ export default function Home() {
   const [isArcContinuityDropdownOpen, setIsArcContinuityDropdownOpen] = useState(false);
   const [isArcEpisodeDropdownOpen, setIsArcEpisodeDropdownOpen] = useState(false);
   const [isArcChapterDropdownOpen, setIsArcChapterDropdownOpen] = useState(false);
+
+  const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
 
   const weaponTypes = [
     "Scythe",
@@ -735,7 +739,9 @@ export default function Home() {
           <p className="font-semibold mb-5 max-w-[650px] text-[18px] md:text-[18px] lg:text-[20px] xl:text-[23px] 2xl:text-[25px]">A comprehensive REST API for Soul Eater, providing structured data on characters, weapons, abilities, organizations, and story arcs.</p>
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 self-start">
             <a href="#character-section" className="w-[275px] font-semibold cursor-pointer text-black p-3 md:p-5 md:text-[20px] 2xl:py-5 2xl:text-[25px] xl:text-[20px] flex items-center justify-between border-2 border-black rounded-xl rounded-sm bg-[#f89c0a] hover:bg-black hover:border-[#f89c0a] hover:text-[#f89c0a] pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">EXPLORE API <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></a>
-            <button className="w-[275px] font-semibold flex items-center justify-between cursor-pointer text-[#f89c0a] p-3 md:p-5 md:text-[20px] 2xl:py-5 2xl:text-[25px] xl:text-[20px] border border-[#f89c0a] rounded-xl hover:bg-[#f89c0a] hover:border-black hover:text-black pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">LEARN MORE <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></button>
+            <button type="button" onClick={() => setIsLearnMoreOpen(true)} className="w-[275px] font-semibold flex items-center justify-between cursor-pointer text-[#f89c0a] p-3 2xl:py-5 2xl:text-[25px] xl:text-[20px] border border-[#f89c0a] rounded-xl hover:bg-[#f89c0a] hover:border-black hover:text-black pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">
+              LEARN MORE<ChevronRight width={30} height={30} className="font-bold stroke-[3]" />
+            </button>
           </div>
         </div>
       </div>
@@ -2243,9 +2249,12 @@ export default function Home() {
 
       </div>
 
-
+      <LearnMoreModal isOpen={isLearnMoreOpen} onClose={() => setIsLearnMoreOpen(false)} />
 
       <Footer />
+
     </div >
+
+
   );
 }
