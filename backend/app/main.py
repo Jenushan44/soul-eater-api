@@ -19,6 +19,7 @@ app.include_router(search_router)
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://soul-eater-api.vercel.app/",
 ]
 
 app.add_middleware(
