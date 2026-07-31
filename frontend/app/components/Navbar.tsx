@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   return (
     <div className="relative bg-black border-zinc-900 border-b-2">
@@ -24,7 +25,7 @@ export default function Navbar() {
         <div className="hidden lg:flex justify-between gap-8 xl:gap-15">
           <div className="flex items-center mr-4 xl:mr-10 gap-8 xl:gap-15">
 
-            <a href="http://127.0.0.1:8000/docs" target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between py-5">
+            <a href={`${API_URL}/docs`} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between py-5">
               <div className="flex items-center gap-4">
                 <p className="font-semibold text-lg cursor-pointer transition-all duration-300 hover:-translate-y-[0.2px] hover:scale-110 hover:text-xl hover:text-[#f89c0a] hover:underline underline-offset-8 2xl:text-2xl 2xl:hover:text-2xl">API Docs</p>
                 <div className="h-10 w-[2px] ml-4 xl:ml-10 bg-zinc-700" />
@@ -63,7 +64,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 z-50 w-full bg-black border-b-2 border-zinc-900 px-5 py-4">
           <div className="flex flex-col">
-            <a href="http://127.0.0.1:8000/docs" onClick={() => setIsMenuOpen(false)} className="py-3 font-semibold text-lg border-b border-zinc-900 transition duration-200 hover:text-[#f89c0a]">API Docs</a>
+            <a href={`${API_URL}/docs`} onClick={() => setIsMenuOpen(false)} className="py-3 font-semibold text-lg border-b border-zinc-900 transition duration-200 hover:text-[#f89c0a]">API Docs</a>
             <a href="#character-section" onClick={() => setIsMenuOpen(false)} className="py-3 font-semibold text-lg border-b border-zinc-900 transition duration-200 hover:text-[#f89c0a]">Endpoints</a>
             <button type="button" onClick={() => setIsLearnMoreOpen(true)} className="group flex items-center justify-between py-3">
               <div className="flex items-center gap-4">

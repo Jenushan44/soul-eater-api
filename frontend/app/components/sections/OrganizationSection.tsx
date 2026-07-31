@@ -22,15 +22,14 @@ export default function OrganizationSection({ organizations, cardsToShow, }: Org
   const [isOrganizationTypeDropdownOpen, setIsOrganizationTypeDropdownOpen,] = useState(false);
   const [isOrganizationLeaderDropdownOpen, setIsOrganizationLeaderDropdownOpen,] = useState(false);
   const [isOrganizationStatusDropdownOpen, setIsOrganizationStatusDropdownOpen,] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const filteredOrganizations = organizations.filter((organization) => {
     const lowerOrganization = organization.name.toLowerCase();
     const lowerQuery = searchOrganization.toLowerCase();
     const matchesSearch = lowerOrganization.includes(lowerQuery);
     const matchesOrganizationType = selectedOrganizationType === "" || organization.organization_type.toLowerCase().includes(selectedOrganizationType.toLowerCase());
-
     const matchesLeader = selectedOrganizationLeader === "" || organization.leader.toLowerCase().includes(selectedOrganizationLeader.toLowerCase());
-
     const matchesStatus = selectedOrganizationStatus === "" || organization.status.toLowerCase().includes(selectedOrganizationStatus.toLowerCase());
 
     if (matchesSearch && matchesOrganizationType && matchesLeader && matchesStatus) {
@@ -219,7 +218,7 @@ export default function OrganizationSection({ organizations, cardsToShow, }: Org
                         <p className="text-zinc-400 text-xs font-semibold">Leader: {organization.leader}</p>
                         <p className="text-zinc-400 text-xs font-semibold">Location: {organization.location}</p>
                         <p className="text-zinc-400 text-xs font-semibold">Status: {organization.status}</p>
-                        <a target="_blank" rel="noopener noreferrer" href={`http://127.0.0.1:8000/organizations/${organization.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">
+                        <a target="_blank" rel="noopener noreferrer" href={`${API_URL}/organizations/${organization.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">
                           VIEW PROFILE <MoveRight className="-translate-y-1" />
                         </a>
                       </div>

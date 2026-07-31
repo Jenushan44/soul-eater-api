@@ -21,6 +21,7 @@ export default function AbilitySection({ abilities, cardsToShow, }: AbilitySecti
   const [selectedAbilityUser, setSelectedAbilityUser] = useState("");
   const [isAbilityTypeDropdownOpen, setIsAbilityTypeDropdownOpen] = useState(false);
   const [isAbilityUserDropdownOpen, setIsAbilityUserDropdownOpen] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const filteredAbilities = abilities.filter((ability) => {
     const lowerAbility = ability.name.toLowerCase();
@@ -191,7 +192,7 @@ export default function AbilitySection({ abilities, cardsToShow, }: AbilitySecti
                         </p>
                         <p className="text-zinc-400 text-xs font-semibold truncate">Category: {ability.category}</p>
 
-                        <a target="_blank" rel="noopener noreferrer" href={`http://127.0.0.1:8000/abilities/${ability.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]" >
+                        <a target="_blank" rel="noopener noreferrer" href={`${API_URL}/abilities/${ability.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]" >
                           VIEW PROFILE<MoveRight className="-translate-y-1" />
                         </a>
                       </div>

@@ -24,7 +24,7 @@ export default function Home() {
 
   const [cardsToShow, setCardsToShow] = useState(3);
   const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
-
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,7 +52,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/characters")
+    fetch(`${API_URL}/characters`)
       .then((result) => result.json())
       .then((data) => {
         const randomizedCharacters = [...data].sort(() => Math.random() - 0.5);
@@ -61,7 +61,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/weapons")
+    fetch(`${API_URL}/weapons`)
       .then((result) => result.json())
       .then((data) => {
         const randomizedWeapons = [...data].sort(() => Math.random() - 0.5);
@@ -70,7 +70,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/abilities")
+    fetch(`${API_URL}/abilities`)
       .then((result) => result.json())
       .then((data) => {
         const randomizedAbilities = [...data].sort(() => Math.random() - 0.5);
@@ -79,7 +79,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/organizations")
+    fetch(`${API_URL}/organizations`)
       .then((result) => result.json())
       .then((data) => {
         const randomizedOrganizations = [...data].sort(() => Math.random() - 0.5);
@@ -88,7 +88,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/arcs")
+    fetch(`${API_URL}/arcs`)
       .then((result) => result.json())
       .then((data) => {
         const sortedArcs = [...data].sort((a, b) => a.id - b.id);

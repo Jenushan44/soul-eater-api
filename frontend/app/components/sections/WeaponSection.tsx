@@ -38,6 +38,7 @@ export default function WeaponSection({ weapons, cardsToShow, }: WeaponSectionPr
   const [isWeaponCategoryDropdownOpen, setIsWeaponCategoryDropdownOpen] = useState(false);
   const [isWeaponAffiliationDropdownOpen, setIsWeaponAffiliationDropdownOpen,] = useState(false);
   const [isWeaponStatusDropdownOpen, setIsWeaponStatusDropdownOpen] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const filteredWeapons = weapons.filter((weapon) => {
     const matchesSearch = weapon.name.toLowerCase().includes(searchWeapon.toLowerCase());
@@ -248,7 +249,7 @@ export default function WeaponSection({ weapons, cardsToShow, }: WeaponSectionPr
                         <p className="text-zinc-400 text-xs font-semibold">Affiliation: {weapon.affiliation}</p>
                         <p className="text-zinc-400 text-xs font-semibold">Status: {weapon.status}</p>
 
-                        <a target="_blank" rel="noopener noreferrer" href={`http://127.0.0.1:8000/weapons/${weapon.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]" >VIEW PROFILE <MoveRight className="-translate-y-1" /></a>
+                        <a target="_blank" rel="noopener noreferrer" href={`${API_URL}/weapons/${weapon.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]" >VIEW PROFILE <MoveRight className="-translate-y-1" /></a>
                       </div>
                     </div>
                   ))}

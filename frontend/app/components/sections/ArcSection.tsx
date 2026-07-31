@@ -25,6 +25,8 @@ export default function ArcSection({ arcs, cardsToShow, }: ArcSectionProps) {
   const [isArcContinuityDropdownOpen, setIsArcContinuityDropdownOpen,] = useState(false);
   const [isArcEpisodeDropdownOpen, setIsArcEpisodeDropdownOpen,] = useState(false);
   const [isArcChapterDropdownOpen, setIsArcChapterDropdownOpen,] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 
   const filteredArcs = arcs.filter((arc) => {
     const lowerArc = arc.name.toLowerCase();
@@ -260,7 +262,7 @@ export default function ArcSection({ arcs, cardsToShow, }: ArcSectionProps) {
                         )}
 
 
-                        <a target="_blank" rel="noopener noreferrer" href={`http://127.0.0.1:8000/arcs/${arc.id}`} className="flex justify-between mt-2 pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">
+                        <a target="_blank" rel="noopener noreferrer" href={`${API_URL}/arcs/${arc.id}`} className="flex justify-between mt-2 pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">
                           VIEW PROFILE<MoveRight className="-translate-y-1" />
                         </a>
                       </div>

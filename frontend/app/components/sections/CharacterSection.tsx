@@ -25,6 +25,7 @@ export default function CharacterSection({ characters, cardsToShow, }: Character
   const [isAffiliationDropdownOpen, setIsAffiliationDropdownOpen] = useState(false);
   const [isSpeciesDropdownOpen, setIsSpeciesDropdownOpen] = useState(false);
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const filteredCharacters = characters.filter((character) => {
     let lowerCharacter = character.name.toLowerCase();
@@ -273,7 +274,7 @@ export default function CharacterSection({ characters, cardsToShow, }: Character
                         <p className='text-zinc-400 text-xs font-semibold'>Affiliation: {character.affiliation}</p>
                         <p className='text-zinc-400 text-xs font-semibold'>Status: {character.status}</p>
 
-                        <a target="_blank" href={`http://127.0.0.1:8000/characters/${character.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
+                        <a target="_blank" href={`${API_URL}/characters/${character.id}`} className="flex justify-between mt-auto pt-3 text-[#f89c0a] text-sm font-bold cursor-pointer gap-2 hover:text-[#ffb33b]">VIEW PROFILE<MoveRight className="-translate-y-1" />
                         </a>
                       </div>
                     </div>
