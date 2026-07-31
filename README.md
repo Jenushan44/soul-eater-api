@@ -1,10 +1,10 @@
 # Soul Eater API
 
-A REST API and web application built for the Soul Eater anime and manga series. The project provides structured information on characters, Demon Weapons, abilities, organizations, and story arcs through a FastAPI backend with an interactive Next.js frontend.
+A REST API and web application based on the Soul Eater anime and manga. The project uses FastAPI for the backend and Next.js for the frontend, allowing users to browse characters, Demon Weapons, abilities, organizations, and story arcs.
 
 ## Live Demo
 
-Frontend:
+Live Demo:
 https://soul-eater-api.vercel.app
 
 API Documentation:
