@@ -728,14 +728,14 @@ export default function Home() {
       <div className="relative flex h-[680px] xl:h-[760px] 2xl:h-[850px] w-full justify-end overflow-hidden">
         <Image src="/Soul-Eater-Medusa-Banner.png" alt="Banner" width={1000} height={300} className="w-[60%] h-full object-cover object-right" priority></Image>
         <div className="absolute inset-y-0 left-0 w-[85%] bg-gradient-to-r from-black via-black/100 to-transparent pointer-events-none" />
-        <div className="absolute left-[2%] top-1/2 z-10 -translate-y-1/2">
-          <p className="font-banner tracking-[0.5em] text-[#f89c0a] text-[15px] md:text-[20px] lg:text-[30px] xl:text-[50px] 2xl:text-[50px]">WELCOME TO THE</p>
-          <p className="font-banner text-[60px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] mt-3">SOUL EATER</p>
-          <p className="font-banner text-[60px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] text-[#f89c0a] mt-2 mb-2">API</p>
-          <p className="font-semibold mb-5 max-w-[650px] text-[15px] md:text-[18px] lg:text-[20px] xl:text-[23px] 2xl:text-[25px]">A comprehensive REST API for Soul Eater, providing structured data on characters, weapons, abilities, organizations, and story arcs.</p>
-          <div className="flex items-center md:gap-8">
-            <button className="w-[275px] font-semibold cursor-pointer text-black p-3 2xl:py-5 2xl:text-[25px] xl:text-[20px] flex items-center justify-between border-2 border-black rounded-xl rounded-sm bg-[#f89c0a] hover:bg-black hover:border-[#f89c0a] hover:text-[#f89c0a] pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">EXPLORE API <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></button>
-            <button className="w-[275px] font-semibold flex items-center justify-between cursor-pointer text-[#f89c0a] p-3 2xl:py-5 2xl:text-[25px] xl:text-[20px] border border-[#f89c0a] rounded-xl hover:bg-[#f89c0a] hover:border-black hover:text-black pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">LEARN MORE <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></button>
+        <div className="absolute left-[2%] top-[65%] md:top-[65%] lg:top-1/2 z-10 -translate-y-1/2">
+          <p className="font-banner tracking-[0.5em] text-[#f89c0a] text-[20px] md:text-[25px] lg:text-[30px] xl:text-[50px] 2xl:text-[50px]">WELCOME TO THE</p>
+          <p className="font-banner text-[70px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] mt-3">SOUL EATER</p>
+          <p className="font-banner text-[70px] md:text-[80px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px] leading-[0.8] text-[#f89c0a] mt-2 mb-2">API</p>
+          <p className="font-semibold mb-5 max-w-[650px] text-[18px] md:text-[18px] lg:text-[20px] xl:text-[23px] 2xl:text-[25px]">A comprehensive REST API for Soul Eater, providing structured data on characters, weapons, abilities, organizations, and story arcs.</p>
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 self-start">
+            <a href="#character-section" className="w-[275px] font-semibold cursor-pointer text-black p-3 md:p-5 md:text-[20px] 2xl:py-5 2xl:text-[25px] xl:text-[20px] flex items-center justify-between border-2 border-black rounded-xl rounded-sm bg-[#f89c0a] hover:bg-black hover:border-[#f89c0a] hover:text-[#f89c0a] pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">EXPLORE API <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></a>
+            <button className="w-[275px] font-semibold flex items-center justify-between cursor-pointer text-[#f89c0a] p-3 md:p-5 md:text-[20px] 2xl:py-5 2xl:text-[25px] xl:text-[20px] border border-[#f89c0a] rounded-xl hover:bg-[#f89c0a] hover:border-black hover:text-black pl-5 transition-all duration-300 hover:-translate-y-1 hover:scale-110">LEARN MORE <ChevronRight width={30} height={30} className='font-bold stroke-[3]' /></button>
           </div>
         </div>
       </div>
@@ -789,7 +789,7 @@ export default function Home() {
       <div className="sticky top-0 mt-5 z-200 w-full rounded-md border border-zinc-900 bg-black p-3 tracking-wide">
         <div className="flex items-center justify-between">
           <p className="text-[#f89c0a] text-[18px] font-bold tracking-widest px-3 mb-3 font-sans ml-5">BROWSE THE SECTIONS</p>
-          <button type="button" onClick={() => setIsBrowseOpen((current) => !current)} aria-expanded={isBrowseOpen} aria-label={isBrowseOpen ? "Hide browse section" : "Show browse section"} className="flex mb-5 cursor-pointer items-center gap-2 rounded-md border border-zinc-800 mr-5 px-3 py-1.5 text-sm font-semibold text-zinc-400 transition-colors hover:border-[#f89c0a] hover:text-[#f89c0a]">{isBrowseOpen ? "Hide" : "Show"}
+          <button type="button" onClick={() => setIsBrowseOpen((current) => !current)} aria-expanded={isBrowseOpen} className="flex mb-5 cursor-pointer items-center gap-2 rounded-md border border-zinc-800 mr-5 px-3 py-1.5 text-sm font-semibold text-zinc-400 transition-colors hover:border-[#f89c0a] hover:text-[#f89c0a]">{isBrowseOpen ? "Hide" : "Show"}
             <ChevronRight className={`h-4 w-4 transition-transform duration-300 ${isBrowseOpen ? "-rotate-90" : "rotate-90"}`} />
           </button>
         </div>
@@ -988,7 +988,7 @@ export default function Home() {
       </div>
 
       <div className="flex-1 flex flex-col gap-16">
-        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="character-section">
+        <div className="scroll-mt-20 md:scroll-mt-28 lg:scroll-mt-36 mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="character-section">
 
 
           <div className='flex items-center justify-center gap-4 w-full'>
@@ -1034,7 +1034,7 @@ export default function Home() {
                         </button>
 
                         {isRoleDropdownOpen && (
-                          <button type="button" onClick={() => setIsRoleDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close role dropdown" />
+                          <button type="button" onClick={() => setIsRoleDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" />
                         )}
 
                         {isRoleDropdownOpen && (
@@ -1058,7 +1058,7 @@ export default function Home() {
                         </button>
 
                         {isAffiliationDropdownOpen && (
-                          <button type="button" onClick={() => setIsAffiliationDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close role dropdown" />
+                          <button type="button" onClick={() => setIsAffiliationDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" />
                         )}
 
                         {isAffiliationDropdownOpen && (
@@ -1082,7 +1082,7 @@ export default function Home() {
                         </button>
 
                         {isSpeciesDropdownOpen && (
-                          <button type="button" onClick={() => setIsSpeciesDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close role dropdown" />
+                          <button type="button" onClick={() => setIsSpeciesDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" />
                         )}
 
                         {isSpeciesDropdownOpen && (
@@ -1108,7 +1108,7 @@ export default function Home() {
                         </button>
 
                         {isStatusDropdownOpen && (
-                          <button type="button" onClick={() => setIsStatusDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close role dropdown" />
+                          <button type="button" onClick={() => setIsStatusDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" />
                         )}
 
                         {isStatusDropdownOpen && (
@@ -1269,7 +1269,7 @@ export default function Home() {
 
         </div>
 
-        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
+        <div className="scroll-mt-20 md:scroll-mt-28 lg:scroll-mt-36 mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="weapon-section">
 
           <div className="flex items-center justify-center gap-4 w-full">
             <div className="w-[90%] relative py-4 -my-4 px-2 -mx-2 md:flex-col 2xl:flex-row">
@@ -1308,7 +1308,7 @@ export default function Home() {
                           <ChevronRight size={18} className={`transition-transform ${isWeaponTypeDropdownOpen ? "rotate-90" : ""}`} />
                         </button>
 
-                        {isWeaponTypeDropdownOpen && (<button type="button" onClick={() => setIsWeaponTypeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close weapon type dropdown"></button>)}
+                        {isWeaponTypeDropdownOpen && (<button type="button" onClick={() => setIsWeaponTypeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default"></button>)}
 
                         {isWeaponTypeDropdownOpen && (
                           <div className="role-scrollbar absolute left-0 sm:left-12 top-12 z-[100] max-h-64 w-full sm:w-[85%] md:w-full overflow-y-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 shadow-2xl">
@@ -1334,7 +1334,7 @@ export default function Home() {
                         </button>
 
                         {isWeaponCategoryDropdownOpen && (
-                          <button type="button" onClick={() => setIsWeaponCategoryDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close weapon category dropdown"></button>
+                          <button type="button" onClick={() => setIsWeaponCategoryDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default"></button>
                         )}
 
                         {isWeaponCategoryDropdownOpen && (
@@ -1364,7 +1364,7 @@ export default function Home() {
                         </button>
 
                         {isWeaponAffiliationDropdownOpen && (
-                          <button type="button" onClick={() => setIsWeaponAffiliationDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close weapon affiliation dropdown"></button>
+                          <button type="button" onClick={() => setIsWeaponAffiliationDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" ></button>
                         )}
 
                         {isWeaponAffiliationDropdownOpen && (
@@ -1393,7 +1393,7 @@ export default function Home() {
                         </button>
 
                         {isWeaponStatusDropdownOpen && (
-                          <button type="button" onClick={() => setIsWeaponStatusDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close weapon status dropdown"></button>
+                          <button type="button" onClick={() => setIsWeaponStatusDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default"></button>
                         )}
 
                         {isWeaponStatusDropdownOpen && (
@@ -1535,7 +1535,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="ability-section">
+        <div className="scroll-mt-20 md:scroll-mt-28 lg:scroll-mt-36 mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="ability-section">
           <div className="flex items-center justify-center gap-4 w-full">
             <div className="w-[90%] relative py-4 -my-4 px-2 -mx-2 md:flex-col 2xl:flex-row">
               <div className="relative">
@@ -1579,7 +1579,7 @@ export default function Home() {
                         </button>
 
                         {isAbilityTypeDropdownOpen && (
-                          <button type="button" onClick={() => setIsAbilityTypeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close ability type dropdown"></button>
+                          <button type="button" onClick={() => setIsAbilityTypeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" ></button>
                         )}
 
 
@@ -1609,7 +1609,7 @@ export default function Home() {
                         </button>
 
                         {isAbilityUserDropdownOpen && (
-                          <button type="button" onClick={() => setIsAbilityUserDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close ability user dropdown"></button>
+                          <button type="button" onClick={() => setIsAbilityUserDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" ></button>
                         )}
 
                         {isAbilityUserDropdownOpen && (
@@ -1724,7 +1724,7 @@ export default function Home() {
         </div>
 
 
-        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="organization-section">
+        <div className="scroll-mt-20 md:scroll-mt-28 lg:scroll-mt-36 mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="organization-section">
           <div className="flex items-center justify-center gap-4 w-full">
             <div className="w-[90%] relative py-4 -my-4 px-2 -mx-2 md:flex-col 2xl:flex-row">
               <div className="relative">
@@ -1768,7 +1768,7 @@ export default function Home() {
                         </button>
 
                         {isOrganizationTypeDropdownOpen && (
-                          <button type="button" onClick={() => setIsOrganizationTypeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close organization type dropdown"></button>
+                          <button type="button" onClick={() => setIsOrganizationTypeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default"></button>
                         )}
 
                         {isOrganizationTypeDropdownOpen && (
@@ -1796,7 +1796,7 @@ export default function Home() {
                         </button>
 
                         {isOrganizationLeaderDropdownOpen && (
-                          <button type="button" onClick={() => setIsOrganizationLeaderDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close organization leader dropdown"></button>
+                          <button type="button" onClick={() => setIsOrganizationLeaderDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default"></button>
                         )}
 
                         {isOrganizationLeaderDropdownOpen && (
@@ -1825,7 +1825,7 @@ export default function Home() {
                         </button>
 
                         {isOrganizationStatusDropdownOpen && (
-                          <button type="button" onClick={() => setIsOrganizationStatusDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close organization status dropdown"></button>
+                          <button type="button" onClick={() => setIsOrganizationStatusDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default"></button>
                         )}
 
                         {isOrganizationStatusDropdownOpen && (
@@ -1968,7 +1968,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="arc-section">
+        <div className="scroll-mt-20 md:scroll-mt-28 lg:scroll-mt-36 mx-6 mt-10 bg-zinc-950 p-10 border-zinc-900 border-3" id="arc-section">
           <div className="flex items-center justify-center gap-4 w-full">
             <div className="w-[90%] relative py-4 -my-4 px-2 -mx-2 md:flex-col 2xl:flex-row">
               <div className="relative">
@@ -2012,7 +2012,7 @@ export default function Home() {
                         </button>
 
                         {isArcCharacterDropdownOpen && (
-                          <button type="button" onClick={() => setIsArcCharacterDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close arc character dropdown" />
+                          <button type="button" onClick={() => setIsArcCharacterDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" />
                         )}
 
                         {isArcCharacterDropdownOpen && (
@@ -2041,7 +2041,7 @@ export default function Home() {
                         </button>
 
                         {isArcContinuityDropdownOpen && (
-                          <button type="button" onClick={() => setIsArcContinuityDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close arc continuity dropdown"></button>
+                          <button type="button" onClick={() => setIsArcContinuityDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default"></button>
                         )}
 
                         {isArcContinuityDropdownOpen && (
@@ -2070,7 +2070,7 @@ export default function Home() {
                         </button>
 
                         {isArcEpisodeDropdownOpen && (
-                          <button type="button" onClick={() => setIsArcEpisodeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close arc episode dropdown" />
+                          <button type="button" onClick={() => setIsArcEpisodeDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" />
                         )}
 
                         {isArcEpisodeDropdownOpen && (
@@ -2098,7 +2098,7 @@ export default function Home() {
                         </button>
 
                         {isArcChapterDropdownOpen && (
-                          <button type="button" onClick={() => setIsArcChapterDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" aria-label="Close arc chapter dropdown" />
+                          <button type="button" onClick={() => setIsArcChapterDropdownOpen(false)} className="fixed inset-0 z-[90] cursor-default" />
                         )}
 
                         {isArcChapterDropdownOpen && (
