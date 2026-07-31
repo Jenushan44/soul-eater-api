@@ -8,13 +8,6 @@ from app.routers.search import router as search_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-app.include_router(character_router)
-app.include_router(ability_router)
-app.include_router(arc_router)
-app.include_router(organization_router)
-app.include_router(weapon_router)
-app.include_router(search_router)
-
 
 origins = [
     "http://localhost:3000",
@@ -30,6 +23,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(character_router)
+app.include_router(ability_router)
+app.include_router(arc_router)
+app.include_router(organization_router)
+app.include_router(weapon_router)
+app.include_router(search_router)
 
 @app.get("/")
 def root(): 
