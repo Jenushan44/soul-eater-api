@@ -34,8 +34,8 @@ def get_abilities(name: str | None = None, user: str | None = None, category: st
             ability_matches = True
             break
 
-      if ability_matches:
-        break
+        if ability_matches:
+          break
 
     result = filtered_by_user
 
