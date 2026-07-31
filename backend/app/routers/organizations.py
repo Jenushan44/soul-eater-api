@@ -44,11 +44,11 @@ def get_organizations( name: str | None = None, organization_type: str | None = 
   if location is not None:
     filter_location = []
 
-  for organization in result:
-    if location.lower() in organization["location"].lower():
-      filter_location.append(organization)
+    for organization in result:
+      if location.lower() in organization["location"].lower():
+        filter_location.append(organization)
 
-  result = filter_location
+    result = filter_location
 
   return result
 
