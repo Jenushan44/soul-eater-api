@@ -1,15 +1,19 @@
+import os
 from fastapi import APIRouter, HTTPException, status
 from app.data import characters
 from app.utils.helpers import find_item_by_id
 from app.schemas import Character
+from app.database import get_characters_from_db
 
 router = APIRouter()
 
 @router.get("/characters", response_model=list[Character])
 def get_characters(role: str |  None = None, affiliation: str | None = None, name: str | None = None, species: str | None = None, status: str | None = None, sex: str | None = None, soul_type: str | None = None, continuity: str | None = None, occupation: str | None = None, partner: str | None = None, ability: str | None = None,):
 
-  result = characters
-
+  if os.getenv("DB_HOST"):
+    result = get_characters_from_db()
+  else:
+    result = characters
 
   if role is not None: 
     filter_role = []

@@ -2,12 +2,20 @@ from fastapi import APIRouter
 from app.utils.helpers import find_item_by_id
 from app.data import weapons
 from app.schemas import Weapon
+from app.database import get_weapons_from_db
+import os 
 
 router = APIRouter()
 
 
 @router.get("/weapons", response_model=list[Weapon])
 def get_weapons( weapon_type: str | None = None, weapon_category: str | None = None, meister: str | None = None, affiliation: str | None = None, status: str | None = None, continuity: str | None = None, ability: str | None = None, name: str | None = None,):
+
+  if os.getenv("DB_HOST"):
+    result = get_weapons_from_db()
+  else:
+    result = weapons
+
 
   result = weapons
 

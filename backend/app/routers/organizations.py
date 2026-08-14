@@ -2,13 +2,19 @@ from fastapi import APIRouter
 from app.data import organizations
 from app.utils.helpers import find_item_by_id
 from app.schemas import Organization
+from app.database import get_organizations_from_db
+import os
 
 router = APIRouter()
 
 
 @router.get("/organizations", response_model=list[Organization])
 def get_organizations( name: str | None = None, organization_type: str | None = None, leader: str | None = None, location: str | None = None, status: str | None = None):  
-  result = organizations 
+
+  if os.getenv("DB_HOST"):
+    result = get_organizations_from_db()
+  else:
+    result = organizations
 
   if (name is None and organization_type is None and leader is None and location is None and status is None):
     return organizations

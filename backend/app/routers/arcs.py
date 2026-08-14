@@ -2,19 +2,25 @@ from fastapi import APIRouter, HTTPException, status
 from app.data import arcs
 from app.utils.helpers import find_item_by_id
 from app.schemas import Arc
-
+from app.database import get_arcs_from_db
+import os
 
 router = APIRouter()
 
 @router.get("/arcs", response_model=list[Arc])
 def get_arcs(name: str | None = None, characters: str | None = None, status: str | None = None, continuity: str | None = None, episode_range: str | None = None, chapter_range: str | None = None,):
 
+  if os.getenv("DB_HOST"):
+    result = get_arcs_from_db()
+  else:
+    result = arcs
+
   filtered_results = []
 
   episode_ranges = { "Episodes 1-12": (1, 12), "Episodes 13-24": (13, 24), "Episodes 25-37": (25, 37), "Episodes 38-51": (38, 51),}
   chapter_ranges = {"Chapters 0-25": (0, 25), "Chapters 26-50": (26, 50), "Chapters 51-75": (51, 75), "Chapters 76-100": (76, 100),"Chapters 101-113": (101, 113),}
 
-  for arc in arcs:
+  for arc in result:
     is_match = True
 
     if name is not None:
@@ -86,4 +92,5 @@ def get_arcs(name: str | None = None, characters: str | None = None, status: str
 
 @router.get("/arcs/{arc_id}", response_model=Arc)
 def get_arc_by_id(arc_id: int): 
-  return find_item_by_id(arcs, arc_id, "Arc not found")
+  get_arc = get_arcs()
+  return find_item_by_id(get_arc, arc_id, "Arc not found")
