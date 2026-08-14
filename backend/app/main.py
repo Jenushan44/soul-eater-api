@@ -14,6 +14,7 @@ origins = [
     "http://127.0.0.1:3000",
     "https://soul-eater-api.vercel.app",
     "https://soul-eater-gsfm45tj0-jenushan.vercel.app",
+    "http://192.168.68.130:3000",
 ]
 
 app.add_middleware(
