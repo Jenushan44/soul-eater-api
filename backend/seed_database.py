@@ -21,7 +21,7 @@ connection = psycopg2.connect(
 character = characters[0]
 
 cursor = connection.cursor()
-cursor.execute("INSERT INTO characters VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (character['id'], character['name'], character['role'], character['affiliation'], character['description'], character['species'], character['sex'], character['soul_type'], character['status'], Json(character['occupations']), Json(character['partners']), Json(character['abilities']), character['debut'], character['continuity'], character['image_url']))
+cursor.execute("INSERT INTO characters ( id, name, role, affiliation, description, species, sex, soul_type, status, occupations, partners, abilities, debut, continuity, image_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", ( character["id"], character["name"], character["role"], character["affiliation"], character["description"], character["species"], character["sex"], character["soul_type"], character["status"], Json(character["occupations"]), Json(character["partners"]), Json(character["abilities"]), character["debut"], character["continuity"], character["image_url"]))
 connection.commit()
 cursor.close()
 connection.close()
